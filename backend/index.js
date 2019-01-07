@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser");
 const cookieSession = require("cookie-session");
 const app = express();
 const auth = require("./auth");
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 app.use(
   cookieSession({
@@ -70,4 +70,6 @@ function checkAuthentication(req, res, next) {
   }
 }
 
-app.listen(port);
+app.listen(port, () => {
+    console.log(`App running on port ${ port }`);
+});
