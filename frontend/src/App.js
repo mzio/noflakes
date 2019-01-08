@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { hot } from "react-hot-loader";
 import "./App.css";
 import ReactDOM from "react-dom";
-import { timingSafeEqual } from "crypto";
+import { Box, Card, Image, Heading, Text } from "rebass";
+import TestTable from "./components/TestTable.js";
 
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
@@ -286,6 +287,7 @@ class App extends Component {
     const numbers = [1, 2, 3, 4, 5];
     return (
       <div>
+        <TestTable />
         <Calculator />
         <NameForm />
         <NumberList numbers={numbers} />
@@ -295,6 +297,33 @@ class App extends Component {
         <Clock />
         <Clock />
         <Toggle />
+        <Text fontSize={[3, 4, 5]} fontWeight="bold" color="magenta">
+          Text
+        </Text>
+        <Box
+          p={5}
+          fontSize={4}
+          width={[1, 1, 1 / 2]}
+          color="white"
+          bg="magenta"
+        >
+          Box
+        </Box>
+        <Card
+          fontSize={6}
+          fontFamily={"Arial"}
+          fontWeight={700}
+          width={[1, 1, 1 / 2]}
+          p={5}
+          my={5}
+          bg="#f6f6ff"
+          borderRadius={8}
+          boxShadow="0 2px 16px rgba(0, 0, 0, 0.25)"
+          css="font-family:Arial; fontWeight=bold"
+        >
+          This is what
+        </Card>
+        <Heading color="magenta">Hello</Heading>
       </div>
     );
   }
