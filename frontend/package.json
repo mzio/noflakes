@@ -27,6 +27,7 @@
     "@rebass/grid": "^6.0.0-7",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-google-login": "^4.0.1",
     "react-hot-loader": "^4.6.3",
     "rebass": "^3.0.0",
     "styled-components": "^4.1.3",

@@ -4,7 +4,9 @@ import "./App.css";
 import ReactDOM from "react-dom";
 import { Box, Card, Image, Heading, Text } from "rebass";
 import TestTable from "./components/TestTable.js";
-import PactForm from "./components/PactForm.js";
+// import PactForm from "./components/PactForm.js";
+
+import GoogleLogin from "react-google-login";
 
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
@@ -285,10 +287,19 @@ function tryConvert(temperature, convert) {
 
 class App extends Component {
   render() {
+    const responseGoogle = response => {
+      console.log(response);
+    };
     const numbers = [1, 2, 3, 4, 5];
     return (
       <div>
-        <PactForm />
+        <GoogleLogin
+          clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+          buttonText="Login"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+        />
+        ;{/* <PactForm /> */}
         <TestTable />
         <Calculator />
         <NameForm />
