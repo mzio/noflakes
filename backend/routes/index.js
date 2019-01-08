@@ -4,24 +4,13 @@ const apiRoutes = require("./api");
 module.exports = (server, passport) => {
   server.use("/api", apiRoutes);
 
-  // server.get("/", (req, res) => {
-  //   if (req.session.token) {
-  //     res.cookie("token", req.session.token);
-  //     res.json({
-  //       status: "session cookie set"
-  //     });
-  //   } else {
-  //     res.cookie("token", "");
-  //     res.json({
-  //       status: "session cookie not set"
-  //     });
-  //   }
-  // });
-
   server.get(
     "/auth/google",
     passport.authenticate("google", {
-      scope: ["https://www.googleapis.com/auth/userinfo.profile"]
+      scope: [
+        "https://www.googleapis.com/auth/userinfo.profile",
+        "https://www.googleapis.com/auth/userinfo.email"
+      ]
     })
   );
 

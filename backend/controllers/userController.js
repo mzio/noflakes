@@ -19,7 +19,7 @@ module.exports = {
 
   new: (req, res) => {
     var user = new User();
-    user.oauthID = req.body.ouathID;
+    user.oauthId = req.body.ouathId;
     user.firstName = req.body.firstName;
     user.lastName = req.body.lastName;
     user.username = req.body.username;
@@ -50,15 +50,18 @@ module.exports = {
   },
 
   update: (req, res) => {
-    User.findById(req, params.user_id, (err, user) => {
-      if (err) {
-        res.send(err);
-      } else {
-        user.firstName = req.body.firstName || user.firstName;
-        user.lastName = req.body.lastName || user.lastName;
-        user.username = req.body.username || user.username;
+    User.findOneAndUpdate(
+      { _id: req.params.user_id },
+      req.body,
+      { new: true },
+      (err, user) => {
+        if (err) {
+          res.send(err);
+        } else {
+          res.json(user);
+        }
       }
-    });
+    );
   },
 
   delete: (req, res) => {

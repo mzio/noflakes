@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-  oauthID: {
+  oauthId: {
     type: String,
     required: true
   },
@@ -16,13 +16,13 @@ const userSchema = mongoose.Schema({
     required: true,
     unique: true
   },
-  pactIDsActive: {
+  pactIdsActive: {
     type: [String]
   },
-  pactIDsInactive: {
+  pactIdsInactive: {
     type: [String]
   },
-  friendIDs: {
+  friendIds: {
     type: [String]
   }
 });
