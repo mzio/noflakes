@@ -1,3 +1,4 @@
+// Tells babel to use env and react presets (ES6+ and JSX support)
 {
     "presets": ["@babel/env", "@babel/preset-react"]
 }
