@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require("passport");
 const cookieParser = require("cookie-parser");
 const cookieSession = require("cookie-session");
+const MongoClient = require("mongodb").MongoClient;
 const app = express();
 const auth = require("./auth");
 const port = process.env.PORT || 4000;
@@ -71,5 +72,5 @@ function checkAuthentication(req, res, next) {
 }
 
 app.listen(port, () => {
-    console.log(`App running on port ${ port }`);
+  console.log(`App running on port ${port}`);
 });
