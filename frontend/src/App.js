@@ -4,6 +4,7 @@ import "./App.css";
 import ReactDOM from "react-dom";
 import { Box, Card, Image, Heading, Text } from "rebass";
 import TestTable from "./components/TestTable.js";
+import PactForm from "./components/PactForm.js";
 
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
@@ -287,6 +288,7 @@ class App extends Component {
     const numbers = [1, 2, 3, 4, 5];
     return (
       <div>
+        <PactForm />
         <TestTable />
         <Calculator />
         <NameForm />
