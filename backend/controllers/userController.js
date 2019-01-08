@@ -54,8 +54,9 @@ module.exports = {
       if (err) {
         res.send(err);
       } else {
-        user.firstName = req.body.first_name || user.first_name;
-        user.last_name = req.body.last_name || user.last_name;
+        user.firstName = req.body.firstName || user.firstName;
+        user.lastName = req.body.lastName || user.lastName;
+        user.username = req.body.username || user.username;
       }
     });
   },
