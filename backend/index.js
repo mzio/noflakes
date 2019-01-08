@@ -3,11 +3,10 @@ const passport = require("passport");
 const cookieParser = require("cookie-parser");
 const cookieSession = require("cookie-session");
 const MongoClient = require("mongodb").MongoClient;
-const app = express();
+const server = express();
 const auth = require("./auth");
-const port = process.env.PORT || 4000;
 
-app.use(
+server.use(
   cookieSession({
     name: "session",
     keys: ["secret1"],
@@ -15,13 +14,13 @@ app.use(
   })
 );
 
-app.use(cookieParser());
+server.use(cookieParser());
 
 auth(passport);
-app.use(passport.initialize());
-app.use(passport.session());
+server.use(passport.initialize());
+server.use(passport.session());
 
-app.get("/", (req, res) => {
+server.get("/", (req, res) => {
   if (req.session.token) {
     res.cookie("token", req.session.token);
     res.json({
@@ -35,14 +34,14 @@ app.get("/", (req, res) => {
   }
 });
 
-app.get(
+server.get(
   "/auth/google",
   passport.authenticate("google", {
     scope: ["https://www.googleapis.com/auth/userinfo.profile"]
   })
 );
 
-app.get(
+server.get(
   "/auth/google/callback",
   passport.authenticate("google", {
     failureRedirect: "/"
@@ -53,13 +52,13 @@ app.get(
   }
 );
 
-app.get("/logout", (req, res) => {
+server.get("/logout", (req, res) => {
   req.logout();
   req.session = null;
   res.redirect("/");
 });
 
-app.get("/secret", checkAuthentication, (req, res) => {
+server.get("/secret", checkAuthentication, (req, res) => {
   res.send("You have reached the secret route.");
 });
 
@@ -71,6 +70,4 @@ function checkAuthentication(req, res, next) {
   }
 }
 
-app.listen(port, () => {
-  console.log(`App running on port ${port}`);
-});
+module.exports = server;
