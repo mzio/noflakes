@@ -1,6 +1,9 @@
 const middleware = require("./middleware");
+const apiRoutes = require("./api");
 
 module.exports = (server, passport) => {
+  server.use("/api", apiRoutes);
+
   server.get("/", (req, res) => {
     if (req.session.token) {
       res.cookie("token", req.session.token);
