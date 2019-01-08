@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
-import "./styles/App.css";
+import "./App.css";
 import ReactDOM from "react-dom";
 import { timingSafeEqual } from "crypto";
 
