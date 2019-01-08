@@ -19,9 +19,10 @@ module.exports = {
 
   new: (req, res) => {
     var user = new User();
-    user.oauth_id = req.body.oauth_id;
-    user.first_name = req.body.first_name;
-    user.last_name = req.body.last_name;
+    user.oauthID = req.body.ouathID;
+    user.firstName = req.body.firstName;
+    user.lastName = req.body.lastName;
+    user.username = req.body.username;
 
     user.save(err => {
       if (err) {
@@ -53,7 +54,7 @@ module.exports = {
       if (err) {
         res.send(err);
       } else {
-        user.first_name = req.body.first_name || user.first_name;
+        user.firstName = req.body.first_name || user.first_name;
         user.last_name = req.body.last_name || user.last_name;
       }
     });

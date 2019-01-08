@@ -1,23 +1,28 @@
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-  oauth_id: {
+  oauthID: {
     type: String,
     required: true
   },
-  first_name: {
+  firstName: {
     type: String
   },
-  last_name: {
+  lastName: {
     type: String
   },
-  past_ids_active: {
+  username: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  pactIDsActive: {
     type: [String]
   },
-  past_ids_active: {
+  pactIDsInactive: {
     type: [String]
   },
-  friend_ids: {
+  friendIDs: {
     type: [String]
   }
 });

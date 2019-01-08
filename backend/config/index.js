@@ -2,6 +2,8 @@ const configPassport = require("./passport.js");
 const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
+const express = require("express");
+const path = require("path");
 
 module.exports = (server, passport, mongoose) => {
   server.use(
@@ -38,4 +40,6 @@ module.exports = (server, passport, mongoose) => {
     "error",
     console.error.bind(console, "MongoDB connection error:")
   );
+
+  server.use(express.static(path.resolve(__dirname, "../../frontend/public")));
 };
