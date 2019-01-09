@@ -30,6 +30,7 @@
     "react-dom": "^16.7.0",
     "react-google-login": "^4.0.1",
     "react-hot-loader": "^4.6.3",
+    "react-landing-page": "^2.0.2",
     "rebass": "^3.0.0",
     "rodal": "^1.6.3",
     "styled-components": "^4.1.3",
