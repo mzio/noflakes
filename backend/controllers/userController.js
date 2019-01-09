@@ -19,7 +19,7 @@ module.exports = {
 
   new: (req, res) => {
     var user = new User();
-    user.oauthId = req.body.ouathId;
+    user.oauthId = req.body.oauthId;
     user.firstName = req.body.firstName;
     user.lastName = req.body.lastName;
     user.username = req.body.username;
@@ -37,21 +37,28 @@ module.exports = {
   },
 
   view: (req, res) => {
-    User.findById(req.params.user_id, (err, user) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.json({
-          message: "User details loading.",
-          data: user
-        });
+    User.findOne(
+      {
+        username: req.params.username
+      },
+      (err, user) => {
+        if (err) {
+          res.send(err);
+        } else {
+          res.json({
+            message: "User details loading.",
+            data: user
+          });
+        }
       }
-    });
+    );
   },
 
   update: (req, res) => {
     User.findOneAndUpdate(
-      { _id: req.params.user_id },
+      {
+        username: req.params.username
+      },
       req.body,
       { new: true },
       (err, user) => {
@@ -67,7 +74,7 @@ module.exports = {
   delete: (req, res) => {
     User.deleteOne(
       {
-        _id: req.params.user_id
+        username: req.params.username
       },
       (err, contact) => {
         if (err) {
@@ -75,7 +82,7 @@ module.exports = {
         } else {
           res.json({
             status: "success",
-            message: "Contact deletd."
+            message: "Contact deleted."
           });
         }
       }
