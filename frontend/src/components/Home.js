@@ -8,7 +8,7 @@ export default class Home extends Component {
       <div className="Home">
         <div className="lander">
           <h1>"Noflakes"</h1>
-          <p>You know, like snow but not.</p>
+          <p>There's only snow much time in the world.</p>
           <Login />
         </div>
       </div>

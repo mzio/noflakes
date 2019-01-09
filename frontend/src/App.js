@@ -2,7 +2,15 @@ import React, { Component } from "react";
 import { hot } from "react-hot-loader";
 import { Navbar, PageHeader } from "react-bootstrap";
 import ReactDOM from "react-dom";
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+
+library.add(fab);
+
+import Routes from "./Routes";
 import Home from "./components/Home";
+// import CreatePact from "./components/CreatePact";
 
 import "./App.css";
 
@@ -13,8 +21,11 @@ import "./App.css";
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Home />
+      <div>
+        <div className="App">
+          <Routes />
+          {/* <CreatePact /> */}
+        </div>
       </div>
     );
   }
