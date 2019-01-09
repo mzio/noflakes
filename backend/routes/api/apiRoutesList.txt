@@ -1,0 +1,21 @@
+/api
+    /users
+          .get Index users
+          .post Create a user
+          /:username
+                    .get View a user
+                    .patch Update a user
+                    .put Update a user
+                    .delete Delete a user
+    /pacts
+          .get Index pacts
+          .post Create a pact
+          /:pactId
+                  .get View a pact
+                  .patch Update a pact
+                  .put Update a pact
+                  .delete Delete a pact
+                  /:username
+                            .get View a user's pact status
+                            .patch Update a user's pact status
+                            .put Update a user's pact status
