@@ -24,7 +24,7 @@ module.exports = {
     pact.endTime = req.body.endTime;
     pact.users = req.body.users;
     for (var i = 0; i < pact.users.length; ++i) {
-      pact.usersStatus[i] = "pending";
+      pact.usersStatus.set(i, "pending");
       User.findOne(
         {
           username: req.body.users[i]
@@ -68,8 +68,10 @@ module.exports = {
           pact.description = req.body.description || pact.description;
           pact.endTime = req.body.endTime || pact.endTime;
           for (let i = 0; i < pact.users.length; i++) {
-            pact.usersStatus[i] =
-              req.body.usersStatus[i] || pact.usersStatus[i];
+            pact.usersStatus.set(
+              i,
+              req.body.usersStatus[i] || pact.usersStatus[i]
+            );
             User.findOne(
               {
                 username: pact.users[i]
@@ -84,13 +86,7 @@ module.exports = {
                    *  are certain there is no pact duplication
                    */
                   Object.keys(user.pacts).forEach(key => {
-                    var filtered = [];
-                    for (var j = 0; j < user.pacts[key].length; j++) {
-                      if (user.pacts[key][j] != pact._id) {
-                        filtered.push(user.pacts[key][j]);
-                      }
-                    }
-                    user.pacts[key] = filtered;
+                    user.pacts[key].pull(pact._id);
                   });
                   user.pacts[pact.usersStatus[i]].push(pact._id);
                   user.save(err => {
@@ -102,7 +98,6 @@ module.exports = {
               }
             );
           }
-          pact.markModified("usersStatus");
           pact.save(err => {
             if (err) {
               res.send(err);
@@ -141,10 +136,31 @@ module.exports = {
       {
         _id: req.params.pactId
       },
-      (err, contact) => {
+      (err, pact) => {
         if (err) {
           res.send(err);
         } else {
+          for (let i = 0; i < pact.users.length; i++) {
+            User.findOne(
+              {
+                username: pact.users[i]
+              },
+              (err, user) => {
+                if (err) {
+                  res.send(err);
+                } else if (user) {
+                  Object.keys(user.pacts).forEach(key => {
+                    user.pacts[key].pull(pact._id);
+                  });
+                  user.save(err => {
+                    if (err) {
+                      res.send(err);
+                    }
+                  });
+                }
+              }
+            );
+          }
           res.json({
             status: "success"
           });
@@ -180,8 +196,10 @@ module.exports = {
         if (err) {
           res.send(err);
         } else {
-          pact.usersStatus[pact.users.indexOf(req.params.username)] =
-            req.body.status;
+          pact.usersStatus.set(
+            pact.users.indexOf(req.params.username),
+            req.body.status
+          );
           User.findOne(
             {
               username: req.params.username
@@ -191,13 +209,7 @@ module.exports = {
                 res.send(err);
               } else if (user) {
                 Object.keys(user.pacts).forEach(key => {
-                  var filtered = [];
-                  for (var j = 0; j < user.pacts[key].length; j++) {
-                    if (user.pacts[key][j] != pact._id) {
-                      filtered.push(user.pacts[key][j]);
-                    }
-                  }
-                  user.pacts[key] = filtered;
+                  user.pacts[key].pull(pact._id);
                 });
                 user.pacts[req.body.status].push(pact._id);
                 user.save(err => {
@@ -209,7 +221,6 @@ module.exports = {
             }
           );
 
-          pact.markModified("usersStatus");
           pact.save(err => {
             if (err) {
               res.send(err);
@@ -234,8 +245,11 @@ module.exports = {
         if (err) {
           res.send(err);
         } else {
-          filteredUsers = [];
-          filteredUsersStatus = [];
+          var i = pact.users.indexOf(username);
+          if (i >= 0) {
+            pact.usersStatus.splice(i, 1);
+          }
+          pact.users.pull(username);
           for (var i = 0; i < pact.users.length; ++i) {
             if (pact.users[i] !== req.params.username) {
               filteredUsers.push(pact.users[i]);
@@ -253,13 +267,7 @@ module.exports = {
                 res.send(err);
               } else if (user) {
                 Object.keys(user.pacts).forEach(key => {
-                  var filtered = [];
-                  for (var j = 0; j < user.pacts[key].length; j++) {
-                    if (user.pacts[key][j] != pact._id) {
-                      filtered.push(user.pacts[key][j]);
-                    }
-                  }
-                  user.pacts[key] = filtered;
+                  user.pacts[key].pull(pact._id);
                 });
                 user.save(err => {
                   if (err) {
@@ -270,7 +278,6 @@ module.exports = {
             }
           );
 
-          pact.markModified("usersStatus");
           pact.save(err => {
             if (err) {
               res.send(err);
