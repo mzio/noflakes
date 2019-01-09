@@ -35,7 +35,7 @@ module.exports = (server, passport, mongoose) => {
   );
 
   mongoose.Promise = global.Promise;
-
+  mongoose.set("useCreateIndex", true);
   mongoose.connection.on(
     "error",
     console.error.bind(console, "MongoDB connection error:")
