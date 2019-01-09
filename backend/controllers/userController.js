@@ -11,7 +11,6 @@ module.exports = {
       }
       res.json({
         status: "success",
-        message: "Users retrieved successfully.",
         data: users
       });
     });
@@ -29,7 +28,7 @@ module.exports = {
         res.json(err);
       } else {
         res.json({
-          message: "New user created.",
+          status: "success",
           data: user
         });
       }
@@ -46,7 +45,7 @@ module.exports = {
           res.send(err);
         } else {
           res.json({
-            message: "User details loading.",
+            status: "success",
             data: user
           });
         }
@@ -65,7 +64,10 @@ module.exports = {
         if (err) {
           res.send(err);
         } else {
-          res.json(user);
+          res.json({
+            status: "success",
+            data: user
+          });
         }
       }
     );
@@ -81,8 +83,7 @@ module.exports = {
           res.send(err);
         } else {
           res.json({
-            status: "success",
-            message: "Contact deleted."
+            status: "success"
           });
         }
       }

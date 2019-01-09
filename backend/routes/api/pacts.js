@@ -13,4 +13,10 @@ router
   .put(pactController.update)
   .delete(pactController.delete);
 
+router
+  .route("/:pactId/:username")
+  .get(pactController.viewStatus)
+  .patch(pactController.updateStatus)
+  .put(pactController.updateStatus);
+
 module.exports = router;
