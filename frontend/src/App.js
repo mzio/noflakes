@@ -10,7 +10,7 @@ library.add(fab);
 
 import Routes from "./Routes";
 import Home from "./components/Home";
-// import CreatePact from "./components/CreatePact";
+import CreatePact from "./components/CreatePact";
 
 import "./App.css";
 
@@ -24,7 +24,7 @@ class App extends Component {
       <div>
         <div className="App">
           <Routes />
-          {/* <CreatePact /> */}
+          <CreatePact />
         </div>
       </div>
     );
