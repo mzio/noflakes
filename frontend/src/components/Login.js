@@ -82,13 +82,13 @@ export default class Login extends React.Component {
           </Modal.Body>
           <Modal.Footer className="ModalStyle">
             <div className="signInButtons">
-              <Link to="/auth/google">
+              <a href="/auth/google">
                 <SocialButton
                   fabStyle="faGoogle"
                   brandName="google"
                   message="Sign in with Google"
                 />
-              </Link>
+              </a>
             </div>
           </Modal.Footer>
         </Modal>
