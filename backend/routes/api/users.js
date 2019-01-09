@@ -7,7 +7,7 @@ router
   .post(userController.new);
 
 router
-  .route("/:user_id")
+  .route("/:username")
   .get(userController.view)
   .patch(userController.update)
   .put(userController.update)

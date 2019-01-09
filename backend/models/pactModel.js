@@ -4,7 +4,11 @@ const pactSchema = mongoose.Schema({
   name: {
     type: String
   },
-  userIds: {
+  users: {
+    type: [String],
+    required: true
+  },
+  usersStatus: {
     type: [String],
     required: true
   },

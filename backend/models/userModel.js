@@ -16,13 +16,15 @@ const userSchema = mongoose.Schema({
     required: true,
     unique: true
   },
-  pactIdsActive: {
-    type: [String]
+  pacts: {
+    pending: [String],
+    accepted: [String],
+    incomplete: [String],
+    complete: [String],
+    successful: [String],
+    inactive: [String]
   },
-  pactIdsInactive: {
-    type: [String]
-  },
-  friendIds: {
+  friends: {
     type: [String]
   }
 });
