@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
-import Private from "./components/Private";
-import requireAuthentication from "./components/requireAuthentication";
+// import Private from "./components/Private";
+// import requireAuthentication from "./components/requireAuthentication";
 import NotFound from "./components/NotFound";
 
 export default () => (

@@ -5,11 +5,14 @@ import {
   Col,
   Clearfix,
   FormGroup,
-  FormControl
+  FormControl,
+  ControlLabel
 } from "react-bootstrap";
 // import DatePicker from "react-bootstrap-date-picker";
-// import TimePicker from "react-bootstrap-time-picker";
-import DateTimeField from "react-bootstrap-datetimepicker";
+import TimePicker from "react-bootstrap-time-picker";
+// import DateTimePicker from "react-datetime-picker";
+import DateTimePicker from "./DateTimePicker";
+// import DateTimeField from "@1stquad/react-bootstrap-datetimepicker";
 
 export default class CreatePactForm extends React.Component {
   constructor(props) {
@@ -21,11 +24,12 @@ export default class CreatePactForm extends React.Component {
       endTime: "",
       users: []
     };
-    this.getValidationState = this.getValidationState(this);
+    this.getValidationState = this.getValidationState.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleEndDateChange = this.handleEndDateChange.bind(this);
-    this.handleEndTimeChange = this.handleEndTimeChange.bind(this);
+    // this.handleEndTimeChange = this.handleEndTimeChange.bind(this);
+    this.handleEndDateTimeChange = this.handleEndDateTimeChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -66,16 +70,21 @@ export default class CreatePactForm extends React.Component {
   }
 
   handleEndDateTimeChange(event) {
+    this.setState({});
+    console.log(event);
+  }
+
+  handleSubmit(event) {
     console.log(event);
   }
 
   render() {
-    var lowestDateValue = new Date().toISOString();
+    var lowestDateValue = new Date();
     return (
       <form>
         <FormGroup
           controlId="formBasicText"
-          validationState={this.getValidationState()}
+          //   validationState={this.getValidationState()}
         >
           <ControlLabel>Pact Name</ControlLabel>
           <FormControl
@@ -101,7 +110,9 @@ export default class CreatePactForm extends React.Component {
             onChange={this.handleEndDateChange}
             dateFormat="MM/DD/YYY"
           /> */}
-          <DateTimeField
+          {/* *{" "} */}
+          {/* <DateTimeField onChange={this.handleEndDateTimeChange} /> */}
+          <DateTimePicker
             minDate={lowestDateValue}
             onChange={this.handleEndDateTimeChange}
           />
