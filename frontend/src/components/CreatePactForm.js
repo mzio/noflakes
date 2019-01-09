@@ -6,12 +6,13 @@ import {
   Clearfix,
   FormGroup,
   FormControl,
-  ControlLabel
+  ControlLabel,
+  Button
 } from "react-bootstrap";
-// import DatePicker from "react-bootstrap-date-picker";
-import TimePicker from "react-bootstrap-time-picker";
-// import DateTimePicker from "react-datetime-picker";
-import DateTimePicker from "./DateTimePicker";
+import Datetime from "react-datetime";
+import "react-datetime/css/react-datetime.css";
+import "./CreatePact.css";
+
 // import DateTimeField from "@1stquad/react-bootstrap-datetimepicker";
 
 export default class CreatePactForm extends React.Component {
@@ -38,13 +39,7 @@ export default class CreatePactForm extends React.Component {
     const descriptionLength = this.state.description.length;
     const endDateLength = this.state.endDate.length;
     const endTime = this.state.endDate.length;
-    if (
-      nameLength < 1 ||
-      descriptionLength < 1 ||
-      endDateLength < 1 ||
-      endTime < 1
-    )
-      return "error";
+    if (nameLength < 1 || descriptionLength < 1) return "error";
     else return "success";
   }
 
@@ -69,13 +64,23 @@ export default class CreatePactForm extends React.Component {
     console.log(this.state);
   }
 
+  addChars(time) {
+    if (time.length < 2) {
+      time = "0" + time;
+    }
+    return time;
+  }
+
   handleEndDateTimeChange(event) {
-    this.setState({});
-    console.log(event);
+    // Storing Dates as UTC
+    let dateString = event.format();
+    let endDateString = dateString.slice(0, 10);
+    let endTimeString = dateString.slice(10, -1);
+    this.setState({ endDate: endDateString, endTime: endTimeString });
   }
 
   handleSubmit(event) {
-    console.log(event);
+    console.log(this.state);
   }
 
   render() {
@@ -90,7 +95,7 @@ export default class CreatePactForm extends React.Component {
           <FormControl
             type="text"
             value={this.state.name}
-            placeholder="Enter pact name"
+            placeholder="How do you want to remember this?"
             onChange={this.handleNameChange}
           />
         </FormGroup>
@@ -98,25 +103,28 @@ export default class CreatePactForm extends React.Component {
           <ControlLabel>Pact Description</ControlLabel>
           <FormControl
             componentClass="textarea"
-            placeholder="textarea"
+            placeholder="Describe the pact some more."
             onChange={this.handleDescriptionChange}
           />
         </FormGroup>
         <FormGroup>
           <ControlLabel>Pact End Date and Time</ControlLabel>
-          {/* <DatePicker
-            id="example-datepicker"
-            minDate={lowestDateValue}
-            onChange={this.handleEndDateChange}
-            dateFormat="MM/DD/YYY"
-          /> */}
-          {/* *{" "} */}
-          {/* <DateTimeField onChange={this.handleEndDateTimeChange} /> */}
-          <DateTimePicker
-            minDate={lowestDateValue}
+          {/* UTC Time */}
+          <Datetime
+            utc={true}
+            defaultValue={lowestDateValue}
             onChange={this.handleEndDateTimeChange}
           />
         </FormGroup>
+
+        <Button
+          bsStyle="primary"
+          bsSize="large"
+          className="SubmitButton"
+          onClick={this.handleSubmit}
+        >
+          Submit
+        </Button>
       </form>
     );
   }

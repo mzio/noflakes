@@ -7,7 +7,7 @@ export default class CreatePact extends React.Component {
   render() {
     return (
       <div>
-        <PageHeader>Create a Pact</PageHeader>
+        <PageHeader className="FormHeader">Create a Pact</PageHeader>
         {/* <AssociatedUsers /> */}
         <CreatePactForm />
       </div>

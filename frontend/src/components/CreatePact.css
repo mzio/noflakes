@@ -1,0 +1,9 @@
+.FormHeader {
+  border: none;
+  font-family: "Arial", "Open Sans", "Arial", sans-serif;
+  font-weight: 600;
+}
+
+.SubmitButton {
+  padding-top: 1rem;
+}
