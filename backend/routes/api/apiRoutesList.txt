@@ -1,21 +1,24 @@
 /api
     /users
-          .get Index users
-          .post Create a user
+          GET Index users
+          POST Create a user
           /:username
-                    .get View a user
-                    .patch Update a user
-                    .put Update a user
-                    .delete Delete a user
+                    GET View a user
+                    PATCH Update a user
+                    PUT Update a user
+                    DELETE Delete a user
     /pacts
-          .get Index pacts
-          .post Create a pact
+          GET Index pacts
+          POST Create a pact
           /:pactId
-                  .get View a pact
-                  .patch Update a pact
-                  .put Update a pact
-                  .delete Delete a pact
-                  /:username
-                            .get View a user's pact status
-                            .patch Update a user's pact status
-                            .put Update a user's pact status
+                  GET View a pact
+                  PATCH Update a pact
+                  PUT Update a pact
+                  DELETE Delete a pact
+                  /users
+                        GET Index users related to a pact
+                        POST Add a new user to a pact
+                        /:username
+                                  GET View a user's pact status
+                                  PATCH Update a user's pact status
+                                  PUT Update a user's pact status

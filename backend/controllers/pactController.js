@@ -78,6 +78,11 @@ module.exports = {
                 if (err) {
                   res.send(err);
                 } else if (user) {
+                  /*
+                   * TODO Remove all of these .forEach calls
+                   * once other bugs have been removed and we
+                   *  are certain there is no pact duplication
+                   */
                   Object.keys(user.pacts).forEach(key => {
                     var filtered = [];
                     for (var j = 0; j < user.pacts[key].length; j++) {
@@ -148,7 +153,7 @@ module.exports = {
     );
   },
 
-  viewStatus: (req, res) => {
+  viewUserStatus: (req, res) => {
     Pact.findOne(
       {
         _id: req.params.pactId
@@ -166,7 +171,7 @@ module.exports = {
     );
   },
 
-  updateStatus: (req, res) => {
+  updateUserStatus: (req, res) => {
     Pact.findOne(
       {
         _id: req.params.pactId
@@ -214,6 +219,144 @@ module.exports = {
                 data: pact
               });
             }
+          });
+        }
+      }
+    );
+  },
+
+  removeUser: (req, res) => {
+    Pact.findOne(
+      {
+        _id: req.params.pactId
+      },
+      (err, pact) => {
+        if (err) {
+          res.send(err);
+        } else {
+          filteredUsers = [];
+          filteredUsersStatus = [];
+          for (var i = 0; i < pact.users.length; ++i) {
+            if (pact.users[i] !== req.params.username) {
+              filteredUsers.push(pact.users[i]);
+              filteredUsersStatus.push(pact.usersStatus[i]);
+            }
+          }
+          pact.users = filteredUsers;
+          pact.usersStatus = filteredUsersStatus;
+          User.findOne(
+            {
+              username: req.params.username
+            },
+            (err, user) => {
+              if (err) {
+                res.send(err);
+              } else if (user) {
+                Object.keys(user.pacts).forEach(key => {
+                  var filtered = [];
+                  for (var j = 0; j < user.pacts[key].length; j++) {
+                    if (user.pacts[key][j] != pact._id) {
+                      filtered.push(user.pacts[key][j]);
+                    }
+                  }
+                  user.pacts[key] = filtered;
+                });
+                user.save(err => {
+                  if (err) {
+                    res.send(err);
+                  }
+                });
+              }
+            }
+          );
+
+          pact.markModified("usersStatus");
+          pact.save(err => {
+            if (err) {
+              res.send(err);
+            } else {
+              res.json({
+                status: "success",
+                data: pact
+              });
+            }
+          });
+        }
+      }
+    );
+  },
+
+  addUser: (req, res) => {
+    Pact.findOne(
+      {
+        _id: req.params.pactId
+      },
+      (err, pact) => {
+        if (err) {
+          res.send(err);
+        } else {
+          var status = req.params.username || "pending";
+          pact.users.push(req.params.username);
+          pact.usersStatus.push(status);
+          User.findOne(
+            {
+              username: req.params.username
+            },
+            (err, user) => {
+              if (err) {
+                res.send(err);
+              } else if (user) {
+                Object.keys(user.pacts).forEach(key => {
+                  var filtered = [];
+                  for (var j = 0; j < user.pacts[key].length; j++) {
+                    if (user.pacts[key][j] != pact._id) {
+                      filtered.push(user.pacts[key][j]);
+                    }
+                  }
+                  user.pacts[key] = filtered;
+                });
+                user.pacts[status].push(pact._id);
+                user.save(err => {
+                  if (err) {
+                    res.send(err);
+                  }
+                });
+              }
+            }
+          );
+
+          pact.markModified("usersStatus");
+          pact.save(err => {
+            if (err) {
+              res.send(err);
+            } else {
+              res.json({
+                status: "success",
+                data: pact
+              });
+            }
+          });
+        }
+      }
+    );
+  },
+
+  indexUsers: (req, res) => {
+    Pact.findOne(
+      {
+        _id: req.params.pactId
+      },
+      (err, pact) => {
+        if (err) {
+          res.send(err);
+        } else {
+          var out = {};
+          for (var i = 0; i < pact.users.length; ++i) {
+            out[pact.users[i]] = pact.usersStatus[i];
+          }
+          res.json({
+            status: "success",
+            data: out
           });
         }
       }
