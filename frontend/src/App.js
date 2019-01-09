@@ -4,7 +4,10 @@ import "./App.css";
 import ReactDOM from "react-dom";
 import { Box, Card, Image, Heading, Text } from "rebass";
 import TestTable from "./components/TestTable.js";
+import LoginForm from "./components/Login.js";
 // import PactForm from "./components/PactForm.js";
+
+// import "basscss/css/basscss.min.css";
 
 import GoogleLogin from "react-google-login";
 
@@ -293,13 +296,13 @@ class App extends Component {
     const numbers = [1, 2, 3, 4, 5];
     return (
       <div>
-        <GoogleLogin
+        {/* <GoogleLogin
           clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
           buttonText="Login"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
-        />
-        ;{/* <PactForm /> */}
+        /> */}
+        <LoginForm />;{/* <PactForm /> */}
         <TestTable />
         <Calculator />
         <NameForm />
@@ -324,7 +327,7 @@ class App extends Component {
         </Box>
         <Card
           fontSize={6}
-          fontFamily={"Arial"}
+          fontFamily="system-ui,sans-serif"
           fontWeight={700}
           width={[1, 1, 1 / 2]}
           p={5}
@@ -332,8 +335,9 @@ class App extends Component {
           bg="#f6f6ff"
           borderRadius={8}
           boxShadow="0 2px 16px rgba(0, 0, 0, 0.25)"
-          css="font-family:Arial; fontWeight=bold"
         >
+          {" "}
+          <p className="h1">This is what</p>
           This is what
         </Card>
         <Heading color="magenta">Hello</Heading>
