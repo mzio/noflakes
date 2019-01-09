@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
 import ReactDOM from "react-dom";
+// import { Heading } from "rebass";
 
 class PactRow extends React.Component {
   constructor(props) {
