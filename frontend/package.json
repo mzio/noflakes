@@ -26,6 +26,7 @@
   "dependencies": {
     "@rebass/grid": "^6.0.0-7",
     "react": "^16.7.0",
+    "react-bootstrap": "^0.32.4",
     "react-dom": "^16.7.0",
     "react-hot-loader": "^4.6.3",
     "rebass": "^3.0.0",
