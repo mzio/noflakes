@@ -23,4 +23,5 @@ router
   .get(userController.viewFriendRequest)
   .post(userController.acceptFriendRequest)
   .delete(userController.removeFriend);
+
 module.exports = router;
