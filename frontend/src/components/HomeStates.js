@@ -1,0 +1,54 @@
+import React, { Component } from "react";
+import Login from "./Login.js";
+import "./HomeStates.css";
+
+export default class HomeDefault extends Component {
+  // Default display
+  render() {
+    return (
+      <div className="HomeDefault">
+        <div className="lander">
+          <h1>"Noflakes"</h1>
+          <p>There's only snow much time in the world.</p>
+          <Login />
+        </div>
+      </div>
+    );
+  }
+}
+
+export class HomeSignIn extends Component {
+  // For new user; asks for username
+  constructor(props) {
+    super(props);
+    this.state = { validUsername: false };
+  }
+  render() {
+    return (
+      <div className="HomeDefault">
+        <div className="lander">
+          <h1>"Looks like it's your first time here"</h1>
+          {/* username collection form component */}
+        </div>
+      </div>
+    );
+  }
+}
+
+export class HomeProfile extends Component {
+  // For signed in user
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  render() {
+    return (
+      <div className="HomeDefault">
+        <div className="lander">
+          <h1>"Yay signed in"</h1>
+          {/* username collection form component */}
+        </div>
+      </div>
+    );
+  }
+}
