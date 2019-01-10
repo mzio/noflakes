@@ -60,6 +60,31 @@ function ModalFail(props) {
   );
 }
 
+function ModalRetryLogin(props) {
+  return (
+    <Modal
+      {...props}
+      bsSize="small"
+      dialogClassName="RetryLoginModal"
+      show={props.success}
+      onHide={props.handleclose}
+    >
+      <Modal.Header closeButton className="ModalStyle">
+        <Modal.Title>Google flaked on us</Modal.Title>
+      </Modal.Header>
+      <Modal.Body className="ModalBodyUsername">
+        <Row className="show-grid">
+          <Col xs={2} md={2} />
+          <Col xs={8} md={8}>
+            Don't despair. Just try logging in again. 👍
+          </Col>
+          <Col xs={2} md={2} />
+        </Row>
+      </Modal.Body>
+    </Modal>
+  );
+}
+
 export default class NewUserForm extends React.Component {
   constructor(props) {
     super(props);
@@ -67,7 +92,9 @@ export default class NewUserForm extends React.Component {
       username: "",
       valid: false,
       show: false,
-      redirect: false
+      redirect: false,
+      retryLogin: false,
+      showRetryLogin: false
     };
     this.getValidationState = this.getValidationState.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -75,6 +102,8 @@ export default class NewUserForm extends React.Component {
     this.usernameIsValid = this.usernameIsValid.bind(this);
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleShowRetryLogin = this.handleShowRetryLogin.bind(this);
+    this.handleCloseRetryLogin = this.handleCloseRetryLogin.bind(this);
   }
 
   usernameIsValid(username) {
@@ -113,7 +142,16 @@ export default class NewUserForm extends React.Component {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({ username: this.state.username })
-        }).then(res => this.setState({ redirect: true }));
+        })
+          .then(res => res.json())
+          .then(json => {
+            if (json.status === "success") {
+              this.setState({ redirect: true });
+            } else {
+              this.handleShowRetryLogin();
+            }
+            //
+          });
       } else {
         this.handleShow();
       }
@@ -128,9 +166,20 @@ export default class NewUserForm extends React.Component {
     this.setState({ show: true });
   }
 
+  handleCloseRetryLogin() {
+    this.setState({ showRetryLogin: false });
+    this.setState({ retryLogin: true });
+  }
+
+  handleShowRetryLogin() {
+    this.setState({ showRetryLogin: true });
+  }
+
   render() {
-    const { redirect } = this.state;
-    if (redirect) {
+    const { redirect, retryLogin } = this.state;
+    if (retryLogin) {
+      return <Redirect to="/logout" />;
+    } else if (redirect) {
       return <Redirect to="/" />;
     }
     return (
