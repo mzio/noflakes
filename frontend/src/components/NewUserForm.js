@@ -180,7 +180,7 @@ export default class NewUserForm extends React.Component {
     if (retryLogin) {
       return <Redirect to="/logout" />;
     } else if (redirect) {
-      return <Redirect to="/" />;
+      return <Redirect to="/profile" />;
     }
     return (
       <form>
