@@ -119,20 +119,6 @@ export default class NewUserForm extends React.Component {
       }
     });
   }
-  //       )
-  //     if (this.getValidationState()) {
-  //       console.log("Success logging in");
-  //       fetch("/api/users/", {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json"
-  //         },
-  //         body: { username: this.state.username }
-  //       }).then(res => this.setState({ redirect: true }));
-  //     } else {
-  //       this.handleShow();
-  //     }
-  //   }
 
   handleClose() {
     this.setState({ show: false });
