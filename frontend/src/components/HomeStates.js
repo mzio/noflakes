@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Login from "./Login.js";
 import "./HomeStates.css";
+import NewUserForm from "./NewUserForm";
 
 export default class HomeDefault extends Component {
   // Default display
@@ -27,8 +28,8 @@ export class HomeSignIn extends Component {
     return (
       <div className="HomeDefault">
         <div className="lander">
-          <h1>"Looks like it's your first time here"</h1>
-          {/* username collection form component */}
+          <h1>Looks like it's your first time here</h1>
+          <NewUserForm />
         </div>
       </div>
     );
@@ -39,13 +40,13 @@ export class HomeProfile extends Component {
   // For signed in user
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { userFirstName: props.userFirstName };
   }
   render() {
     return (
       <div className="HomeDefault">
         <div className="lander">
-          <h1>"Yay signed in"</h1>
+          <h1>`Hi ${this.state.userFirstName}`</h1>
           {/* username collection form component */}
         </div>
       </div>

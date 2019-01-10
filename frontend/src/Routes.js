@@ -8,6 +8,7 @@ export default () => (
   <Switch>
     <Route path="/" exact component={Home} />
     <Route path="/createPact" exact component={CreatePact} />
+    <Route path="/profile" exact component={Home} />
     <Route component={NotFound} />
   </Switch>
 );

@@ -27,3 +27,8 @@
 .faGoogle {
   color: rgb(0, 190, 253);
 }
+
+.ModalBodyUsername {
+  padding-top: 0;
+  text-align: center;
+}

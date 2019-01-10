@@ -18,6 +18,7 @@ module.exports = {
 
   new: (req, res) => {
     var user = new User();
+    console.log(user);
     if (req.user) {
       user.oauthId = req.user.profile.id || req.body.oauthId;
       user.firstName = req.user.profile.name.givenName || req.body.firstName;
@@ -394,7 +395,8 @@ module.exports = {
               status: "success",
               data: {
                 exists: true,
-                username: user.username
+                username: user.username,
+                firstName: user.firstName
               }
             });
           } else {
@@ -402,7 +404,8 @@ module.exports = {
               status: "success",
               data: {
                 exists: true,
-                username: null
+                username: null,
+                firstName: null
               }
             });
           }
@@ -413,7 +416,8 @@ module.exports = {
         status: "success",
         data: {
           exists: false,
-          username: null
+          username: null,
+          firstName: null
         }
       });
     }

@@ -25,7 +25,7 @@ module.exports = (server, passport, mongoose) => {
       extended: true
     })
   );
-  server.use(bodyParser.json());
+  server.use(bodyParser.json((strict = false)));
 
   mongoose.connect(
     process.env.MONGODB_URI,

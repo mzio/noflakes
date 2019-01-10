@@ -6,7 +6,7 @@ import "./Home.css";
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { ready: false, signedIn: false, user: null };
+    this.state = { ready: false, signedIn: false, user: null, firstName: null };
   }
 
   componentWillMount() {
@@ -18,7 +18,8 @@ export default class Home extends Component {
           this.setState({
             ready: true,
             signedIn: true,
-            user: resData.username
+            user: resData.username,
+            firstName: resData.firstName
           });
         } else if (resData.exists && !resData.username) {
           this.setState({ ready: true, signedIn: true });
@@ -36,7 +37,7 @@ export default class Home extends Component {
     } else if (this.state.signedIn && !this.state.user) {
       return <HomeSignIn />;
     } else {
-      return <HomeDefault />;
+      return <HomeDefault userFirstName={this.state.firstName} />;
     }
   }
 }
