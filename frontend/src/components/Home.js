@@ -33,11 +33,11 @@ export default class Home extends Component {
     if (!this.state.ready) {
       return <div />;
     } else if (this.state.signedIn && this.state.user) {
-      return <HomeProfile />;
+      return <HomeProfile userFirstName={this.state.firstName} />;
     } else if (this.state.signedIn && !this.state.user) {
       return <HomeSignIn />;
     } else {
-      return <HomeDefault userFirstName={this.state.firstName} />;
+      return <HomeDefault />;
     }
   }
 }
