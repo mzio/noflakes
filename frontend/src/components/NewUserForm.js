@@ -11,7 +11,7 @@ import {
   Col
 } from "react-bootstrap";
 
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import "./Login.css";
 
@@ -42,7 +42,7 @@ function ModalFail(props) {
       bsSize="small"
       dialogClassName="LoginModal"
       show={props.success}
-      onHide={props.handleClose}
+      onHide={props.handleclose}
     >
       <Modal.Header closeButton className="ModalStyle">
         <Modal.Title>Username taken or invalid!</Modal.Title>
@@ -66,7 +66,8 @@ export default class NewUserForm extends React.Component {
     this.state = {
       username: "",
       valid: false,
-      show: false
+      show: false,
+      redirect: false
     };
     this.getValidationState = this.getValidationState.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -109,12 +110,11 @@ export default class NewUserForm extends React.Component {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ username: this.state.username })
-      });
+        body: { username: this.state.username }
+      }).then(res => this.setState({ redirect: true }));
     } else {
       this.handleShow();
     }
-    console.log(this.state);
   }
 
   handleClose() {
@@ -126,6 +126,10 @@ export default class NewUserForm extends React.Component {
   }
 
   render() {
+    const { redirect } = this.state;
+    if (redirect) {
+      return <Redirect to="/" />;
+    }
     return (
       <form>
         <FormGroup controlId="formBasicText">
@@ -149,7 +153,7 @@ export default class NewUserForm extends React.Component {
         <div>
           <Link to="/logout">Take me back home</Link>
         </div>
-        <ModalFail success={this.state.show} handleClose={this.handleClose} />
+        <ModalFail success={this.state.show} handleclose={this.handleClose} />
       </form>
     );
   }

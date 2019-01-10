@@ -26,8 +26,8 @@ class App extends Component {
       <div>
         <div className="App">
           <Routes />
-          <Link to="/createPact">Test this link actually</Link>
-          <HomeSignIn />
+          {/* <Link to="/createPact">Test this link actually</Link>
+          <HomeSignIn /> */}
         </div>
       </div>
     );
