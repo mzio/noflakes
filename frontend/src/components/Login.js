@@ -94,7 +94,7 @@ export default class Login extends React.Component {
           </Modal.Body>
           <Modal.Footer className="ModalStyle">
             <div className="signInButtons">
-              <a href="http://localhost:4000/auth/google">
+              <a href="/auth/google">
                 <SocialButton
                   fabStyle="faGoogle"
                   brandName="google"
