@@ -91,8 +91,6 @@ export default class NewUserForm extends React.Component {
             return true;
           }
         });
-      this.setState({ valid: true });
-      return true;
     } else {
       return false;
     }
