@@ -112,7 +112,7 @@ export default class NewUserForm extends React.Component {
           headers: {
             "Content-Type": "application/json"
           },
-          body: { username: this.state.username }
+          body: JSON.stringify({ username: this.state.username })
         }).then(res => this.setState({ redirect: true }));
       } else {
         this.handleShow();
