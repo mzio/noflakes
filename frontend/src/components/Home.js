@@ -24,11 +24,19 @@ export default class Home extends Component {
 
   render() {
     console.log(this.state);
+    console.log(this.state.signedIn && this.state.user);
+    console.log(this.state.signedIn && !this.state.user);
     if (this.state.signedIn && this.state.user) {
+      console.log("profile");
+
       return <HomeProfile />;
     } else if (this.state.signedIn && !this.state.user) {
+      console.log("signin");
+
       return <HomeSignIn />;
     } else {
+      console.log("default");
+
       return <HomeDefault />;
     }
   }
