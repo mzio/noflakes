@@ -10,7 +10,7 @@ export default class Home extends Component {
   }
 
   componentWillMount() {
-    fetch("/api/auth/username")
+    fetch("/api/auth/user")
       .then(res => res.json())
       .then(json => {
         let resData = json.data;
