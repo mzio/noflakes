@@ -395,7 +395,8 @@ module.exports = {
               status: "success",
               data: {
                 exists: true,
-                username: user.username
+                username: user.username,
+                firstName: user.firstName
               }
             });
           } else {
@@ -403,7 +404,8 @@ module.exports = {
               status: "success",
               data: {
                 exists: true,
-                username: null
+                username: null,
+                firstName: null
               }
             });
           }
@@ -414,7 +416,8 @@ module.exports = {
         status: "success",
         data: {
           exists: false,
-          username: null
+          username: null,
+          firstName: null
         }
       });
     }
