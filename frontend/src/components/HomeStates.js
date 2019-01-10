@@ -46,7 +46,7 @@ export class HomeProfile extends Component {
     return (
       <div className="HomeDefault">
         <div className="lander">
-          <h1>`Hi ${this.state.userFirstName}`</h1>
+          <h1>Hi {this.state.userFirstName}</h1>
           {/* username collection form component */}
         </div>
       </div>
