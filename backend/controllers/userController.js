@@ -380,10 +380,15 @@ module.exports = {
       (err, user) => {
         if (err) {
           res.send(err);
-        } else {
+        } else if (user) {
           res.json({
             status: "success",
             userId: user._id
+          });
+        } else {
+          res.json({
+            status: "success",
+            message: "User does not yet exist."
           });
         }
       }
