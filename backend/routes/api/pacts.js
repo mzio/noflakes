@@ -14,9 +14,15 @@ router
   .delete(pactController.delete);
 
 router
-  .route("/:pactId/:username")
-  .get(pactController.viewStatus)
-  .patch(pactController.updateStatus)
-  .put(pactController.updateStatus);
+  .route("/:pactId/users")
+  .get(pactController.indexUsers)
+  .post(pactController.addUser);
+
+router
+  .route("/:pactId/users/:username")
+  .get(pactController.viewUserStatus)
+  .patch(pactController.updateUserStatus)
+  .put(pactController.updateUserStatus)
+  .delete(pactController.removeUser);
 
 module.exports = router;

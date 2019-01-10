@@ -1,0 +1,33 @@
+/api
+    /users
+          GET Index users
+          POST Create a user
+          /currentId
+                    GET View the current user's mongodb ID
+          /:username
+                    GET View a user
+                    PATCH Update a user
+                    PUT Update a user
+                    DELETE Delete a user
+                    /friends
+                            GET Index friends and friend requests of a user
+                            POST Send a friend request from a user to another
+                            /:friendname
+                                        GET View friend request status
+                                        POST Accept a friend request
+                                        DELETE Remove a friend or reject a request
+    /pacts
+          GET Index pacts
+          POST Create a pact
+          /:pactId
+                  GET View a pact
+                  PATCH Update a pact
+                  PUT Update a pact
+                  DELETE Delete a pact
+                  /users
+                        GET Index users related to a pact
+                        POST Add a new user to a pact
+                        /:username
+                                  GET View a user's pact status
+                                  PATCH Update a user's pact status
+                                  PUT Update a user's pact status

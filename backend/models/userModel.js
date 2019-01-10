@@ -24,6 +24,10 @@ const userSchema = mongoose.Schema({
     successful: [String],
     inactive: [String]
   },
+  friend_requests: {
+    pending: [String],
+    sent: [String]
+  },
   friends: {
     type: [String]
   }

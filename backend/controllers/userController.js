@@ -78,12 +78,317 @@ module.exports = {
       {
         username: req.params.username
       },
-      (err, contact) => {
+      (err, user) => {
         if (err) {
           res.send(err);
         } else {
           res.json({
             status: "success"
+          });
+        }
+      }
+    );
+  },
+
+  indexFriends: (req, res) => {
+    User.findOne(
+      {
+        username: req.params.username
+      },
+      (err, user) => {
+        if (err) {
+          res.send(err);
+        } else {
+          var out = {};
+          out.friends = user.friends;
+          out.friend_requests = user.friend_requests;
+          res.json({
+            status: "success",
+            data: out
+          });
+        }
+      }
+    );
+  },
+
+  sendFriendRequest: (req, res) => {
+    User.findOne(
+      {
+        username: req.params.username
+      },
+      (err, user) => {
+        if (err) {
+          res.send(err);
+        } else {
+          if (user.friends.indexOf(req.body.friendname) >= 0) {
+            res.json({
+              status: "failure",
+              message: "Users already friends, no request needed."
+            });
+          } else if (
+            user.friend_requests.sent.indexOf(req.body.friendname) >= 0
+          ) {
+            res.json({
+              status: "failure",
+              message: "Friend request already sent, no request needed."
+            });
+          } else if (
+            user.friend_requests.pending.indexOf(req.body.friendname) >= 0
+          ) {
+            User.findOne(
+              {
+                username: req.body.friendname
+              },
+              (err, friend) => {
+                if (err) {
+                  res.send(err);
+                } else {
+                  user.friend_requests.pending.pull(friend.username);
+                  user.friends.push(friend.username);
+                  friend.friend_requests.sent.pull(user.username);
+                  friend.friends.push(user.username);
+                  user.save(err => {
+                    if (err) {
+                      res.send(err);
+                    } else {
+                      friend.save(err => {
+                        if (err) {
+                          res.send(err);
+                        } else {
+                          res.json({
+                            status: "success"
+                          });
+                        }
+                      });
+                    }
+                  });
+                }
+              }
+            );
+          } else {
+            User.findOne(
+              {
+                username: req.body.friendname
+              },
+              (err, friend) => {
+                if (err) {
+                  res.send(err);
+                } else {
+                  user.friend_requests.sent.push(friend.username);
+                  friend.friend_requests.pending.push(user.username);
+                  user.save(err => {
+                    if (err) {
+                      res.send(err);
+                    } else {
+                      friend.save(err => {
+                        if (err) {
+                          res.send(err);
+                        } else {
+                          res.json({
+                            status: "success"
+                          });
+                        }
+                      });
+                    }
+                  });
+                }
+              }
+            );
+          }
+        }
+      }
+    );
+  },
+
+  viewFriendRequest: (req, res) => {
+    User.findOne(
+      {
+        username: req.params.username
+      },
+      (err, user) => {
+        if (err) {
+          res.send(err);
+        } else {
+          if (user.friends.indexOf(req.params.friendname) >= 0) {
+            res.json({
+              status: "success",
+              body: {
+                friendStatus: "friends",
+                requestStatus: "none"
+              }
+            });
+          } else if (
+            user.friend_requests.sent.indexOf(req.params.friendname) >= 0
+          ) {
+            res.json({
+              status: "success",
+              body: {
+                friendStatus: "none",
+                requestStatus: "sent"
+              }
+            });
+          } else if (
+            user.friend_requests.pending.indexOf(req.params.friendname) >= 0
+          ) {
+            res.json({
+              status: "success",
+              body: {
+                friendStatus: "none",
+                requestStatus: "pending"
+              }
+            });
+          } else {
+            res.json({
+              status: "success",
+              body: {
+                friendStatus: "none",
+                requestStatus: "none"
+              }
+            });
+          }
+        }
+      }
+    );
+  },
+
+  acceptFriendRequest: (req, res) => {
+    User.findOne(
+      {
+        username: req.params.username
+      },
+      (err, user) => {
+        if (err) {
+          res.send(err);
+        } else {
+          if (user.friends.indexOf(req.params.friendname) >= 0) {
+            res.json({
+              status: "failure",
+              message: "Users already friends, no accept needed."
+            });
+          } else if (
+            user.friend_requests.sent.indexOf(req.params.friendname) >= 0
+          ) {
+            res.json({
+              status: "failure",
+              message: "Friend request already sent, no accept needed."
+            });
+          } else if (
+            user.friend_requests.pending.indexOf(req.params.friendname) >= 0
+          ) {
+            User.findOne(
+              {
+                username: req.params.friendname
+              },
+              (err, friend) => {
+                if (err) {
+                  res.send(err);
+                } else {
+                  user.friend_requests.pending.pull(friend.username);
+                  user.friends.push(friend.username);
+                  friend.friend_requests.sent.pull(user.username);
+                  friend.friends.push(user.username);
+                  user.save(err => {
+                    if (err) {
+                      res.send(err);
+                    } else {
+                      friend.save(err => {
+                        if (err) {
+                          res.send(err);
+                        } else {
+                          res.json({
+                            status: "success"
+                          });
+                        }
+                      });
+                    }
+                  });
+                }
+              }
+            );
+          } else {
+            User.findOne(
+              {
+                username: req.body.friendname
+              },
+              (err, friend) => {
+                if (err) {
+                  res.send(err);
+                } else {
+                  res.json({
+                    status: "failure",
+                    message: "No friend request recieved, no accept needed."
+                  });
+                }
+              }
+            );
+          }
+        }
+      }
+    );
+  },
+
+  removeFriend: (req, res) => {
+    User.findOne(
+      {
+        username: req.params.username
+      },
+      (err, user) => {
+        if (err) {
+          res.send(err);
+        } else {
+          User.findOne(
+            {
+              username: req.params.friendname
+            },
+            (err, friend) => {
+              if (err) {
+                res.send(err);
+              } else {
+                user.friends.pull(friend.username);
+                user.friend_requests.sent.pull(friend.username);
+                user.friend_requests.pending.pull(friend.username);
+                friend.friends.pull(user.username);
+                friend.friend_requests.sent.pull(user.username);
+                friend.friend_requests.pending.pull(user.username);
+                user.save(err => {
+                  if (err) {
+                    res.send(err);
+                  } else {
+                    friend.save(err => {
+                      if (err) {
+                        res.send(err);
+                      } else {
+                        res.json({
+                          status: "success"
+                        });
+                      }
+                    });
+                  }
+                });
+              }
+            }
+          );
+        }
+      }
+    );
+  },
+  currentId: (req, res) => {
+    User.findOne(
+      {
+        oauthId: req.user.profile.id
+      },
+      (err, user) => {
+        if (err) {
+          res.send(err);
+        } else if (user) {
+          res.json({
+            status: "success",
+            userId: user._id
+          });
+        } else {
+          res.json({
+            status: "success",
+            message: "User does not yet exist."
           });
         }
       }
