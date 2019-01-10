@@ -1,9 +1,11 @@
 /api
+    /auth
+         /username
+                  GET View the current user's mongodb username
+
     /users
           GET Index users
           POST Create a user
-          /currentUsername
-                          GET View the current user's mongodb username
           /:username
                     GET View a user
                     PATCH Update a user

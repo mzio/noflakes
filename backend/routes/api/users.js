@@ -6,8 +6,6 @@ router
   .get(userController.index)
   .post(userController.new);
 
-router.route("/currentUsername").get(userController.currentUsername);
-
 router
   .route("/:username")
   .get(userController.view)
@@ -25,4 +23,5 @@ router
   .get(userController.viewFriendRequest)
   .post(userController.acceptFriendRequest)
   .delete(userController.removeFriend);
+
 module.exports = router;
