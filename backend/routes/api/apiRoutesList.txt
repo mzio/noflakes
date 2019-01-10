@@ -2,8 +2,8 @@
     /users
           GET Index users
           POST Create a user
-          /currentId
-                    GET View the current user's mongodb ID
+          /currentUsername
+                          GET View the current user's mongodb username
           /:username
                     GET View a user
                     PATCH Update a user

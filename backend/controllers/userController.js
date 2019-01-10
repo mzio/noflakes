@@ -372,26 +372,43 @@ module.exports = {
       }
     );
   },
-  currentId: (req, res) => {
-    User.findOne(
-      {
-        oauthId: req.user.profile.id
-      },
-      (err, user) => {
-        if (err) {
-          res.send(err);
-        } else if (user) {
-          res.json({
-            status: "success",
-            userId: user._id
-          });
-        } else {
-          res.json({
-            status: "success",
-            message: "User does not yet exist."
-          });
+
+  currentUsername: (req, res) => {
+    if (req.user) {
+      User.findOne(
+        {
+          oauthId: req.user.profile.id
+        },
+        (err, user) => {
+          if (err) {
+            res.send(err);
+          } else if (user) {
+            res.json({
+              status: "success",
+              data: {
+                exists: true,
+                username: user.username
+              }
+            });
+          } else {
+            res.json({
+              status: "success",
+              data: {
+                exists: true,
+                username: null
+              }
+            });
+          }
         }
-      }
-    );
+      );
+    } else {
+      res.json({
+        status: "success",
+        data: {
+          exists: false,
+          username: null
+        }
+      });
+    }
   }
 };
