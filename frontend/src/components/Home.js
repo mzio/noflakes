@@ -3,6 +3,15 @@ import Login from "./Login.js";
 import "./Home.css";
 
 export default class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { signedIn: false, user: null };
+  }
+
+  componentDidMount() {
+    fetch("/api/users/currentId").then(res => res.json().then(json => {}));
+  }
+
   render() {
     return (
       <div className="Home">
