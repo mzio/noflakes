@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "postinstall": "[ ${MODE} == prod ] && cd frontend && npm install && npm run build"
+    "postinstall": "cd frontend && npm install && if test \"$MODE\" != \"prod\" ; then npm install --only=dev && npm run build; fi"
   },
   "repository": {
     "type": "git",
