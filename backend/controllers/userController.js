@@ -18,10 +18,17 @@ module.exports = {
 
   new: (req, res) => {
     var user = new User();
-    user.oauthId = req.body.oauthId;
-    user.firstName = req.body.firstName;
-    user.lastName = req.body.lastName;
-    user.username = req.body.username;
+    if (req.user) {
+      user.oauthId = req.user.profile.id || req.body.oauthId;
+      user.firstName = req.user.profile.name.givenName || req.body.firstName;
+      user.lastName = req.user.profile.name.familyName || req.body.lastName;
+      user.username = req.body.username;
+    } else {
+      user.oauthId = req.body.oauthId;
+      user.firstName = req.body.firstName;
+      user.lastName = req.body.lastName;
+      user.username = req.body.username;
+    }
 
     user.save(err => {
       if (err) {
