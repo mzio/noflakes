@@ -12,7 +12,6 @@ export default class HomeDefault extends Component {
           <h1>"Noflakes"</h1>
           <p>There's only snow much time in the world.</p>
           <Login />
-          <NewUserForm />
         </div>
       </div>
     );
@@ -29,8 +28,8 @@ export class HomeSignIn extends Component {
     return (
       <div className="HomeDefault">
         <div className="lander">
-          <h1>"Looks like it's your first time here"</h1>
-          {/* username collection form component */}
+          <h1>Looks like it's your first time here</h1>
+          <NewUserForm />
         </div>
       </div>
     );

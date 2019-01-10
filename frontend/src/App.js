@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
 import { Navbar, PageHeader } from "react-bootstrap";
+import { HomeSignIn } from "./components/HomeStates";
 import ReactDOM from "react-dom";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -26,6 +27,7 @@ class App extends Component {
         <div className="App">
           <Routes />
           <Link to="/createPact">Test this link actually</Link>
+          <HomeSignIn />
         </div>
       </div>
     );
