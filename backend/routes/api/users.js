@@ -6,7 +6,7 @@ router
   .get(userController.index)
   .post(userController.new);
 
-router.route("/currentId").get(userController.currentId);
+router.route("/currentUsername").get(userController.currentUsername);
 
 router
   .route("/:username")
