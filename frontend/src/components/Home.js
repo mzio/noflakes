@@ -25,6 +25,9 @@ export default class Home extends Component {
         } else {
           this.setState({ ready: true });
         }
+      })
+      .catch(function() {
+        console.log("React Component Development Zone");
       });
   }
 
@@ -32,11 +35,11 @@ export default class Home extends Component {
     if (!this.state.ready) {
       return <div />;
     } else if (this.state.signedIn && this.state.user) {
-      return <HomeProfile />;
+      return <HomeProfile userFirstName={this.state.user.firstName} />;
     } else if (this.state.signedIn && !this.state.user) {
       return <HomeSignIn />;
     } else {
-      return <HomeDefault userFirstName={this.state.user.firstName} />;
+      return <HomeDefault />;
     }
   }
 }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Login from "./Login.js";
 import "./HomeStates.css";
 import NewUserForm from "./NewUserForm";
+import ProfileMenu from "./ProfileMenu";
 
 export default class HomeDefault extends Component {
   // Default display
@@ -37,7 +38,7 @@ export class HomeSignIn extends Component {
 }
 
 export class HomeProfile extends Component {
-  // For signed in user
+  // For signed in user, display menu: create pacts, see active pacts, see past pacts
   constructor(props) {
     super(props);
     this.state = { userFirstName: props.userFirstName };
@@ -46,8 +47,8 @@ export class HomeProfile extends Component {
     return (
       <div className="HomeDefault">
         <div className="lander">
-          <h1>`Hi ${this.state.userFirstName}`</h1>
-          {/* username collection form component */}
+          <h1>Hi {this.state.userFirstName}!</h1>
+          <ProfileMenu />
         </div>
       </div>
     );
