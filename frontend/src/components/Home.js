@@ -26,7 +26,7 @@ export default class Home extends Component {
     console.log(this.state);
     if (this.state.signedIn && this.state.user) {
       return <HomeProfile />;
-    } else if (this.state.signedIn && !!this.state.user) {
+    } else if (this.state.signedIn && !this.state.user) {
       return <HomeSignIn />;
     } else {
       return <HomeDefault />;
