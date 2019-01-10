@@ -40,13 +40,13 @@ export class HomeProfile extends Component {
   // For signed in user
   constructor(props) {
     super(props);
-    this.state = { user: props.user };
+    this.state = { userFirstName: props.userFirstName };
   }
   render() {
     return (
       <div className="HomeDefault">
         <div className="lander">
-          <h1>`Hi ${this.state.user}`</h1>
+          <h1>`Hi ${this.state.userFirstName}`</h1>
           {/* username collection form component */}
         </div>
       </div>

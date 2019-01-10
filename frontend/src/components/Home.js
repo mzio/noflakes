@@ -37,7 +37,7 @@ export default class Home extends Component {
     } else if (this.state.signedIn && !this.state.user) {
       return <HomeSignIn />;
     } else {
-      return <HomeDefault user={this.state.firstName} />;
+      return <HomeDefault userFirstName={this.state.firstName} />;
     }
   }
 }
