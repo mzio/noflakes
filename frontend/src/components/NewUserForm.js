@@ -83,18 +83,19 @@ export default class NewUserForm extends React.Component {
 
   getValidationState() {
     if (this.usernameIsValid(this.state.username)) {
-      fetch("/api/users/" + this.state.username)
+      return fetch("/api/users/" + this.state.username)
         .then(res => res.json())
         .then(json => {
           console.log(json);
           console.log(typeof json.data);
           if (json.data === null) {
             this.setState({ valid: true });
-            return true;
+            // return true;
           }
         });
-    } else {
-      return false;
+      // } else {
+      //   return false;
+      // }
     }
   }
 
@@ -103,19 +104,35 @@ export default class NewUserForm extends React.Component {
   }
 
   handleSubmit(event) {
-    if (this.getValidationState()) {
-      console.log("Success logging in");
-      fetch("/api/users/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: { username: this.state.username }
-      }).then(res => this.setState({ redirect: true }));
-    } else {
-      this.handleShow();
-    }
+    this.getValidationState().then(res => {
+      if (this.state.valid) {
+        console.log("Success logging in");
+        fetch("/api/users/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: { username: this.state.username }
+        }).then(res => this.setState({ redirect: true }));
+      } else {
+        this.handleShow();
+      }
+    });
   }
+  //       )
+  //     if (this.getValidationState()) {
+  //       console.log("Success logging in");
+  //       fetch("/api/users/", {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json"
+  //         },
+  //         body: { username: this.state.username }
+  //       }).then(res => this.setState({ redirect: true }));
+  //     } else {
+  //       this.handleShow();
+  //     }
+  //   }
 
   handleClose() {
     this.setState({ show: false });
