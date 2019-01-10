@@ -86,6 +86,8 @@ export default class NewUserForm extends React.Component {
       fetch("/api/users/" + this.state.username)
         .then(res => res.json())
         .then(json => {
+          console.log(json);
+          console.log(typeof json.data);
           if (json.data === null) {
             this.setState({ valid: true });
             return true;
