@@ -16,7 +16,7 @@ export default class Home extends Component {
         let resData = json.data;
         if (resData.exists && resData.username) {
           this.setState({ signedIn: true, user: resData.username });
-        } else if (resData.exists && !!resData.username) {
+        } else if (resData.exists && !resData.username) {
           this.setState({ signedIn: true });
         }
       });
