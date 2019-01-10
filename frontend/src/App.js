@@ -9,6 +9,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 library.add(fab);
 
 import Routes from "./Routes";
+import { Link } from "react-router-dom";
 import Home from "./components/Home";
 import CreatePact from "./components/CreatePact";
 
@@ -24,6 +25,7 @@ class App extends Component {
       <div>
         <div className="App">
           <Routes />
+          <Link to="/createPact">Test this link actually</Link>
         </div>
       </div>
     );

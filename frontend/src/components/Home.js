@@ -10,14 +10,22 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    fetch("/api/auth/username").then(res =>
-      res.json().then(json => {
-        resData = json.data;
-        if (resData.exists && resData.username) {
-          this.setState({ signedIn: true, user: resData.username });
-        } else if (resData.exists && !!resData.username) {
-          this.setState({ signedIn: true });
-        }
+    fetch("api/auth/username", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      }
+    }).then(res =>
+      res.text().then(res => {
+        console.log(res);
+        res.json().then(json => {
+          let resData = json.data;
+          if (resData.exists && resData.username) {
+            this.setState({ signedIn: true, user: resData.username });
+          } else if (resData.exists && !!resData.username) {
+            this.setState({ signedIn: true });
+          }
+        });
       })
     );
   }
@@ -26,7 +34,7 @@ export default class Home extends Component {
     console.log(this.state);
     if (this.state.signedIn && this.state.user) {
       return <HomeProfile />;
-    } else if (this.state.signedIn && !!this.state.user) {
+    } else if (this.state.signedIn && !this.state.user) {
       return <HomeSignIn />;
     } else {
       return <HomeDefault />;

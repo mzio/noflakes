@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Login from "./Login.js";
 import "./HomeStates.css";
+import NewUserForm from "./NewUserForm";
 
 export default class HomeDefault extends Component {
   // Default display
@@ -11,6 +12,7 @@ export default class HomeDefault extends Component {
           <h1>"Noflakes"</h1>
           <p>There's only snow much time in the world.</p>
           <Login />
+          <NewUserForm />
         </div>
       </div>
     );
