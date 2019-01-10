@@ -9,7 +9,7 @@ export default class Home extends Component {
     this.state = { signedIn: false, user: null };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     fetch("/api/auth/username")
       .then(res => res.json())
       .then(json => {
