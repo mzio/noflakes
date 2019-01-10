@@ -24,7 +24,6 @@ class App extends Component {
       <div>
         <div className="App">
           <Routes />
-          <CreatePact />
         </div>
       </div>
     );

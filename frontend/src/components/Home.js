@@ -23,12 +23,13 @@ export default class Home extends Component {
   }
 
   render() {
+    console.log(this.state);
     if (this.state.signedIn && this.state.user) {
-      return HomeProfile;
+      return <HomeProfile />;
     } else if (this.state.signedIn && !!this.state.user) {
-      return HomeSignIn;
+      return <HomeSignIn />;
     } else {
-      return HomeDefault;
+      return <HomeDefault />;
     }
   }
 }

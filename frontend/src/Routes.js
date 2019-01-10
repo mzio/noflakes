@@ -1,18 +1,13 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
-// import Private from "./components/Private";
-// import requireAuthentication from "./components/requireAuthentication";
+import CreatePact from "./components/CreatePact";
 import NotFound from "./components/NotFound";
 
 export default () => (
   <Switch>
-    <Route path="/" exact component={Home}>
-      {/* <Route path='private' component={requireAuthentication(Private)}>
-            <Route path='other' component={...} />
-        </Route> */}
-    </Route>
-    <Route path="/auth/google" />
+    <Route path="/" exact component={Home} />
+    <Route path="/createPact" exact component={CreatePact} />
     <Route component={NotFound} />
   </Switch>
 );
