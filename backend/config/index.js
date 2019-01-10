@@ -41,5 +41,5 @@ module.exports = (server, passport, mongoose) => {
     console.error.bind(console, "MongoDB connection error:")
   );
 
-  server.use(express.static(path.resolve(__dirname, "../../frontend/public")));
+  // server.use(express.static(path.resolve(__dirname, "../../frontend/public")));
 };

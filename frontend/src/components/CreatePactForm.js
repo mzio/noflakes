@@ -81,6 +81,7 @@ export default class CreatePactForm extends React.Component {
 
   handleSubmit(event) {
     console.log(this.state);
+    // Send post request to the backend
   }
 
   render() {

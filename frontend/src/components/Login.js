@@ -16,7 +16,7 @@ import "./Login.css";
 
 function SocialButton(props) {
   return (
-    <Button type="button" className={props.fabStyle}>
+    <Button type="button" className={props.fabStyle} onClick={props.onClick}>
       <span className="faButton">
         <FontAwesomeIcon icon={["fab", `${props.brandName}`]} />
       </span>
@@ -31,6 +31,7 @@ export default class Login extends React.Component {
 
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
 
     this.state = {
       show: false
@@ -43,6 +44,17 @@ export default class Login extends React.Component {
 
   handleShow() {
     this.setState({ show: true });
+  }
+
+  handleLogin() {
+    console.log("Hi");
+    fetch("/auth/google")
+      .then(function(res) {
+        console.log(res.json);
+      })
+      .catch(function(err) {
+        console.log("Fetch Error :-S", err);
+      });
   }
 
   render() {
@@ -82,11 +94,12 @@ export default class Login extends React.Component {
           </Modal.Body>
           <Modal.Footer className="ModalStyle">
             <div className="signInButtons">
-              <a href="/auth/google">
+              <a href="http://localhost:4000/auth/google">
                 <SocialButton
                   fabStyle="faGoogle"
                   brandName="google"
                   message="Sign in with Google"
+                  onClick={this.handleLogin}
                 />
               </a>
             </div>
