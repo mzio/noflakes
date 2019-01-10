@@ -26,6 +26,9 @@ export default class Home extends Component {
         } else {
           this.setState({ ready: true });
         }
+      })
+      .catch(function() {
+        console.log("React Component Development Zone");
       });
   }
 
