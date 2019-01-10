@@ -14,14 +14,13 @@ export default class Home extends Component {
       .then(res => res.json())
       .then(json => {
         let resData = json.data;
-        if (resData.exists && resData.username) {
+        if (resData.exists && resData.user) {
           this.setState({
             ready: true,
             signedIn: true,
-            user: resData.username,
-            firstName: resData.firstName
+            user: resData.user
           });
-        } else if (resData.exists && !resData.username) {
+        } else if (resData.exists && !resData.user) {
           this.setState({ ready: true, signedIn: true });
         } else {
           this.setState({ ready: true });
@@ -37,7 +36,7 @@ export default class Home extends Component {
     } else if (this.state.signedIn && !this.state.user) {
       return <HomeSignIn />;
     } else {
-      return <HomeDefault userFirstName={this.state.firstName} />;
+      return <HomeDefault userFirstName={this.state.user.firstName} />;
     }
   }
 }

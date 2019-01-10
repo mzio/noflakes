@@ -381,7 +381,7 @@ module.exports = {
     );
   },
 
-  currentUsername: (req, res) => {
+  currentUser: (req, res) => {
     if (req.user) {
       User.findOne(
         {
@@ -416,8 +416,7 @@ module.exports = {
         status: "success",
         data: {
           exists: false,
-          username: null,
-          firstName: null
+          user: user
         }
       });
     }
