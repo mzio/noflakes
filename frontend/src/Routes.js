@@ -12,7 +12,7 @@ export default () => (
     {/* <Route path="/createPact" render={props => <CreatePact {...props} />} /> */}
     <Route path="/createPact" exact component={CreatePact} />
     <Route path="/profile" exact component={Profile} />
-    <Route path="/viewPacts/:mode" exact component={ViewPacts} />
+    <Route path="/viewPacts" exact render={props => <ViewPacts {...props} />} />
     <Route component={NotFound} />
   </Switch>
 );
