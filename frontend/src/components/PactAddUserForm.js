@@ -239,7 +239,7 @@ export default class PactAddUserForm extends React.Component {
             handleadduserclose={this.handleAddUserClose}
           />
           <ModalUserAdded
-            success={this.state.show}
+            success={this.state.showAlready}
             handleadduserclose={this.handleAddUserAlreadyClose}
           />
         </form>
