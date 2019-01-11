@@ -9,8 +9,8 @@ export default class HomeDefault extends Component {
   componentDidMount() {
     const scriptParticles = document.createElement("script");
     const scriptApp = document.createElement("script");
-    scriptParticles.src = "/assets/particles.min.js";
-    scriptApp.src = "/assets/app.js";
+    scriptParticles.src = "/static/particles.min.js";
+    scriptApp.src = "/static/app.js";
     scriptParticles.async = true;
     scriptApp.async = true;
     document.body.appendChild(scriptParticles);
