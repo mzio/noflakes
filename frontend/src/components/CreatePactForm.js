@@ -79,7 +79,14 @@ export default class CreatePactForm extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log(this.state);
+    console.log(
+      JSON.stringify({
+        name: this.state.name,
+        description: this.state.description,
+        endDate: this.state.endDate + "T" + this.state.endTimeString,
+        users: this.state.users
+      })
+    );
     // Send post request to the backend
     fetch("/api/pacts/", {
       method: "POST",
