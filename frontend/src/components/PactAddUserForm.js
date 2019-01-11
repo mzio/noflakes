@@ -74,9 +74,7 @@ class AddedUsers extends React.Component {
   }
   render() {
     const { users } = this.props;
-    console.log(users);
     if (Array.isArray(users) && users.length === 0) {
-      console.log("THE ARRAY IS EMPTY");
       return <div />;
     } else {
       return (
@@ -140,7 +138,6 @@ export default class PactAddUserForm extends React.Component {
         fetch("/api/users/" + this.state.username)
           .then(res => res.json())
           .then(json => {
-            console.log(json.data);
             if (json.data !== null) {
               resolve(true);
             } else {
@@ -154,11 +151,9 @@ export default class PactAddUserForm extends React.Component {
   }
 
   handleUsernameChange(event) {
-    console.log(event);
     try {
       this.setState({ username: event.target.value });
     } catch {
-      console.log("error value");
       this.setState({ username: "" });
     }
   }
@@ -168,16 +163,12 @@ export default class PactAddUserForm extends React.Component {
     var allPrevUsers = this.state.prevAddedUsers.concat([newUser]);
     this.setState({ users: allUsers });
     this.setState({ prevAddedUsers: allPrevUsers });
-    console.log("State from Added Users");
-    console.log(this.state);
   }
 
   deleteUser(event) {
     // let existingUsers = this.state.users;
     // delete existingUsers[index];
     // this.setState({ users: existingUsers });
-    console.log("Deleting user supposedly: " + event);
-    console.log(event);
     var existingUsers = [...this.state.users]; // make a separate copy of the array
     var index = existingUsers.indexOf(event);
     if (index !== -1) {
@@ -253,7 +244,7 @@ export default class PactAddUserForm extends React.Component {
             onClick={() => this.props.submitUsers(users)}
             className="signInButtons"
           >
-            Submit Pact
+            Continue
           </Button>
           <ModalFailUser
             success={this.state.show}

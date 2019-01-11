@@ -54,7 +54,11 @@ export default class Login extends React.Component {
 
     return (
       <div>
-        <Button variant="primary" bsSize="large" onClick={this.handleShow}>
+        <Button
+          variant="outline-primary"
+          bsSize="large"
+          onClick={this.handleShow}
+        >
           Sign In
         </Button>
 

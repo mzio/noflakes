@@ -18,11 +18,17 @@ import Home from "./Home";
 export default class CreatePactForm extends React.Component {
   constructor(props) {
     super(props);
+
+    let currentDate = new Date();
+    let dateString = currentDate.format();
+    let endDateString = dateString.slice(0, 10);
+    let endTimeString = dateString.slice(10, -1);
+
     this.state = {
       name: "",
       description: "",
-      endDate: "",
-      endTime: "",
+      endDate: endDateString,
+      endTime: "T" + endTimeString,
       users: props.users
     };
     this.getValidationState = this.getValidationState.bind(this);
@@ -61,7 +67,6 @@ export default class CreatePactForm extends React.Component {
 
   handleEndTimeChange(event) {
     this.setState({ endDate: event.target.value });
-    console.log(this.state);
   }
 
   addChars(time) {
@@ -80,9 +85,14 @@ export default class CreatePactForm extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log(this.state);
+    console.log({
+      name: this.state.name,
+      description: this.state.description,
+      endDate: this.state.endDate + "T" + this.state.endTime,
+      users: this.state.users
+    });
     // Send post request to the backend
-    fetch("/api/users/", {
+    fetch("/api/pacts/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -103,10 +113,7 @@ export default class CreatePactForm extends React.Component {
     var lowestDateValue = new Date();
     return (
       <form>
-        <FormGroup
-          controlId="formBasicText"
-          //   validationState={this.getValidationState()}
-        >
+        <FormGroup controlId="formBasicText">
           <FormLabel>Pact Name</FormLabel>
           <FormControl
             type="text"
@@ -134,7 +141,7 @@ export default class CreatePactForm extends React.Component {
         </FormGroup>
 
         <Button
-          variant="primary"
+          variant="outline-primary"
           bsSize="large"
           className="SubmitButton"
           onClick={this.handleSubmit}

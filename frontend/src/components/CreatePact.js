@@ -13,12 +13,20 @@ export default class CreatePact extends React.Component {
     };
     this.addUsers = this.addUsers.bind(this);
   }
+  componentWillMount() {
+    fetch("/api/auth/user")
+      .then(res => res.json())
+      .then(json => {
+        let resData = json.data;
+        this.setState({ users: [json.data.username] });
+      });
+  }
+
   addUsers(event) {
     this.setState({ users: event });
     this.setState({ usersAdded: true });
   }
   render() {
-    console.log(this.props);
     if (this.state.usersAdded) {
       // Display pact creation form after users added
       return (
@@ -27,7 +35,6 @@ export default class CreatePact extends React.Component {
           <CreatePactForm users={this.users} />
         </div>
       );
-      console.log("Users added!");
     } else {
       // Display user add form when first initializing
       return (
