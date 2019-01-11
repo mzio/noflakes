@@ -50,6 +50,8 @@ class AddedUsers extends React.Component {
   render() {
     const { users } = this.props.users;
     if (Array.isArray(users) && users.length === 0) {
+      return <div />;
+    } else {
       return (
         <div>
           {users.map((user, index) => (
@@ -62,8 +64,6 @@ class AddedUsers extends React.Component {
           ))}
         </div>
       );
-    } else {
-      return <div />;
     }
   }
 }
