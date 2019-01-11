@@ -147,7 +147,7 @@ export default class PactAddUserForm extends React.Component {
                 this.addUser(this.state.username);
                 this.setState({ username: "" });
               } else {
-                this.handleAddUserShowRetryLogin();
+                this.handleAddUserShow();
               }
             });
         } else {
