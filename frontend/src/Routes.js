@@ -12,7 +12,16 @@ export default () => (
     {/* <Route path="/createPact" render={props => <CreatePact {...props} />} /> */}
     <Route path="/createPact" exact component={CreatePact} />
     <Route path="/profile" exact component={Profile} />
-    <Route path="/viewPacts" exact render={props => <ViewPacts {...props} />} />
+    <Route
+      path="/viewPacts/accepted"
+      exact
+      render={props => <ViewPacts {...props} mode={"accepted"} />}
+    />
+    <Route
+      path="/viewPacts/pending"
+      exact
+      render={props => <ViewPacts {...props} mode={"pending"} />}
+    />
     <Route component={NotFound} />
   </Switch>
 );
