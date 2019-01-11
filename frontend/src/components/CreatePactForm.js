@@ -18,11 +18,17 @@ import Home from "./Home";
 export default class CreatePactForm extends React.Component {
   constructor(props) {
     super(props);
+
+    let currentDate = new Date();
+    let dateString = currentDate.format();
+    let endDateString = dateString.slice(0, 10);
+    let endTimeString = dateString.slice(10, -1);
+
     this.state = {
       name: "",
       description: "",
-      endDate: "",
-      endTime: "",
+      endDate: endDateString,
+      endTime: "T" + endTimeString,
       users: props.users
     };
     this.getValidationState = this.getValidationState.bind(this);
