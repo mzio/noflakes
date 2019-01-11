@@ -252,7 +252,13 @@ export default class PactAddUserForm extends React.Component {
           {users.map((user, index) => (
             <div key={index}>
               <h3>{user}</h3>
-              <a href="#" id="delete-item" onClick={this.deleteUser}>
+              <a
+                href="#"
+                id="delete-item"
+                onClick={() => {
+                  this.deleteUser(user);
+                }}
+              >
                 Delete
               </a>
             </div>
