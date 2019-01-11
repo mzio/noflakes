@@ -24,13 +24,13 @@ function ModalFailUser(props) {
       onHide={props.handleadduserclose}
     >
       <Modal.Header closeButton className="ModalStyle">
-        <Modal.Title>User doesn't exist!</Modal.Title>
+        <Modal.Title>💔 User doesn't exist! 💔</Modal.Title>
       </Modal.Header>
       <Modal.Body className="ModalBodyUsername">
         <Row className="show-grid">
           <Col xs={2} md={2} />
           <Col xs={8} md={8}>
-            Sorry about that. Tell your friends to join! 👍
+            Sorry about that. Tell your friends to join!
           </Col>
           <Col xs={2} md={2} />
         </Row>
@@ -49,7 +49,7 @@ function ModalUserAdded(props) {
       onHide={props.handleadduserclose}
     >
       <Modal.Header closeButton className="ModalStyle">
-        <Modal.Title>User already added! 👌</Modal.Title>
+        <Modal.Title>👌 User already added! 👌</Modal.Title>
       </Modal.Header>
       <Modal.Body className="ModalBodyUsername">
         <Row className="show-grid">
