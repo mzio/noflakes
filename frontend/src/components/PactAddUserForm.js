@@ -244,7 +244,7 @@ export default class PactAddUserForm extends React.Component {
             onClick={() => this.props.submitUsers(users)}
             className="signInButtons"
           >
-            Submit Pact
+            Continue
           </Button>
           <ModalFailUser
             success={this.state.show}
