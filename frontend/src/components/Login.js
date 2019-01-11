@@ -69,8 +69,8 @@ export default class Login extends React.Component {
           show={this.state.show}
           onHide={this.handleClose}
         >
-          <Modal.Header closeButton className="ModalStyle">
-            <Modal.Title>
+          <Modal.Header closeButton className="ModalStyle text-align-center">
+            <Modal.Title className="w-100">
               <div>👋</div>
               ❄️Join Noflakes! ❄️
             </Modal.Title>
@@ -84,7 +84,7 @@ export default class Login extends React.Component {
               <Col xs={2} md={2} />
             </Row>
           </Modal.Body>
-          <Modal.Footer className="ModalStyle">
+          <Modal.Footer className="ModalStyle justify-content-center">
             <div className="signInButtons">
               <a href="/auth/google">
                 <SocialButton

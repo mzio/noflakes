@@ -32,3 +32,8 @@
   padding-top: 0;
   text-align: center;
 }
+
+.close {
+  right: 1rem;
+  position: absolute;
+}
