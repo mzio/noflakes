@@ -15,11 +15,13 @@ import "./CreatePact.css";
 import { Redirect } from "react-router-dom";
 import Home from "./Home";
 
+var moment = require("moment");
+
 export default class CreatePactForm extends React.Component {
   constructor(props) {
     super(props);
 
-    let currentDate = new Date();
+    let currentDate = moment();
     let dateString = currentDate.format();
     let endDateString = dateString.slice(0, 10);
     let endTimeString = dateString.slice(10, -1);
