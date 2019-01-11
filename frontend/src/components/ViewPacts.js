@@ -7,7 +7,7 @@ class ViewPacts extends React.Component {
     this.state = {
       userReady: false,
       user: null,
-      pacts: []]
+      pacts: []
     };
   }
 
