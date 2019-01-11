@@ -44,11 +44,11 @@ export default class ProfileMenu extends React.Component {
           routerComponent={Profile}
           menuLabel="See Profile"
         />
-        <MenuOption
-          routerLink="/createPact"
-          routerComponent={CreatePact}
+        {/* <MenuOption
+          routerLink="/viewPacts"
+          routerComponent={ViewPacts}
           menuLabel="View Pacts"
-        />
+        /> */}
         {/* <MenuOption
           routerLink="/profileUser"
           routerComponent={ProfileUser}

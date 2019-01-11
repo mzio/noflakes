@@ -14,8 +14,8 @@ class Profile extends React.Component {
       .then(res => res.json())
       .then(json => {
         let resData = json.data;
-        if (json.data.exists) {
-          this.setState({ ready: true, user: json.data.user });
+        if (resData.exists) {
+          this.setState({ ready: true, user: resData.user });
         } else {
           //Handle if user is not logged in
         }
