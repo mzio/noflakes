@@ -45,12 +45,16 @@ export default class Menu extends React.Component {
       return (
         <div className="menu">
           <ul>
-            <a id="home" onClick={close} href="/">
-              Home
-            </a>
-            <Link id="about" onClick={close} to="/about">
-              About
-            </Link>
+            <li>
+              <Link id="home" onClick={close} to="/">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link id="about" onClick={close} to="/about">
+                About
+              </Link>
+            </li>
           </ul>
         </div>
       );
@@ -58,15 +62,21 @@ export default class Menu extends React.Component {
       return (
         <div className="menu">
           <ul>
-            <a id="home" onClick={close} href="/">
-              Home
-            </a>
-            <Link id="about" onClick={close} to="/about">
-              About
-            </Link>
-            <a onClick={close} href="/logout">
-              Logout
-            </a>
+            <li>
+              <Link id="navLink" onClick={close} to="/">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link id="navLink" onClick={close} to="/about">
+                About
+              </Link>
+            </li>
+            <li>
+              <a id="navLink" onClick={close} href="/logout">
+                Logout
+              </a>
+            </li>
           </ul>
         </div>
       );

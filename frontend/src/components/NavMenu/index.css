@@ -56,3 +56,11 @@
 .menu li:hover {
   color: #ff0000;
 }
+
+#navLink {
+  text-decoration: none;
+}
+
+#navLink:hover {
+  color: rgb(0, 123, 255);
+}
