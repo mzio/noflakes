@@ -50,14 +50,14 @@ export default class ProfileMenu extends React.Component {
         />
         <MenuOption
           routerLink="/viewPacts"
-          routerComponent={ViewAcceptedPacts}
+          routerComponent={ViewPacts}
           menuLabel="View Accepted Pacts"
           user={this.props.user}
           mode={"accepted"}
         />
         <MenuOption
           routerLink="/viewPacts"
-          routerComponent={ViewPendingPacts}
+          routerComponent={ViewPacts}
           menuLabel="View Pending Pacts"
           user={this.props.user}
           mode={"pending"}
