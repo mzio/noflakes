@@ -100,7 +100,6 @@ class ViewPacts extends React.Component {
       return (
         <div class="Pacts">
           <h1>
-            {this.state.user.firstName}'s{" "}
             {this.props.mode.charAt(0).toUpperCase() +
               this.props.mode.toLowerCase().slice(1)}{" "}
             Pacts
