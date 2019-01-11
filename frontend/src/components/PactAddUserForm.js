@@ -49,7 +49,6 @@ class AddedUsers extends React.Component {
   }
   render() {
     const { users } = this.props.users;
-    console.log(this.props.users);
     if (Array.isArray(users) && users.length === 0) {
       return (
         <div>
@@ -99,9 +98,9 @@ export default class PactAddUserForm extends React.Component {
           .then(res => res.json())
           .then(json => {
             if (json.data === null) {
-              resolve(true);
-            } else {
               resolve(false);
+            } else {
+              resolve(true);
             }
           });
       } else {
