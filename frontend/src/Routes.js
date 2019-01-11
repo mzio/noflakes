@@ -9,9 +9,9 @@ import ViewPacts from "./components/ViewPacts";
 export default () => (
   <Switch>
     <Route path="/" exact component={Home} />
-    <Route path="/profile" exact component={Profile} />
-    <Route path="/viewPacts" exact component={ViewPacts} />
-    <Route path="/createPact" render={props => <CreatePact {...props} />} />
+    {/* <Route path="/createPact" render={props => <CreatePact {...props} />} /> */}
+    <Route path="/createPact" exact component={CreatePact} />
+    <Route path="/profile" exact component={Home} />
     <Route component={NotFound} />
   </Switch>
 );
