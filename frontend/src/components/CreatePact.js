@@ -18,6 +18,7 @@ export default class CreatePact extends React.Component {
       .then(res => res.json())
       .then(json => {
         console.log(json);
+        console.log(json.data.user.username);
         this.setState({ users: [json.data.user.username] });
       });
   }
@@ -32,7 +33,7 @@ export default class CreatePact extends React.Component {
       return (
         <div>
           <h3>Create a Pact</h3>
-          <CreatePactForm users={this.users} />
+          <CreatePactForm users={this.state.users} />
         </div>
       );
     } else {
