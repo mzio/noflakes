@@ -26,11 +26,10 @@ class App extends Component {
       <div>
         {/* <Container> */}
         {/* <Row className="NavRow"> */}
-        <div className = "NavRow" />
+        <div className="NavRow" />
         <Navigation />
         {/* </Row> */}
         {/* <Row> */}
-        </div>
         <div className="App">
           <Routes />
           {/* <Link to="/createPact">Test this link actually</Link>
