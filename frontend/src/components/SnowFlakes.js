@@ -17,8 +17,7 @@ export default class SnowFlakes extends React.Component {
               type: "images",
               images: [
                 {
-                  src:
-                    "https://commons.wikimedia.org/wiki/File:Emojione_2744.svg",
+                  src: "assets/snowflake.svg",
                   height: 20,
                   width: 20
                 }
