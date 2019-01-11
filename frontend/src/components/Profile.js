@@ -10,7 +10,6 @@ class Profile extends React.Component {
   }
 
   componentWillMount() {
-    console.log("hihi");
     fetch("/api/auth/user")
       .then(res => res.json())
       .then(json => {
