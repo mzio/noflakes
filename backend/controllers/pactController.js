@@ -218,7 +218,6 @@ module.exports = {
                 res.send(err);
               } else if (user) {
                 statuses.forEach(key => {
-                  console.log(key, "hi");
                   user.pacts[key].pull(pact._id);
                 });
                 user.pacts[req.body.status].push(pact._id);
