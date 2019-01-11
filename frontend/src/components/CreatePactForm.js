@@ -75,19 +75,18 @@ export default class CreatePactForm extends React.Component {
     let dateString = event.format();
     let endDateString = dateString.slice(0, 10);
     let endTimeString = dateString.slice(10, -1);
+    console.log(endTimeString);
     this.setState({ endDate: endDateString, endTime: endTimeString });
     console.log(this.setState);
   }
 
   handleSubmit(event) {
-    console.log(
-      JSON.stringify({
-        name: this.state.name,
-        description: this.state.description,
-        endDate: this.state.endDate + "T" + this.state.endTimeString,
-        users: this.state.users
-      })
-    );
+    console.log({
+      name: this.state.name,
+      description: this.state.description,
+      endDate: this.state.endDate + "T" + this.state.endTimeString,
+      users: this.state.users
+    });
     // Send post request to the backend
     fetch("/api/pacts/", {
       method: "POST",
