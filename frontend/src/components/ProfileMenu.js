@@ -43,8 +43,8 @@ export default class ProfileMenu extends React.Component {
           user={this.props.user}
         />
         <MenuOption
-          routerLink="/createPact"
-          routerComponent={CreatePact}
+          routerLink="/profile"
+          routerComponent={Profile}
           menuLabel="View Profile"
           user={this.props.user}
         />
