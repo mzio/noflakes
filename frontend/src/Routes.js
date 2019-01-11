@@ -1,6 +1,8 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
+import Home from "./components/";
+import About from "./components/About";
 import CreatePact from "./components/CreatePact";
 import Profile from "./components/Profile";
 import NotFound from "./components/NotFound";
@@ -9,6 +11,7 @@ import ViewPacts from "./components/ViewPacts";
 export default () => (
   <Switch>
     <Route path="/" exact component={Home} />
+    <Route path="/about" exact component={About} />
     {/* <Route path="/createPact" render={props => <CreatePact {...props} />} /> */}
     <Route path="/createPact" exact component={CreatePact} />
     <Route path="/profile" exact component={Profile} />

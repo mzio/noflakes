@@ -144,7 +144,7 @@ export default class CreatePactForm extends React.Component {
 
         <Button
           variant="outline-primary"
-          bsSize="large"
+          size="large"
           className="SubmitButton"
           onClick={this.handleSubmit}
           href="/"

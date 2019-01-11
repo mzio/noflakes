@@ -39,21 +39,35 @@ export default class Home extends Component {
     // REACT COMPONENT DEV ZONE
     if (!this.state.ready && this.state.dev) {
       console.log("React Component Dev Zone");
-      return <PactAddUserForm />;
+      return (
+        <div>
+          <PactAddUserForm />
+        </div>
+      );
     }
     if (!this.state.ready) {
       return <div />;
     } else if (this.state.signedIn && this.state.user) {
       return (
-        <HomeProfile
-          userFirstName={this.state.user.firstName}
-          user={this.state.user}
-        />
+        <div>
+          <HomeProfile
+            userFirstName={this.state.user.firstName}
+            user={this.state.user}
+          />
+        </div>
       );
     } else if (this.state.signedIn && !this.state.user) {
-      return <HomeSignIn />;
+      return (
+        <div>
+          <HomeSignIn />
+        </div>
+      );
     } else {
-      return <HomeDefault />;
+      return (
+        <div>
+          <HomeDefault />
+        </div>
+      );
     }
   }
 }

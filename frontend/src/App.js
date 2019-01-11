@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
-import { Navbar, PageHeader } from "react-bootstrap";
-import { HomeSignIn } from "./components/HomeStates";
+import Navigation from "./Nagivation.js";
 import ReactDOM from "react-dom";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -24,6 +23,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Navigation />
         <div className="App">
           <Routes />
           {/* <Link to="/createPact">Test this link actually</Link>
