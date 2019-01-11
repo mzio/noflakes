@@ -162,7 +162,8 @@ export default class PactAddUserForm extends React.Component {
     // let existingUsers = this.state.users;
     // delete existingUsers[index];
     // this.setState({ users: existingUsers });
-    console.log("Deleting user supposedly: " + event.target.value);
+    console.log("Deleting user supposedly: " + event);
+    console.log(event);
     var existingUsers = [...this.state.users]; // make a separate copy of the array
     var index = existingUsers.indexOf(event.target.value);
     if (index !== -1) {
@@ -246,7 +247,7 @@ export default class PactAddUserForm extends React.Component {
             handleadduserclose={this.handleAddUserAlreadyClose}
           />
         </form>
-        <AddedUsers users={this.state.users} handleDelete={this.deleteUser} />
+        {/* <AddedUsers users={this.state.users} handleDelete={this.deleteUser} /> */}
         <div>
           {users.map((user, index) => (
             <div key={index}>
