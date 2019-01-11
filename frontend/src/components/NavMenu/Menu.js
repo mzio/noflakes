@@ -26,20 +26,8 @@ export default class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      signedIn: false
+      signedIn: props.signedIn
     };
-  }
-
-  componentWillMount() {
-    if (!this.state.signedIn) {
-      fetch("/api/auth/user")
-        .then(res => res.json())
-        .then(json => {
-          this.setState({ signedIn: json.data.exists });
-          console.log(this.state.signedIn);
-          console.log(json.data.exists);
-        });
-    }
   }
 
   render() {
