@@ -12,7 +12,8 @@ export default class Home extends Component {
       ready: false,
       signedIn: false,
       user: null,
-      firstName: null
+      firstName: null,
+      dev: true
     };
   }
 
@@ -21,23 +22,22 @@ export default class Home extends Component {
       .then(res => res.json())
       .then(json => {
         let resData = json.data;
+        this.setState({ dev: false });
+        this.setState({ ready: true });
         if (resData.exists && resData.user) {
           this.setState({
-            ready: true,
             signedIn: true,
             user: resData.user
           });
         } else if (resData.exists && !resData.user) {
-          this.setState({ ready: true, signedIn: true });
-        } else if (!resData.exists && !resData.username) {
-          this.setState({ ready: true });
+          this.setState({ signedIn: true });
         }
       });
   }
 
   render() {
     // REACT COMPONENT DEV ZONE
-    if (!this.state.ready) {
+    if (!this.state.ready && this.state.dev) {
       console.log("React Component Dev Zone");
       return <ProfileMenu />;
     }
