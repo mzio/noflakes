@@ -95,11 +95,14 @@ class ViewPacts extends React.Component {
       });
 
       return (
-        <div class="Profile">
+        <div class="Pacts">
           <h1>
-            {this.state.user.firstName}'s {this.props.mode} Pacts
+            {this.state.user.firstName}'s{" "}
+            {this.props.mode.charAt(0).toUpperCase() +
+              this.props.mode.toLowerCase().slice(1)}{" "}
+            Pacts
           </h1>
-          <div>{pacts}</div>
+          <div class="list-group">{pacts}</div>
         </div>
       );
     }
