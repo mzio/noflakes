@@ -76,6 +76,7 @@ export default class CreatePactForm extends React.Component {
     let endDateString = dateString.slice(0, 10);
     let endTimeString = dateString.slice(10, -1);
     this.setState({ endDate: endDateString, endTime: endTimeString });
+    console.log(this.setState);
   }
 
   handleSubmit(event) {
