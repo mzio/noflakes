@@ -240,7 +240,7 @@ export default class PactAddUserForm extends React.Component {
             Enter User
           </Button>
           <Button
-            onClick={() => this.props.handleSubmitUsers(users)}
+            onClick={() => this.props.submitUsers(users)}
             className="signInButtons"
           >
             Submit Pact
@@ -255,22 +255,6 @@ export default class PactAddUserForm extends React.Component {
           />
         </form>
         <AddedUsers users={this.state.users} handleDelete={this.deleteUser} />
-        {/* <div>
-          {users.map((user, index) => (
-            <div key={index}>
-              <h3>{user}</h3>
-              <a
-                href="#"
-                id="delete-item"
-                onClick={() => {
-                  this.deleteUser(user);
-                }}
-              >
-                Delete
-              </a>
-            </div>
-          ))}
-        </div> */}
       </div>
     );
   }
