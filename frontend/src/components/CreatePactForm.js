@@ -13,6 +13,7 @@ import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
 import "./CreatePact.css";
 import { Redirect } from "react-router-dom";
+import Home from "./Home";
 
 export default class CreatePactForm extends React.Component {
   constructor(props) {
