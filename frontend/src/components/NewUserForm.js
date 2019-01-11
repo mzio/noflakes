@@ -37,7 +37,7 @@ function ModalFail(props) {
   return (
     <Modal
       {...props}
-      bsSize="small"
+      size="small"
       dialogClassName="LoginModal"
       show={props.success}
       onHide={props.handleclose}
@@ -62,7 +62,7 @@ function ModalRetryLogin(props) {
   return (
     <Modal
       {...props}
-      bsSize="small"
+      size="small"
       dialogClassName="RetryLoginModal"
       show={props.success}
       onHide={props.handleclose}

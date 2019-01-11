@@ -56,7 +56,7 @@ export default class Login extends React.Component {
       <div>
         <Button
           variant="outline-primary"
-          bsSize="large"
+          size="large"
           onClick={this.handleShow}
         >
           Sign In
@@ -64,7 +64,7 @@ export default class Login extends React.Component {
 
         <Modal
           {...this.props}
-          bsSize="small"
+          size="small"
           dialogClassName="LoginModal"
           show={this.state.show}
           onHide={this.handleClose}
