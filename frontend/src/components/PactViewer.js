@@ -6,9 +6,13 @@ class PactViewer extends React.Component {
   }
 
   render() {
-    return <h2>{this.state.pact.name}</h2> 
-    <div>{this.state.pact.description}</div>
-     <div>{this.state.pact.users.join(", ")}</div>;
+    return (
+      <div>
+        <h2>{this.state.pact.name}</h2>
+        <div>{this.state.pact.description}</div>
+        <div>{this.state.pact.users.join(", ")}</div>
+      </div>
+    );
   }
 }
 
