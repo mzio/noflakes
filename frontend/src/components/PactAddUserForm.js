@@ -176,6 +176,8 @@ export default class PactAddUserForm extends React.Component {
       this.addUser(this.state.username);
       this.setState({ username: "" });
     } else if (this.state.users.includes(this.state.username)) {
+      this.handleAddUserAlreadyShow();
+      this.setState({ username: "" });
     } else {
       this.getValidationState().then(valid => {
         if (valid) {
