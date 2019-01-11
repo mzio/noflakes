@@ -1,16 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import CreatePact from "./CreatePact";
 
 import "./ProfileMenu.css";
 
 function MenuOption(props) {
-  // <MenuOption routerLink='/createPacts' menuLabel='Create Pact'>
+  // <MenuOption routerLink='/createPact' routerComponent={CreatePact} menuLabel='Create Pact'>
   const routerLink = props.routerLink;
+  const routerComponent = props.routerComponent;
   return (
     <div className="MenuOption">
-      <span className="FancyClosingL">[</span>
-      {props.menuLabel}
-      <span className="FancyClosingR">]</span>
+      <Link
+        to={routerLink}
+        exact
+        component={routerComponent}
+        style={{ textDecoration: "none" }}
+      >
+        <h1>
+          <span className="FancyClosingL">[ </span>
+          {props.menuLabel}
+          <span className="FancyClosingR"> ]</span>
+        </h1>
+      </Link>
     </div>
   );
 }
@@ -23,21 +34,26 @@ export default class ProfileMenu extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          <Link to="/createPact" exact component={CreatePact}>
-            Create Pact
-          </Link>
-        </div>
-        {/* <div>
-          <Link to="/activePacts" exact component={CreatePact}>
-            Active Pacts
-          </Link>
-        </div>
-        <div>
-          <Link to="/pastPacts" exact component={CreatePact}>
-            Past Pacts
-          </Link>
-        </div> */}
+        <MenuOption
+          routerLink="/createPact"
+          routerComponent={CreatePact}
+          menuLabel="Create Pact"
+        />
+        <MenuOption
+          routerLink="/createPact"
+          routerComponent={CreatePact}
+          menuLabel="Create Pact"
+        />
+        {/* <MenuOption
+          routerLink="/profileUser"
+          routerComponent={ProfileUser}
+          menuLabel="See Profile"
+        />
+        <MenuOption
+          routerLink="/seePacts"
+          routerComponent={SeePacts}
+          menuLabel="See Pacts"
+        /> */}
       </div>
     );
   }

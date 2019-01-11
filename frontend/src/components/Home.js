@@ -3,10 +3,17 @@ import HomeDefault, { HomeSignIn, HomeProfile } from "./HomeStates.js";
 import Login from "./Login.js";
 import "./Home.css";
 
+import ProfileMenu from "./ProfileMenu.js"; // REACT COMPONENT DEV ZONE
+
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { ready: false, signedIn: false, user: null, firstName: null };
+    this.state = {
+      ready: false,
+      signedIn: false,
+      user: null,
+      firstName: null
+    };
   }
 
   componentWillMount() {
@@ -23,16 +30,18 @@ export default class Home extends Component {
           });
         } else if (resData.exists && !resData.username) {
           this.setState({ ready: true, signedIn: true });
-        } else {
+        } else if (!resData.exists && !resData.username) {
           this.setState({ ready: true });
         }
-      })
-      .catch(function() {
-        console.log("React Component Development Zone");
       });
   }
 
   render() {
+    // REACT COMPONENT DEV ZONE
+    if (!this.state.ready) {
+      console.log("React Component Dev Zone");
+      return <ProfileMenu />;
+    }
     if (!this.state.ready) {
       return <div />;
     } else if (this.state.signedIn && this.state.user) {
