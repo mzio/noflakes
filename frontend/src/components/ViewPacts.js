@@ -1,6 +1,7 @@
 import React from "react";
 import PactViewer from "./PactViewer";
 import { Button } from "react-bootstrap";
+import "ViewPacts.css";
 
 class ViewPacts extends React.Component {
   constructor(props) {
@@ -77,7 +78,11 @@ class ViewPacts extends React.Component {
         let button;
         if (this.props.mode === "pending") {
           button = (
-            <Button data-pactid={pact._id} onClick={this.handleAccept}>
+            <Button
+              data-pactid={pact._id}
+              onClick={this.handleAccept}
+              className="position-absolute down-right"
+            >
               Accept
             </Button>
           );
@@ -100,7 +105,6 @@ class ViewPacts extends React.Component {
       return (
         <div class="Pacts">
           <h1>
-            {this.state.user.firstName}'s{" "}
             {this.props.mode.charAt(0).toUpperCase() +
               this.props.mode.toLowerCase().slice(1)}{" "}
             Pacts
