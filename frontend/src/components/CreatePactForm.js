@@ -107,7 +107,7 @@ export default class CreatePactForm extends React.Component {
       })
     }).then(res => {
       console.log(res);
-      <Redirect to="/" exact component={Home} />;
+      return <Redirect to="/" exact component={Home} />;
     });
   }
 

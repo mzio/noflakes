@@ -23,10 +23,8 @@ const popoverTop = (
 
 function SuccessButton(props) {
   if (props.success()) {
-    console.log("Success");
     return <Button onClick={props.btnClick}>Sign me up</Button>;
   } else {
-    console.log("failure");
     return (
       <OverlayTrigger trigger="click" placement="top" overlay={popoverTop}>
         <Button>Sign me up</Button>
@@ -69,8 +67,8 @@ function ModalRetryLogin(props) {
       show={props.success}
       onHide={props.handleclose}
     >
-      <Modal.Header closeButton className="ModalStyle text-align-center">
-        <Modal.Title className="w-100">Google flaked on us</Modal.Title>
+      <Modal.Header closeButton className="ModalStyle">
+        <Modal.Title>Google flaked on us</Modal.Title>
       </Modal.Header>
       <Modal.Body className="ModalBodyUsername">
         <Row className="show-grid">
@@ -134,7 +132,6 @@ export default class NewUserForm extends React.Component {
   handleSubmit(event) {
     this.getValidationState().then(valid => {
       if (valid) {
-        console.log("Success logging in");
         fetch("/api/users/", {
           method: "POST",
           headers: {
