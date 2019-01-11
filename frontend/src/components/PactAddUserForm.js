@@ -128,11 +128,17 @@ export default class PactAddUserForm extends React.Component {
     console.log(this.state);
   }
 
-  deleteUser(index) {
-    let existingUsers = this.state.users;
-    delete existingUsers[index];
-    this.setState({ users: existingUsers });
-    console.log("Deleting user supposedly");
+  deleteUser(event) {
+    // let existingUsers = this.state.users;
+    // delete existingUsers[index];
+    // this.setState({ users: existingUsers });
+    console.log("Deleting user supposedly: " + event);
+    var existingUsers = [...this.state.users]; // make a separate copy of the array
+    var index = array.indexOf(event.target.value);
+    if (index !== -1) {
+      existingUsers.splice(index, 1);
+      this.setState({ users: existingUsers });
+    }
   }
 
   handleSubmit(event) {
