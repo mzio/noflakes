@@ -51,7 +51,15 @@
   list-style: outside none none;
   margin: 10px 0px;
   padding: 0;
-  cursor: pointer;
+  color: #000;
+  font-family: "Arial", "Helvetica Neue", sans-serif;
+  font-weight: 600;
+  font-size: 3rem;
+}
+
+.menu li:hover {
+  color: rgb(0, 123, 255);
+  text-decoration: none;
 }
 
 #navLink {
