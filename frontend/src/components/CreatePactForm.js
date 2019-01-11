@@ -12,7 +12,7 @@ import {
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
 import "./CreatePact.css";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import Home from "./Home";
 
 var moment = require("moment");
@@ -107,7 +107,7 @@ export default class CreatePactForm extends React.Component {
       })
     }).then(res => {
       console.log(res);
-      return <Redirect to="/" exact component={Home} />;
+      //   return <Redirect to="/" exact component={Home} />;
     });
   }
 
@@ -147,6 +147,7 @@ export default class CreatePactForm extends React.Component {
           bsSize="large"
           className="SubmitButton"
           onClick={this.handleSubmit}
+          href="/"
         >
           Submit
         </Button>
