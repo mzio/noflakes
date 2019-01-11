@@ -24,7 +24,7 @@ function ModalFailUser(props) {
       onHide={props.handleadduserclose}
     >
       <Modal.Header closeButton className="ModalStyle">
-        <Modal.Title>💔 User doesn't exist! 💔</Modal.Title>
+        <Modal.Title>💔User doesn't exist! 💔</Modal.Title>
       </Modal.Header>
       <Modal.Body className="ModalBodyUsername">
         <Row className="show-grid">
@@ -49,7 +49,7 @@ function ModalUserAdded(props) {
       onHide={props.handleadduserclose}
     >
       <Modal.Header closeButton className="ModalStyle">
-        <Modal.Title>👌 User already added! 👌</Modal.Title>
+        <Modal.Title>👌User already added! 👌</Modal.Title>
       </Modal.Header>
       <Modal.Body className="ModalBodyUsername">
         <Row className="show-grid">
@@ -162,7 +162,7 @@ export default class PactAddUserForm extends React.Component {
     // let existingUsers = this.state.users;
     // delete existingUsers[index];
     // this.setState({ users: existingUsers });
-    console.log("Deleting user supposedly: " + event);
+    console.log("Deleting user supposedly: " + event.target.value);
     var existingUsers = [...this.state.users]; // make a separate copy of the array
     var index = existingUsers.indexOf(event.target.value);
     if (index !== -1) {
