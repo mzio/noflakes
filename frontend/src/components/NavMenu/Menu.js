@@ -55,6 +55,11 @@ export default class Menu extends React.Component {
                 About
               </Link>
             </li>
+            <li>
+              <a id="navLink" onClick={close} href="/logout">
+                Logout
+              </a>
+            </li>
           </ul>
         </div>
       );
@@ -71,11 +76,6 @@ export default class Menu extends React.Component {
               <Link id="navLink" onClick={close} to="/about">
                 About
               </Link>
-            </li>
-            <li>
-              <a id="navLink" onClick={close} href="/logout">
-                Logout
-              </a>
             </li>
           </ul>
         </div>
