@@ -10,18 +10,19 @@ export default () => (
   <Switch>
     <Route path="/" exact component={Home} />
     {/* <Route path="/createPact" render={props => <CreatePact {...props} />} /> */}
-    <Route path="/createPact" exact component={CreatePact} />
+    {/* <Route path="/createPact" exact component={CreatePact} /> */}
     <Route path="/profile" exact component={Profile} />
     <Route
-      path="/viewPacts/accepted"
+      path="/viewPacts"
       exact
-      render={props => <ViewPacts {...props} mode={"accepted"} />}
+      component={ViewPacts}
+      // render={props => <ViewPacts {...props} mode={"accepted"} />}
     />
-    <Route
-      path="/viewPacts/pending"
+    {/* <Route
+      path="/viewPacts"
       exact
-      render={props => <ViewPacts {...props} mode={"pending"} />}
-    />
+      // render={props => <ViewPacts {...props} mode={"pending"} />}
+    /> */}
     <Route component={NotFound} />
   </Switch>
 );
