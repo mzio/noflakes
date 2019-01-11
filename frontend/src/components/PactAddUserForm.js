@@ -105,7 +105,7 @@ export default class PactAddUserForm extends React.Component {
             }
           });
       } else {
-        resolve(false);
+        resolve(true);
       }
     });
   }
