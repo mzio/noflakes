@@ -58,7 +58,11 @@ class AddedUsers extends React.Component {
           {users.map((user, index) => (
             <div key={index}>
               <h3>{user}</h3>
-              <a href="#" id="delete-item" onClick={this.props.handleDelete}>
+              <a
+                href="#"
+                id="delete-item"
+                onClick={this.props.handleDelete({ user })}
+              >
                 Delete
               </a>
             </div>
@@ -128,6 +132,7 @@ export default class PactAddUserForm extends React.Component {
     existingUsers = this.state.users;
     delete existingUsers[index];
     this.setState({ users: existingUsers });
+    console.log("Deleting user supposedly");
   }
 
   handleSubmit(event) {
