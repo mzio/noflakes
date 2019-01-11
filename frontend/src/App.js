@@ -24,7 +24,7 @@ class App extends Component {
   render() {
     return (
       <Container>
-        <Row>
+        <Row className="NavRow">
           <Navigation />
         </Row>
         <Row>

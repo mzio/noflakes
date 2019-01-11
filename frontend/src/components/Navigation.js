@@ -41,7 +41,7 @@ export default class Navigation extends React.Component {
       .then(res => res.json())
       .then(json => {
         this.setState({ signedIn: json.data.exists });
-        console.log(json.data);
+        console.log(this.state.signedIn);
       });
   }
 
@@ -55,9 +55,6 @@ export default class Navigation extends React.Component {
           About
         </Link>
         <Logout show={this.state.signedIn} />
-        <a onClick={this.showSettings} className="menu-item--small" href="">
-          Settings
-        </a>
       </Menu>
     );
   }
