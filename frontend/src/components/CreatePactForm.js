@@ -61,7 +61,6 @@ export default class CreatePactForm extends React.Component {
 
   handleEndTimeChange(event) {
     this.setState({ endDate: event.target.value });
-    console.log(this.state);
   }
 
   addChars(time) {
@@ -103,10 +102,7 @@ export default class CreatePactForm extends React.Component {
     var lowestDateValue = new Date();
     return (
       <form>
-        <FormGroup
-          controlId="formBasicText"
-          //   validationState={this.getValidationState()}
-        >
+        <FormGroup controlId="formBasicText">
           <FormLabel>Pact Name</FormLabel>
           <FormControl
             type="text"

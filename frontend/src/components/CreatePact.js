@@ -18,7 +18,6 @@ export default class CreatePact extends React.Component {
     this.setState({ usersAdded: true });
   }
   render() {
-    console.log(this.props);
     if (this.state.usersAdded) {
       // Display pact creation form after users added
       return (
@@ -27,7 +26,6 @@ export default class CreatePact extends React.Component {
           <CreatePactForm users={this.users} />
         </div>
       );
-      console.log("Users added!");
     } else {
       // Display user add form when first initializing
       return (
