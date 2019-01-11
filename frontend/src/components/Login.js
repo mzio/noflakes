@@ -70,7 +70,7 @@ export default class Login extends React.Component {
           onHide={this.handleClose}
         >
           <Modal.Header closeButton className="ModalStyle text-align-center">
-            <Modal.Title class="w-100">
+            <Modal.Title className="w-100">
               <div>👋</div>
               ❄️Join Noflakes! ❄️
             </Modal.Title>

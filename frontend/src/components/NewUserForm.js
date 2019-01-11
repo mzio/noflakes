@@ -70,7 +70,7 @@ function ModalRetryLogin(props) {
       onHide={props.handleclose}
     >
       <Modal.Header closeButton className="ModalStyle text-align-center">
-        <Modal.Title class="w-100">Google flaked on us</Modal.Title>
+        <Modal.Title className="w-100">Google flaked on us</Modal.Title>
       </Modal.Header>
       <Modal.Body className="ModalBodyUsername">
         <Row className="show-grid">
