@@ -39,7 +39,7 @@ class ViewPacts extends React.Component {
     if (!this.state.userReady) {
       return <div />;
     } else {
-      var pacts = this.state.data.pacts.map(pact => {
+      var pacts = this.state.pacts.map(pact => {
         return <PactViewer pact={pact} />;
       });
 
