@@ -48,7 +48,7 @@ class AddedUsers extends React.Component {
     };
   }
   render() {
-    const { users } = this.props.users;
+    const { users } = this.props;
     console.log(users);
     if (Array.isArray(users) && users.length === 0) {
       return <div />;
