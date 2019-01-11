@@ -87,7 +87,7 @@ class AddedUsers extends React.Component {
               <a
                 href="#"
                 id="delete-item"
-                onClick={this.props.handleDelete({ user })}
+                onClick={() => this.props.handleDelete(user)}
               >
                 Delete
               </a>
@@ -166,9 +166,10 @@ export default class PactAddUserForm extends React.Component {
     // let existingUsers = this.state.users;
     // delete existingUsers[index];
     // this.setState({ users: existingUsers });
-    console.log("Deleting user supposedly: " + event.target.value);
+    console.log("Deleting user supposedly: " + event);
+    console.log(event);
     var existingUsers = [...this.state.users]; // make a separate copy of the array
-    var index = existingUsers.indexOf(event.target.value);
+    var index = existingUsers.indexOf(event);
     if (index !== -1) {
       existingUsers.splice(index, 1);
       this.setState({ users: existingUsers });
@@ -216,6 +217,7 @@ export default class PactAddUserForm extends React.Component {
   }
 
   render() {
+    let users = this.state.users;
     return (
       <div>
         <form>
@@ -237,7 +239,10 @@ export default class PactAddUserForm extends React.Component {
           <Button onClick={this.handleSubmit} className="signInButtons">
             Enter User
           </Button>
-          <Button onClick={this.handleSubmitUsers} className="signInButtons">
+          <Button
+            onClick={() => this.props.submitUsers(users)}
+            className="signInButtons"
+          >
             Submit Pact
           </Button>
           <ModalFailUser
