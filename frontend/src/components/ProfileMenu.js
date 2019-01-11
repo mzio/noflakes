@@ -41,7 +41,12 @@ export default class ProfileMenu extends React.Component {
         <MenuOption
           routerLink="/createPact"
           routerComponent={CreatePact}
-          menuLabel="Create Pact"
+          menuLabel="See Profile"
+        />
+        <MenuOption
+          routerLink="/createPact"
+          routerComponent={CreatePact}
+          menuLabel="See Pacts"
         />
         {/* <MenuOption
           routerLink="/profileUser"
