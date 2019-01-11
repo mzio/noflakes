@@ -202,7 +202,7 @@ export default class NewUserForm extends React.Component {
           Sign up
         </Button>
         <div>
-          <Link to="/logout">Take me back home</Link>
+          <a href="/logout">Take me back home</a>
         </div>
         <ModalFail success={this.state.show} handleclose={this.handleClose} />
       </form>
