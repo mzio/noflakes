@@ -13,6 +13,15 @@ export default class CreatePact extends React.Component {
     };
     this.addUsers = this.addUsers.bind(this);
   }
+  componentWillMount() {
+    fetch("/api/auth/user")
+      .then(res => res.json())
+      .then(json => {
+        let resData = json.data;
+        this.setState({ users: [json.data.username] });
+      });
+  }
+
   addUsers(event) {
     this.setState({ users: event });
     this.setState({ usersAdded: true });
