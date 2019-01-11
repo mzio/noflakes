@@ -1,7 +1,16 @@
 const middleware = require("./middleware");
 const apiRoutes = require("./api");
+const renderRoute = require("../../iso-middleware/renderRouterMiddleware")
+  .default;
+const express = require("express");
+const path = require("path");
+
+console.log(renderRoute);
 
 module.exports = (server, passport) => {
+  const buildPath = path.join(__dirname, "../../", "frontend", "public");
+  server.use("/", express.static(buildPath));
+  // server.use(express.static(__dirname));
   server.use("/api", apiRoutes);
 
   server.get(
@@ -34,4 +43,6 @@ module.exports = (server, passport) => {
   server.get("/secret", middleware.checkAuthentication, (req, res) => {
     res.send("You have reached the secret route.");
   });
+
+  server.get("*", renderRoute);
 };
