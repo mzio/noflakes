@@ -82,7 +82,7 @@ export default class CreatePactForm extends React.Component {
   handleSubmit(event) {
     console.log(this.state);
     // Send post request to the backend
-    fetch("/api/users/", {
+    fetch("/api/pacts/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -134,7 +134,7 @@ export default class CreatePactForm extends React.Component {
         </FormGroup>
 
         <Button
-          variant="primary"
+          variant="outline-primary"
           bsSize="large"
           className="SubmitButton"
           onClick={this.handleSubmit}
