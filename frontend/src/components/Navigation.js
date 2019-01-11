@@ -1,6 +1,7 @@
 import React from "react";
 import { slide as Menu } from "react-burger-menu";
 import { Link } from "react-router-dom";
+import "./Navigation.css";
 
 // <Logout show={this.}
 class Logout extends React.Component {
@@ -45,7 +46,7 @@ export default class Navigation extends React.Component {
 
   render() {
     return (
-      <Menu>
+      <Menu styles={styles}>
         <a id="home" className="menu-item" href="/">
           Home
         </a>
