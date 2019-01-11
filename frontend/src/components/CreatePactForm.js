@@ -115,7 +115,7 @@ export default class CreatePactForm extends React.Component {
         <FormGroup controlId="formControlsTextarea">
           <ControlLabel>Pact Description</ControlLabel>
           <FormControl
-            componentClass="textarea"
+            as="textarea"
             placeholder="Describe the pact some more."
             onChange={this.handleDescriptionChange}
           />
@@ -131,7 +131,7 @@ export default class CreatePactForm extends React.Component {
         </FormGroup>
 
         <Button
-          bsStyle="primary"
+          variant="primary"
           bsSize="large"
           className="SubmitButton"
           onClick={this.handleSubmit}
