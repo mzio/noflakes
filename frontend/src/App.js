@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { hot } from "react-hot-loader";
 import Navigation from "./components/Navigation.js";
 import ReactDOM from "react-dom";
+import { Container, Row } from "react-bootstrap";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -22,14 +23,18 @@ import "./App.css";
 class App extends Component {
   render() {
     return (
-      <div>
-        <Navigation />
-        <div className="App">
-          <Routes />
-          {/* <Link to="/createPact">Test this link actually</Link>
+      <Container>
+        <Row>
+          <Navigation />
+        </Row>
+        <Row>
+          <div className="App">
+            <Routes />
+            {/* <Link to="/createPact">Test this link actually</Link>
           <HomeSignIn /> */}
-        </div>
-      </div>
+          </div>
+        </Row>
+      </Container>
     );
   }
 }
