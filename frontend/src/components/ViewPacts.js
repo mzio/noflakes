@@ -44,6 +44,8 @@ class ViewPacts extends React.Component {
   }
 
   handleAccept(event) {
+    console.log(event.target);
+
     fetch(
       "/api/pacts/" + event.target.pactId + "/" + this.state.user.username,
       {
@@ -61,12 +63,18 @@ class ViewPacts extends React.Component {
       return <div />;
     } else {
       var pacts = this.state.pacts.map(pact => {
-        return (
-          <div>
-            <PactViewer pact={pact} />{" "}
+        let button;
+        if (this.props.mode === "pending") {
+          button = (
             <Button pactId={pact._id} onClick={this.handleAccept}>
               Accept
             </Button>
+          );
+        }
+        return (
+          <div id={pact._id}>
+            <PactViewer pact={pact} />
+            {button}
           </div>
         );
       });
