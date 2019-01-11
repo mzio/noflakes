@@ -3,7 +3,7 @@ import HomeDefault, { HomeSignIn, HomeProfile } from "./HomeStates.js";
 import Login from "./Login.js";
 import "./Home.css";
 
-import ProfileMenu from "./ProfileMenu.js"; // REACT COMPONENT DEV ZONE
+import PactAddUserForm from "./PactAddUserForm"; // REACT COMPONENT DEV ZONE
 
 export default class Home extends Component {
   constructor(props) {
@@ -39,7 +39,7 @@ export default class Home extends Component {
     // REACT COMPONENT DEV ZONE
     if (!this.state.ready && this.state.dev) {
       console.log("React Component Dev Zone");
-      return <ProfileMenu />;
+      return <PactAddUserForm />;
     }
     if (!this.state.ready) {
       return <div />;
