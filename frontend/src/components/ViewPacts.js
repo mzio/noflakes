@@ -17,7 +17,7 @@ class ViewPacts extends React.Component {
       .then(json => {
         if (json.data.exists) {
           this.setState({ user: json.data.user, userReady: true });
-          for (var i = 0; i < json.data.user.pacts.pending; ++i) {
+          for (var i = 0; i < json.data.user.pacts.pending.length; ++i) {
             let pactId = json.data.user.pacts.pending[i];
             fetch("/api/pacts/" + pactId)
               .then(res => res.json())
