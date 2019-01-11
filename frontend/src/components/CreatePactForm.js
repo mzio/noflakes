@@ -6,7 +6,7 @@ import {
   Clearfix,
   FormGroup,
   FormControl,
-  ControlLabel,
+  FormLabel,
   Button
 } from "react-bootstrap";
 import Datetime from "react-datetime";
@@ -106,7 +106,7 @@ export default class CreatePactForm extends React.Component {
           controlId="formBasicText"
           //   validationState={this.getValidationState()}
         >
-          <ControlLabel>Pact Name</ControlLabel>
+          <FormLabel>Pact Name</FormLabel>
           <FormControl
             type="text"
             value={this.state.name}
@@ -115,15 +115,15 @@ export default class CreatePactForm extends React.Component {
           />
         </FormGroup>
         <FormGroup controlId="formControlsTextarea">
-          <ControlLabel>Pact Description</ControlLabel>
+          <FormLabel>Pact Description</FormLabel>
           <FormControl
-            componentClass="textarea"
+            as="textarea"
             placeholder="Describe the pact some more."
             onChange={this.handleDescriptionChange}
           />
         </FormGroup>
         <FormGroup>
-          <ControlLabel>Pact End Date and Time</ControlLabel>
+          <FormLabel>Pact End Date and Time</FormLabel>
           {/* UTC Time */}
           <Datetime
             utc={true}
@@ -133,7 +133,7 @@ export default class CreatePactForm extends React.Component {
         </FormGroup>
 
         <Button
-          bsStyle="primary"
+          variant="primary"
           bsSize="large"
           className="SubmitButton"
           onClick={this.handleSubmit}

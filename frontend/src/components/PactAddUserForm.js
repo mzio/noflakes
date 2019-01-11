@@ -2,7 +2,7 @@ import React from "react";
 import {
   FormGroup,
   FormControl,
-  ControlLabel,
+  FormLabel,
   Popover,
   OverlayTrigger,
   Button,
