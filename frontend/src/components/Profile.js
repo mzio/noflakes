@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class Profile extends Component {
+class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,9 +13,8 @@ export default class Profile extends Component {
     fetch("/api/auth/user")
       .then(res => res.json())
       .then(json => {
-        let resData = json.data;
         if (json.data.exists) {
-          this.setState({ ready: true, user: json.data.user });
+          this.setState({ user: json.data.user, ready: true });
         } else {
           //Handle if user is not logged in
         }
@@ -33,10 +32,13 @@ export default class Profile extends Component {
             Name: {this.state.user.firstName} {this.state.user.lastName}
           </div>
           <div>Username: {this.state.user.username}</div>
-          <div>Active Pact Count: {this.state.user.pacts.active.length}</div>
+          <div>Active Pact Count: {this.state.user.pacts.accepted.length}</div>
           <div>Past Pact Count: {this.state.user.pacts.inactive.length}</div>
+          <div>Pending Pact Count: {this.state.user.pacts.pending.length}</div>
         </div>
       );
     }
   }
 }
+
+export default Profile;
