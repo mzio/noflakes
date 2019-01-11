@@ -34,6 +34,7 @@ class Profile extends React.Component {
           <div>Username: {this.state.user.username}</div>
           <div>Active Pact Count: {this.state.user.pacts.accepted.length}</div>
           <div>Past Pact Count: {this.state.user.pacts.inactive.length}</div>
+          <div>Pending Pact Count: {this.state.user.pacts.pending.length}</div>
         </div>
       );
     }
