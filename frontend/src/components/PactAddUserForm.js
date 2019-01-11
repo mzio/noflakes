@@ -98,7 +98,7 @@ export default class PactAddUserForm extends React.Component {
           .then(res => res.json())
           .then(json => {
             if (json.data === null) {
-              //HACK HACK
+              //HACK
               resolve(true);
             } else {
               resolve(true);
@@ -133,29 +133,13 @@ export default class PactAddUserForm extends React.Component {
       this.setState({ username: "" });
     } else {
       this.getValidationState().then(valid => {
-        if (valid) {
-          console.log("Success logging in");
-          fetch("/api/users/", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ username: this.state.username })
-          })
-            .then(res => res.json())
-            .then(json => {
-              if (json.status === "success") {
-                this.addUser(this.state.username);
-                this.setState({ username: "" });
-              } else {
-                this.handleAddUserShow();
-              }
-            });
-        } else {
-          this.handleAddUserShow();
-        }
+        this.addUser(this.state.username);
+        this.setState({ username: "" });
       });
     }
+    // } else {
+    //   this.handleAddUserShow();
+    // }
   }
 
   handleSubmitUsers(event) {
