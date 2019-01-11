@@ -17,6 +17,7 @@ class Profile extends React.Component {
         console.log(resData);
         if (resData.exists) {
           this.setState({ user: resData.user });
+          this.setState({ ready: true });
         } else {
           //Handle if user is not logged in
         }
