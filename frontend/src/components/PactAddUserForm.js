@@ -119,6 +119,8 @@ export default class PactAddUserForm extends React.Component {
     var allPrevUsers = this.state.prevAddedUsers.concat([newUser]);
     this.setState({ users: allUsers });
     this.setState({ prevAddedUsers: allPrevUsers });
+    console.log("State from Added Users");
+    console.log(this.state);
   }
 
   deleteUser(index) {
