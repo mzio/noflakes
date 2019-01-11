@@ -9,7 +9,7 @@ export default class CreatePact extends React.Component {
     super(props);
     this.state = {
       usersAdded: false,
-      users: [props.user]
+      users: [props.user.userName]
     };
     this.addUsers = this.addUsers.bind(this);
   }
