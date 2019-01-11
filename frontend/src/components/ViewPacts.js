@@ -14,7 +14,7 @@ class ViewPacts extends React.Component {
   }
 
   componentWillMount() {
-    console.log(this.params);
+    console.log(this.props);
     console.log(this.state);
     fetch("/api/auth/user")
       .then(res => res.json())
@@ -23,10 +23,10 @@ class ViewPacts extends React.Component {
           this.setState({ user: json.data.user, userReady: true });
           for (
             var i = 0;
-            i < json.data.user.pacts[this.params.mode].length;
+            i < json.data.user.pacts[this.props.mode].length;
             ++i
           ) {
-            let pactId = json.data.user.pacts[this.params.mode][i];
+            let pactId = json.data.user.pacts[this.props.mode][i];
             fetch("/api/pacts/" + pactId)
               .then(res => res.json())
               .then(json => {
@@ -74,7 +74,7 @@ class ViewPacts extends React.Component {
       return (
         <div class="Profile">
           <h1>
-            {this.state.user.firstName}'s {this.params.mode} Pacts
+            {this.state.user.firstName}'s {this.props.mode} Pacts
           </h1>
           <div>{pacts}</div>
         </div>
