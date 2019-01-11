@@ -6,13 +6,26 @@ import ProfileMenu from "./ProfileMenu";
 
 export default class HomeDefault extends Component {
   // Default display
+  componentDidMount() {
+    const scriptParticles = document.createElement("script");
+    const scriptApp = document.createElement("script");
+    scriptParticles.src = "./snowfall/particles.min.js";
+    scriptApp.src = "./snowfall/app.js";
+    scriptParticles.async = true;
+    scriptApp.async = true;
+    document.body.appendChild(scriptParticles);
+    document.body.appendChild(scriptApp);
+  }
   render() {
     return (
-      <div className="HomeDefault">
-        <div className="lander">
-          <h1>"Noflakes"</h1>
-          <p>There's only snow much time in the world.</p>
-          <Login />
+      <div>
+        <div id="particles-js" />
+        <div className="HomeDefault">
+          <div className="lander">
+            <h1>"Noflakes"</h1>
+            <p>There's only snow much time in the world.</p>
+            <Login />
+          </div>
         </div>
       </div>
     );
