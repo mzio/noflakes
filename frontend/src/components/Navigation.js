@@ -41,6 +41,7 @@ export default class Navigation extends React.Component {
       .then(res => res.json())
       .then(json => {
         this.setState({ signedIn: json.data.exists });
+        console.log(json.data);
       });
   }
 
