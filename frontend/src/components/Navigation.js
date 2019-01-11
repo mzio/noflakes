@@ -46,7 +46,7 @@ export default class Navigation extends React.Component {
 
   render() {
     return (
-      <Menu styles={styles}>
+      <Menu>
         <a id="home" className="menu-item" href="/">
           Home
         </a>
