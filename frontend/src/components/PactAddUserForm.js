@@ -59,11 +59,7 @@ class AddedUsers extends React.Component {
           {users.map((user, index) => (
             <div key={index}>
               <h3>{user}</h3>
-              <a
-                href="#"
-                id="delete-item"
-                onClick={this.props.handleDelete({ user })}
-              >
+              <a href="#" id="delete-item" onClick={this.props.handleDelete}>
                 Delete
               </a>
             </div>
