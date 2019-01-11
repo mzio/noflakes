@@ -4,12 +4,12 @@ const webpack = require("webpack");
 
 module.exports = {
   entry: {
-    main: "./client/main.js"
+    main: "./frontend/src/index.js"
   },
 
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "[name].bundle.js"
+    filename: "bundle.js"
   },
   devtool: "inline-source-map",
 

@@ -153,7 +153,7 @@ export default class PactAddUserForm extends React.Component {
   handleUsernameChange(event) {
     try {
       this.setState({ username: event.target.value });
-    } catch {
+    } catch (err) {
       this.setState({ username: "" });
     }
   }

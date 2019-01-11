@@ -1,7 +1,7 @@
 import React from "react";
 import PactViewer from "./PactViewer";
 import { Button } from "react-bootstrap";
-import "ViewPacts.css";
+import "./ViewPacts.css";
 
 class ViewPacts extends React.Component {
   constructor(props) {
