@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CreatePact from "./CreatePact";
 import Profile from "./Profile";
+import ViewPacts from "./ViewPacts";
 import "./ProfileMenu.css";
 
 function MenuOption(props) {
@@ -44,11 +45,11 @@ export default class ProfileMenu extends React.Component {
           routerComponent={Profile}
           menuLabel="See Profile"
         />
-        {/* <MenuOption
+        <MenuOption
           routerLink="/viewPacts"
           routerComponent={ViewPacts}
           menuLabel="View Pacts"
-        /> */}
+        />
         {/* <MenuOption
           routerLink="/profileUser"
           routerComponent={ProfileUser}

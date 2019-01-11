@@ -4,12 +4,14 @@ import Home from "./components/Home";
 import CreatePact from "./components/CreatePact";
 import Profile from "./components/Profile";
 import NotFound from "./components/NotFound";
+import ViewPacts from "./components/ViewPacts";
 
 export default () => (
   <Switch>
     <Route path="/" exact component={Home} />
     <Route path="/createPact" exact component={CreatePact} />
     <Route path="/profile" exact component={Profile} />
+    <Route path="/viewPacts" exact component={ViewPacts} />
     <Route component={NotFound} />
   </Switch>
 );
