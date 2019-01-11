@@ -14,23 +14,48 @@ import {
 import "./Login.css";
 
 // Import this from external shared file?
-function ModalFail(props) {
+function ModalFailUser(props) {
   return (
     <Modal
       {...props}
       bsSize="small"
       dialogClassName="LoginModal"
       show={props.success}
-      onHide={props.handleAddUserClose}
+      onHide={props.handleadduserclose}
     >
       <Modal.Header closeButton className="ModalStyle">
-        <Modal.Title>User doesn't exist!</Modal.Title>
+        <Modal.Title>💔 User doesn't exist! 💔</Modal.Title>
       </Modal.Header>
       <Modal.Body className="ModalBodyUsername">
         <Row className="show-grid">
           <Col xs={2} md={2} />
           <Col xs={8} md={8}>
-            Sorry about that. Tell your friends to join! 👍
+            Sorry about that. Tell your friends to join!
+          </Col>
+          <Col xs={2} md={2} />
+        </Row>
+      </Modal.Body>
+    </Modal>
+  );
+}
+
+function ModalUserAdded(props) {
+  return (
+    <Modal
+      {...props}
+      bsSize="small"
+      dialogClassName="UserAddedModal"
+      show={props.success}
+      onHide={props.handleadduserclose}
+    >
+      <Modal.Header closeButton className="ModalStyle">
+        <Modal.Title>👌 User already added! 👌</Modal.Title>
+      </Modal.Header>
+      <Modal.Body className="ModalBodyUsername">
+        <Row className="show-grid">
+          <Col xs={2} md={2} />
+          <Col xs={8} md={8}>
+            Enter new user or submit pact.
           </Col>
           <Col xs={2} md={2} />
         </Row>
@@ -48,8 +73,12 @@ class AddedUsers extends React.Component {
     };
   }
   render() {
-    const { users } = this.props.users;
+    const { users } = this.props;
+    console.log(users);
     if (Array.isArray(users) && users.length === 0) {
+      console.log("THE ARRAY IS EMPTY");
+      return <div />;
+    } else {
       return (
         <div>
           {users.map((user, index) => (
@@ -62,8 +91,6 @@ class AddedUsers extends React.Component {
           ))}
         </div>
       );
-    } else {
-      return <div />;
     }
   }
 }
@@ -83,6 +110,8 @@ export default class PactAddUserForm extends React.Component {
     this.usernameIsValid = this.usernameIsValid.bind(this);
     this.handleAddUserShow = this.handleAddUserShow.bind(this);
     this.handleAddUserClose = this.handleAddUserClose.bind(this);
+    this.handleAddUserAlreadyShow = this.handleAddUserAlreadyShow.bind(this);
+    this.handleAddUserAlreadyClose = this.handleAddUserAlreadyClose.bind(this);
 
     this.addUser = this.addUser.bind(this);
     this.deleteUser = this.deleteUser.bind(this);
@@ -111,7 +140,13 @@ export default class PactAddUserForm extends React.Component {
   }
 
   handleUsernameChange(event) {
-    this.setState({ username: event.target.value });
+    console.log(event);
+    try {
+      this.setState({ username: event.target.value });
+    } catch {
+      console.log("error value");
+      this.setState({ username: "" });
+    }
   }
 
   addUser(newUser) {
@@ -119,17 +154,29 @@ export default class PactAddUserForm extends React.Component {
     var allPrevUsers = this.state.prevAddedUsers.concat([newUser]);
     this.setState({ users: allUsers });
     this.setState({ prevAddedUsers: allPrevUsers });
+    console.log("State from Added Users");
+    console.log(this.state);
   }
 
-  deleteUser(index) {
-    existingUsers = this.state.users;
-    delete existingUsers[index];
-    this.setState({ users: existingUsers });
+  deleteUser(event) {
+    // let existingUsers = this.state.users;
+    // delete existingUsers[index];
+    // this.setState({ users: existingUsers });
+    console.log("Deleting user supposedly: " + event);
+    var existingUsers = [...this.state.users]; // make a separate copy of the array
+    var index = existingUsers.indexOf(event.target.value);
+    if (index !== -1) {
+      existingUsers.splice(index, 1);
+      this.setState({ users: existingUsers });
+    }
   }
 
   handleSubmit(event) {
     if (this.state.prevAddedUsers.includes(this.state.user)) {
       this.addUser(this.state.username);
+      this.setState({ username: "" });
+    } else if (this.state.users.includes(this.state.username)) {
+      this.handleAddUserAlreadyShow();
       this.setState({ username: "" });
     } else {
       this.getValidationState().then(valid => {
@@ -154,6 +201,14 @@ export default class PactAddUserForm extends React.Component {
 
   handleAddUserShow() {
     this.setState({ show: true });
+  }
+
+  handleAddUserAlreadyClose() {
+    this.setState({ showAlready: false });
+  }
+
+  handleAddUserAlreadyShow() {
+    this.setState({ showAlready: true });
   }
 
   render() {
@@ -181,9 +236,13 @@ export default class PactAddUserForm extends React.Component {
           <Button onClick={this.handleSubmitUsers} className="signInButtons">
             Submit Pact
           </Button>
-          <ModalFail
+          <ModalFailUser
             success={this.state.show}
-            handleAddUserClose={this.handleAddUserClose}
+            handleadduserclose={this.handleAddUserClose}
+          />
+          <ModalUserAdded
+            success={this.state.showAlready}
+            handleadduserclose={this.handleAddUserAlreadyClose}
           />
         </form>
         <AddedUsers users={this.state.users} handleDelete={this.deleteUser} />
