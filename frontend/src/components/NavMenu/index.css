@@ -4,7 +4,7 @@
   cursor: pointer;
   position: fixed;
   right: 20px;
-  bottom: 40px;
+  top: 20px;
   z-index: 9999;
   padding: 10px;
 }
