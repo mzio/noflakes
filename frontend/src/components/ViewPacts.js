@@ -8,7 +8,8 @@ class ViewPacts extends React.Component {
     this.state = {
       userReady: false,
       user: null,
-      pacts: []
+      pacts: [],
+      show: {}
     };
     this.handleAccept = this.handleAccept.bind(this);
   }
@@ -34,6 +35,11 @@ class ViewPacts extends React.Component {
                   this.setState({
                     pacts: this.state.pacts.concat([json.data])
                   });
+                  var newShow = this.state.show;
+                  newShow[json.data._id] = true;
+                  this.setState({
+                    show: newShow
+                  });
                 }
               });
           }
@@ -44,20 +50,23 @@ class ViewPacts extends React.Component {
   }
 
   handleAccept(event) {
-    console.log(event.target.getAttribute("data-pactid"));
-    fetch(
-      "/api/pacts/" +
-        event.target.getAttribute("data-pactid") +
-        "/" +
-        this.state.user.username,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ status: "accepted" })
-      }
-    );
+    let id = event.target.getAttribute("data-pactid");
+    console.log(id);
+    fetch("/api/pacts/" + id + "/users/" + this.state.user.username, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ status: "accepted" })
+    })
+      .then(res => res.json())
+      .then(json => {
+        if (json.status === "success") {
+          var newShow = this.state.show;
+          newShow[id] = false;
+          this.setState({ show: newShow });
+        }
+      });
   }
 
   render() {
@@ -66,7 +75,7 @@ class ViewPacts extends React.Component {
     } else {
       var pacts = this.state.pacts.map(pact => {
         let button;
-        if (this.props.mode === "pending") {
+        if (this.props.mode === "pending" && this.state.show[pact._id]) {
           button = (
             <Button data-pactid={pact._id} onClick={this.handleAccept}>
               Accept
