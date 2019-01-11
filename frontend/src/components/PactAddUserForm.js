@@ -129,7 +129,7 @@ export default class PactAddUserForm extends React.Component {
   }
 
   deleteUser(index) {
-    existingUsers = this.state.users;
+    let existingUsers = this.state.users;
     delete existingUsers[index];
     this.setState({ users: existingUsers });
     console.log("Deleting user supposedly");
