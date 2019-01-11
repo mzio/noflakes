@@ -1,7 +1,7 @@
 /api
     /auth
-         /username
-                  GET View the current user's mongodb username
+         /user
+              GET View the current user's mongodb profile
 
     /users
           GET Index users

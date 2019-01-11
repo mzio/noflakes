@@ -90,7 +90,6 @@ export default class NewUserForm extends React.Component {
     super(props);
     this.state = {
       username: "",
-      valid: false,
       show: false,
       redirect: false,
       retryLogin: false,
@@ -111,21 +110,21 @@ export default class NewUserForm extends React.Component {
   }
 
   getValidationState() {
-    if (this.usernameIsValid(this.state.username)) {
-      return fetch("/api/users/" + this.state.username)
-        .then(res => res.json())
-        .then(json => {
-          console.log(json);
-          console.log(typeof json.data);
-          if (json.data === null) {
-            this.setState({ valid: true });
-            // return true;
-          }
-        });
-      // } else {
-      //   return false;
-      // }
-    }
+    return new Promise(resolve => {
+      if (this.usernameIsValid(this.state.username)) {
+        fetch("/api/users/" + this.state.username)
+          .then(res => res.json())
+          .then(json => {
+            if (json.data === null) {
+              resolve(true);
+            } else {
+              resolve(false);
+            }
+          });
+      } else {
+        resolve(false);
+      }
+    });
   }
 
   handleUsernameChange(event) {
@@ -133,8 +132,8 @@ export default class NewUserForm extends React.Component {
   }
 
   handleSubmit(event) {
-    this.getValidationState().then(res => {
-      if (this.state.valid) {
+    this.getValidationState().then(valid => {
+      if (valid) {
         console.log("Success logging in");
         fetch("/api/users/", {
           method: "POST",
@@ -203,7 +202,7 @@ export default class NewUserForm extends React.Component {
           Sign up
         </Button>
         <div>
-          <Link to="/logout">Take me back home</Link>
+          <a href="/logout">Take me back home</a>
         </div>
         <ModalFail success={this.state.show} handleclose={this.handleClose} />
       </form>
