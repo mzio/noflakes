@@ -44,9 +44,12 @@ class ViewPacts extends React.Component {
   }
 
   handleAccept(event) {
-    console.log(event.target);
+    console.log(event.target.getAttribute("data-pactid"));
     fetch(
-      "/api/pacts/" + event.target["pactid"] + "/" + this.state.user.username,
+      "/api/pacts/" +
+        event.target.getAttribute("data-pactid") +
+        "/" +
+        this.state.user.username,
       {
         method: "PATCH",
         headers: {
@@ -65,7 +68,7 @@ class ViewPacts extends React.Component {
         let button;
         if (this.props.mode === "pending") {
           button = (
-            <Button pactid={pact._id} onClick={this.handleAccept}>
+            <Button data-pactid={pact._id} onClick={this.handleAccept}>
               Accept
             </Button>
           );
