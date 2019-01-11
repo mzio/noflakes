@@ -40,9 +40,9 @@ class ViewPacts extends React.Component {
       return <div />;
     } else {
       var pacts = this.state.data.pacts.map(pact => {
-        return <PactViewer pact={pact}/>
-        });
+        return <PactViewer pact={pact} />;
       });
+
       return (
         <div class="Profile">
           <h1>{this.state.user.firstName}'s Pacts</h1>
