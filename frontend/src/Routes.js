@@ -10,7 +10,7 @@ export default () => (
   <Switch>
     <Route path="/" exact component={Home} />
     {/* <Route path="/createPact" render={props => <CreatePact {...props} />} /> */}
-    {/* <Route path="/createPact" exact component={CreatePact} /> */}
+    <Route path="/createPact" exact component={CreatePact} />
     <Route path="/profile" exact component={Profile} />
     <Route
       path="/viewPacts/accepted"
