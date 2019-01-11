@@ -75,19 +75,23 @@ class ViewPacts extends React.Component {
     } else {
       var pacts = this.state.pacts.map(pact => {
         let button;
-        if (this.props.mode === "pending" && this.state.show[pact._id]) {
+        if (this.props.mode === "pending") {
           button = (
             <Button data-pactid={pact._id} onClick={this.handleAccept}>
               Accept
             </Button>
           );
         }
-        return (
-          <div id={pact._id}>
-            <PactViewer pact={pact} />
-            {button}
-          </div>
-        );
+        if (this.state.show[pact._id]) {
+          return (
+            <div id={pact._id}>
+              <PactViewer pact={pact} />
+              {button}
+            </div>
+          );
+        } else {
+          return;
+        }
       });
 
       return (
