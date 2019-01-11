@@ -14,6 +14,8 @@ class ViewPacts extends React.Component {
   }
 
   componentWillMount() {
+    console.log(this.params);
+    console.log(this.state);
     fetch("/api/auth/user")
       .then(res => res.json())
       .then(json => {
