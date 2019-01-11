@@ -23,18 +23,22 @@ import "./App.css";
 class App extends Component {
   render() {
     return (
-      <Container>
-        <Row className="NavRow">
-          <Navigation />
-        </Row>
-        <Row>
-          <div className="App">
-            <Routes />
-            {/* <Link to="/createPact">Test this link actually</Link>
+      <div>
+        {/* <Container> */}
+        {/* <Row className="NavRow"> */}
+        <div className = "NavRow" />
+        <Navigation />
+        {/* </Row> */}
+        {/* <Row> */}
+        </div>
+        <div className="App">
+          <Routes />
+          {/* <Link to="/createPact">Test this link actually</Link>
           <HomeSignIn /> */}
-          </div>
-        </Row>
-      </Container>
+        </div>
+        {/* </Row> */}
+        {/* </Container> */}
+      </div>
     );
   }
 }

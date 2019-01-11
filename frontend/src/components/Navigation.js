@@ -29,7 +29,7 @@ export default class Navigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      signedIn: props.signedIn
+      signedIn: false
     };
   }
   showSettings(event) {
@@ -42,12 +42,13 @@ export default class Navigation extends React.Component {
       .then(json => {
         this.setState({ signedIn: json.data.exists });
         console.log(this.state.signedIn);
+        console.log(json.data.exists);
       });
   }
 
   render() {
     return (
-      <Menu>
+      <Menu right>
         <a id="home" className="menu-item" href="/">
           Home
         </a>
