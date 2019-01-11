@@ -98,9 +98,9 @@ export default class PactAddUserForm extends React.Component {
           .then(res => res.json())
           .then(json => {
             if (json.data === null) {
-              resolve(true);
-            } else {
               resolve(false);
+            } else {
+              resolve(true);
             }
           });
       } else {
