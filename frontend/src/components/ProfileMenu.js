@@ -10,18 +10,18 @@ function MenuOption(props) {
   const routerComponent = props.routerComponent;
   return (
     <div className="MenuOption">
-      <Link
-        to={routerLink}
-        exact
-        component={routerComponent}
-        style={{ textDecoration: "none" }}
-      >
-        <h1>
-          <span className="FancyClosingL">[ </span>
+      <h1>
+        <span className="FancyClosingL">[ </span>
+        <Link
+          to={routerLink}
+          exact
+          component={routerComponent}
+          style={{ textDecoration: "none" }}
+        >
           {props.menuLabel}
-          <span className="FancyClosingR"> ]</span>
-        </h1>
-      </Link>
+        </Link>
+        <span className="FancyClosingR"> ]</span>
+      </h1>
     </div>
   );
 }
@@ -47,7 +47,7 @@ export default class ProfileMenu extends React.Component {
         <MenuOption
           routerLink="/createPact"
           routerComponent={CreatePact}
-          menuLabel="See Pacts"
+          menuLabel="View Pacts"
         />
         {/* <MenuOption
           routerLink="/profileUser"

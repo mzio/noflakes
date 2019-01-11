@@ -1,7 +1,7 @@
 .MenuOption {
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
-  padding: 2rem 0rem 2rem 0rem;
+  margin: 2rem 0rem 2rem 0rem;
   color: black;
 }
 
@@ -9,6 +9,7 @@
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
   color: black;
+  margin: 0;
 }
 
 .MenuOption > a:hover {
