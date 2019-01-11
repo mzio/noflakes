@@ -3,23 +3,14 @@ import Login from "./Login.js";
 import "./HomeStates.css";
 import NewUserForm from "./NewUserForm";
 import ProfileMenu from "./ProfileMenu";
+import Snowflakes from "./Snowflakes";
 
 export default class HomeDefault extends Component {
   // Default display
-  componentDidMount() {
-    const scriptParticles = document.createElement("script");
-    const scriptApp = document.createElement("script");
-    scriptParticles.src = "/static/particles.min.js";
-    scriptApp.src = "/static/app.js";
-    scriptParticles.async = true;
-    scriptApp.async = true;
-    document.body.appendChild(scriptParticles);
-    document.body.appendChild(scriptApp);
-  }
   render() {
     return (
       <div>
-        <div id="particles-js" />
+        <Snowflakes />
         <div className="HomeDefault">
           <div className="lander">
             <h1>"Noflakes"</h1>

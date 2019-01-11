@@ -43,7 +43,6 @@ class PactForm extends React.Component {
     const apiServer = process.env.PORT;
     const nowDate = new Date();
     const nowTime = nowDate.getHours() + ":" + today.getMinutes()
-    console.log("Calling API server...");
     // Assumes proxy is set
     // Also assumes endpoint exists
     fetch(/api/postPactEndpoint, {
