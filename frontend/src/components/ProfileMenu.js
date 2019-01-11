@@ -16,6 +16,7 @@ function MenuOption(props) {
           exact
           component={routerComponent}
           style={{ textDecoration: "none" }}
+          user={props.user}
         >
           {props.menuLabel}
         </Link>
@@ -37,16 +38,19 @@ export default class ProfileMenu extends React.Component {
           routerLink="/createPact"
           routerComponent={CreatePact}
           menuLabel="Create Pact"
+          user={this.props.user}
         />
         <MenuOption
           routerLink="/createPact"
           routerComponent={CreatePact}
           menuLabel="View Profile"
+          user={this.props.user}
         />
         <MenuOption
           routerLink="/createPact"
           routerComponent={CreatePact}
           menuLabel="View Pacts"
+          user={this.props.user}
         />
         {/* <MenuOption
           routerLink="/profileUser"

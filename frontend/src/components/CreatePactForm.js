@@ -23,7 +23,7 @@ export default class CreatePactForm extends React.Component {
       description: "",
       endDate: "",
       endTime: "",
-      users: []
+      users: props.users
     };
     this.getValidationState = this.getValidationState.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -82,6 +82,7 @@ export default class CreatePactForm extends React.Component {
   handleSubmit(event) {
     console.log(this.state);
     // Send post request to the backend
+    fetch;
   }
 
   render() {
