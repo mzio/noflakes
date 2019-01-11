@@ -9,6 +9,8 @@ function MenuOption(props) {
   // <MenuOption routerLink='/createPact' routerComponent={CreatePact} menuLabel='Create Pact'>
   const routerLink = props.routerLink;
   const routerComponent = props.routerComponent;
+  console.log("Router Component");
+  console.log(routerComponent);
   return (
     <div className="MenuOption">
       <h1>

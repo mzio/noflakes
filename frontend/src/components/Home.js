@@ -13,7 +13,7 @@ export default class Home extends Component {
       signedIn: false,
       user: null,
       firstName: null,
-      dev: true
+      dev: false
     };
   }
 
