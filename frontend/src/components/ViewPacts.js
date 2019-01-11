@@ -20,7 +20,7 @@ class ViewPacts extends React.Component {
           this.setState({ user: json.data.user, userReady: true });
           for (
             var i = 0;
-            i < json.data.user.pacts[this.parms.mode].length;
+            i < json.data.user.pacts[this.params.mode].length;
             ++i
           ) {
             let pactId = json.data.user.pacts[this.params.mode][i];
