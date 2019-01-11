@@ -212,6 +212,7 @@ export default class PactAddUserForm extends React.Component {
   }
 
   render() {
+    let users = this.state.users;
     return (
       <div>
         <form>
