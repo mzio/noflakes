@@ -46,7 +46,10 @@ class ViewPacts extends React.Component {
   handleAccept(event) {
     console.log(event.target);
     fetch(
-      "/api/pacts/" + event.target.pactid + "/" + this.state.user.username,
+      "/api/pacts/" +
+        event.target.props.pactid +
+        "/" +
+        this.state.user.username,
       {
         method: "PATCH",
         headers: {
