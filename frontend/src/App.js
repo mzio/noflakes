@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
-import Navigation from "./Nagivation.js";
+import Navigation from "./components/Navigation.js";
 import ReactDOM from "react-dom";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
