@@ -251,8 +251,8 @@ export default class PactAddUserForm extends React.Component {
             handleadduserclose={this.handleAddUserAlreadyClose}
           />
         </form>
-        {/* <AddedUsers users={this.state.users} handleDelete={this.deleteUser} /> */}
-        <div>
+        <AddedUsers users={this.state.users} handleDelete={this.deleteUser} />
+        {/* <div>
           {users.map((user, index) => (
             <div key={index}>
               <h3>{user}</h3>
@@ -267,7 +267,7 @@ export default class PactAddUserForm extends React.Component {
               </a>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     );
   }
