@@ -74,7 +74,7 @@ class ViewPacts extends React.Component {
     if (!this.state.userReady) {
       return <div />;
     } else {
-      var pacts = this.state.pacts.map(pact => {
+      var pacts = this.state.pacts.map((pact, index) => {
         let button;
         if (this.props.mode === "pending") {
           button = (
@@ -89,13 +89,15 @@ class ViewPacts extends React.Component {
         }
         if (this.state.show[pact._id]) {
           return (
-            <a
-              href="#"
-              class="list-group-item list-group-item-action flex-column align-items-start"
-            >
-              <PactViewer pact={pact} />
-              {button}
-            </a>
+            <div key={index}>
+              <a
+                href="#"
+                className="list-group-item list-group-item-action flex-column align-items-start"
+              >
+                <PactViewer pact={pact} />
+                {button}
+              </a>
+            </div>
           );
         } else {
           return;

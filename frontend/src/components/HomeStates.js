@@ -10,7 +10,7 @@ export default class HomeDefault extends Component {
   render() {
     return (
       <div>
-        <SnowFlakes />
+        {/* <SnowFlakes /> */}
         <div className="HomeDefault">
           <div className="lander">
             <h1>"Noflakes"</h1>
