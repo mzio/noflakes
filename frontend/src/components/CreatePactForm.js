@@ -24,13 +24,13 @@ export default class CreatePactForm extends React.Component {
     let currentDate = moment();
     let dateString = currentDate.format();
     let endDateString = dateString.slice(0, 10);
-    let endTimeString = dateString.slice(10, -1);
+    let endTimeString = dateString.slice(10, -6);
 
     this.state = {
       name: "",
       description: "",
       endDate: endDateString,
-      endTime: "T" + endTimeString,
+      endTime: endTimeString,
       users: props.users
     };
     this.getValidationState = this.getValidationState.bind(this);
@@ -90,7 +90,7 @@ export default class CreatePactForm extends React.Component {
     console.log({
       name: this.state.name,
       description: this.state.description,
-      endDate: this.state.endDate + "T" + this.state.endTime,
+      endDate: this.state.endDate + this.state.endTime,
       users: this.state.users
     });
     // Send post request to the backend

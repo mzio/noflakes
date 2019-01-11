@@ -17,8 +17,7 @@ export default class CreatePact extends React.Component {
     fetch("/api/auth/user")
       .then(res => res.json())
       .then(json => {
-        let resData = json.data;
-        this.setState({ users: [json.data.username] });
+        this.setState({ users: [json.data.user.username] });
       });
   }
 
