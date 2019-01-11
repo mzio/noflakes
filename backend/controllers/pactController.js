@@ -1,6 +1,15 @@
 const Pact = require("../models/pactModel");
 const User = require("../models/userModel");
 
+const statuses = [
+  "pending",
+  "accepted",
+  "incomplete",
+  "complete",
+  "successful",
+  "inactive"
+];
+
 module.exports = {
   index: (req, res) => {
     Pact.get((err, pacts) => {
@@ -85,7 +94,7 @@ module.exports = {
                    * once other bugs have been removed and we
                    *  are certain there is no pact duplication
                    */
-                  Object.keys(user.pacts).forEach(key => {
+                  statuses.forEach(key => {
                     user.pacts[key].pull(pact._id);
                   });
                   user.pacts[pact.usersStatus[i]].push(pact._id);
@@ -149,7 +158,7 @@ module.exports = {
                 if (err) {
                   res.send(err);
                 } else if (user) {
-                  Object.keys(user.pacts).forEach(key => {
+                  statuses.forEach(key => {
                     user.pacts[key].pull(pact._id);
                   });
                   user.save(err => {
@@ -208,7 +217,8 @@ module.exports = {
               if (err) {
                 res.send(err);
               } else if (user) {
-                Object.keys(user.pacts).forEach(key => {
+                statuses.forEach(key => {
+                  console.log(key, "hi");
                   user.pacts[key].pull(pact._id);
                 });
                 user.pacts[req.body.status].push(pact._id);
@@ -266,7 +276,7 @@ module.exports = {
               if (err) {
                 res.send(err);
               } else if (user) {
-                Object.keys(user.pacts).forEach(key => {
+                statuses.forEach(key => {
                   user.pacts[key].pull(pact._id);
                 });
                 user.save(err => {
@@ -313,7 +323,7 @@ module.exports = {
               if (err) {
                 res.send(err);
               } else if (user) {
-                Object.keys(user.pacts).forEach(key => {
+                statuses.forEach(key => {
                   var filtered = [];
                   for (var j = 0; j < user.pacts[key].length; j++) {
                     if (user.pacts[key][j] != pact._id) {

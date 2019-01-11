@@ -9,6 +9,7 @@ class ViewPacts extends React.Component {
       user: null,
       pacts: []
     };
+    this.handleAccept = this.handleAccept.bind(this);
   }
 
   componentWillMount() {
@@ -17,8 +18,12 @@ class ViewPacts extends React.Component {
       .then(json => {
         if (json.data.exists) {
           this.setState({ user: json.data.user, userReady: true });
-          for (var i = 0; i < json.data.user.pacts.pending.length; ++i) {
-            let pactId = json.data.user.pacts.pending[i];
+          for (
+            var i = 0;
+            i < json.data.user.pacts[this.parms.mode].length;
+            ++i
+          ) {
+            let pactId = json.data.user.pacts[this.params.mode][i];
             fetch("/api/pacts/" + pactId)
               .then(res => res.json())
               .then(json => {
@@ -35,17 +40,39 @@ class ViewPacts extends React.Component {
       });
   }
 
+  handleAccept(event) {
+    fetch(
+      "/api/pacts/" + event.target.pactId + "/" + this.state.user.username,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ status: "accepted" })
+      }
+    );
+  }
+
   render() {
     if (!this.state.userReady) {
       return <div />;
     } else {
       var pacts = this.state.pacts.map(pact => {
-        return <PactViewer pact={pact} />;
+        return (
+          <div>
+            <PactViewer pact={pact} />{" "}
+            <Button pactId={pact._id} onClick={this.handleAccept}>
+              Accept
+            </Button>
+          </div>
+        );
       });
 
       return (
         <div class="Profile">
-          <h1>{this.state.user.firstName}'s Pacts</h1>
+          <h1>
+            {this.state.user.firstName}'s {this.params.mode} Pacts
+          </h1>
           <div>{pacts}</div>
         </div>
       );
