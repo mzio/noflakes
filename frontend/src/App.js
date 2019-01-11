@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
 import Navigation from "./components/Navigation.js";
+import NavMenu from "./components/NavMenu/NavMenu";
 import ReactDOM from "react-dom";
 import { Container, Row } from "react-bootstrap";
 
@@ -27,7 +28,7 @@ class App extends Component {
         {/* <Container> */}
         {/* <Row className="NavRow"> */}
         <div className="NavRow" />
-        <Navigation />
+        <NavMenu />
         {/* </Row> */}
         {/* <Row> */}
         <div className="App">
