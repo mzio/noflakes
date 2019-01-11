@@ -9,7 +9,7 @@ export default class CreatePact extends React.Component {
     super(props);
     this.state = {
       usersAdded: false,
-      users: [props.user.userName]
+      users: []
     };
     this.addUsers = this.addUsers.bind(this);
   }
@@ -18,6 +18,7 @@ export default class CreatePact extends React.Component {
     this.setState({ usersAdded: true });
   }
   render() {
+    console.log(this.props);
     if (this.state.usersAdded) {
       // Display pact creation form after users added
       return (

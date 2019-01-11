@@ -49,18 +49,23 @@ class AddedUsers extends React.Component {
   }
   render() {
     const { users } = this.props.users;
-    return (
-      <div>
-        {users.map((user, index) => (
-          <div key={index}>
-            <h3>{user}</h3>
-            <a href="#" id="delete-item" onClick={this.props.handleDelete}>
-              Delete
-            </a>
-          </div>
-        ))}
-      </div>
-    );
+    console.log(this.props.users);
+    if (Array.isArray(users) && users.length === 0) {
+      return (
+        <div>
+          {users.map((user, index) => (
+            <div key={index}>
+              <h3>{user}</h3>
+              <a href="#" id="delete-item" onClick={this.props.handleDelete}>
+                Delete
+              </a>
+            </div>
+          ))}
+        </div>
+      );
+    } else {
+      return <div />;
+    }
   }
 }
 
