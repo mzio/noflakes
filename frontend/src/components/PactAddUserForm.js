@@ -51,6 +51,7 @@ class AddedUsers extends React.Component {
     const { users } = this.props;
     console.log(users);
     if (Array.isArray(users) && users.length === 0) {
+      console.log("THE ARRAY IS EMPTY");
       return <div />;
     } else {
       return (
