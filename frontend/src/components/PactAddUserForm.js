@@ -120,6 +120,16 @@ export default class PactAddUserForm extends React.Component {
     this.addUser = this.addUser.bind(this);
     this.deleteUser = this.deleteUser.bind(this);
   }
+
+  componentWillMount() {
+    fetch("/api/auth/user")
+      .then(res => res.json())
+      .then(json => {
+        let resData = json.data;
+        this.addUser(resData.user.username);
+      });
+  }
+
   usernameIsValid(username) {
     return /^[0-9a-zA-Z]+$/.test(username);
   }
