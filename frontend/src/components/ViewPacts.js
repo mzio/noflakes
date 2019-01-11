@@ -84,10 +84,13 @@ class ViewPacts extends React.Component {
         }
         if (this.state.show[pact._id]) {
           return (
-            <div id={pact._id}>
+            <a
+              href="#"
+              class="list-group-item list-group-item-action flex-column align-items-start"
+            >
               <PactViewer pact={pact} />
               {button}
-            </div>
+            </a>
           );
         } else {
           return;
