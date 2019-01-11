@@ -12,4 +12,4 @@ class PactViewer extends React.Component {
   }
 }
 
-export default Profile;
+export default PactViewer;

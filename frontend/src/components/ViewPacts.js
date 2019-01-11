@@ -53,4 +53,4 @@ class ViewPacts extends React.Component {
   }
 }
 
-export default Profile;
+export default ViewPacts;
