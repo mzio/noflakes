@@ -14,14 +14,14 @@ import {
 import "./Login.css";
 
 // Import this from external shared file?
-function ModalFail(props) {
+function ModalFailUser(props) {
   return (
     <Modal
       {...props}
       bsSize="small"
       dialogClassName="LoginModal"
       show={props.success}
-      onHide={props.handleAddUserClose}
+      onHide={props.handleadduserclose}
     >
       <Modal.Header closeButton className="ModalStyle">
         <Modal.Title>User doesn't exist!</Modal.Title>
@@ -181,9 +181,9 @@ export default class PactAddUserForm extends React.Component {
           <Button onClick={this.handleSubmitUsers} className="signInButtons">
             Submit Pact
           </Button>
-          <ModalFail
+          <ModalFailUser
             success={this.state.show}
-            handleAddUserClose={this.handleAddUserClose}
+            handleadduserclose={this.handleAddUserClose}
           />
         </form>
         <AddedUsers users={this.state.users} handleDelete={this.deleteUser} />
