@@ -49,13 +49,13 @@ function ModalUserAdded(props) {
       onHide={props.handleadduserclose}
     >
       <Modal.Header closeButton className="ModalStyle">
-        {/* <Modal.Title>User already added</Modal.Title> */}
+        <Modal.Title>User already added! 👌</Modal.Title>
       </Modal.Header>
       <Modal.Body className="ModalBodyUsername">
         <Row className="show-grid">
           <Col xs={2} md={2} />
           <Col xs={8} md={8}>
-            User added already!
+            Enter new user or submit pact.
           </Col>
           <Col xs={2} md={2} />
         </Row>
