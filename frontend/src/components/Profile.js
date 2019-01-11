@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class Profile extends Component {
+class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,6 +10,7 @@ export default class Profile extends Component {
   }
 
   componentWillMount() {
+    console.log("hihi");
     fetch("/api/auth/user")
       .then(res => res.json())
       .then(json => {
@@ -40,3 +41,5 @@ export default class Profile extends Component {
     }
   }
 }
+
+export default Profile;
