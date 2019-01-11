@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
-import Home from "./components/";
 import About from "./components/About";
 import CreatePact from "./components/CreatePact";
 import Profile from "./components/Profile";
