@@ -39,6 +39,31 @@ function ModalFailUser(props) {
   );
 }
 
+function ModalUserAdded(props) {
+  return (
+    <Modal
+      {...props}
+      bsSize="small"
+      dialogClassName="UserAddedModal"
+      show={props.success}
+      onHide={props.handleadduserclose}
+    >
+      <Modal.Header closeButton className="ModalStyle">
+        {/* <Modal.Title>User already added</Modal.Title> */}
+      </Modal.Header>
+      <Modal.Body className="ModalBodyUsername">
+        <Row className="show-grid">
+          <Col xs={2} md={2} />
+          <Col xs={8} md={8}>
+            User added already!
+          </Col>
+          <Col xs={2} md={2} />
+        </Row>
+      </Modal.Body>
+    </Modal>
+  );
+}
+
 // <AddedUsers users={this.state.users} handleDelete={this.deleteUser}/>
 class AddedUsers extends React.Component {
   constructor(props) {
@@ -85,6 +110,8 @@ export default class PactAddUserForm extends React.Component {
     this.usernameIsValid = this.usernameIsValid.bind(this);
     this.handleAddUserShow = this.handleAddUserShow.bind(this);
     this.handleAddUserClose = this.handleAddUserClose.bind(this);
+    this.handleAddUserAlreadyShow = this.handleAddUserAlreadyShow.bind(this);
+    this.handleAddUserAlreadyClose = this.handleAddUserAlreadyClose.bind(this);
 
     this.addUser = this.addUser.bind(this);
     this.deleteUser = this.deleteUser.bind(this);
@@ -148,6 +175,7 @@ export default class PactAddUserForm extends React.Component {
     if (this.state.prevAddedUsers.includes(this.state.user)) {
       this.addUser(this.state.username);
       this.setState({ username: "" });
+    } else if (this.state.users.includes(this.state.username)) {
     } else {
       this.getValidationState().then(valid => {
         if (valid) {
@@ -171,6 +199,14 @@ export default class PactAddUserForm extends React.Component {
 
   handleAddUserShow() {
     this.setState({ show: true });
+  }
+
+  handleAddUserAlreadyClose() {
+    this.setState({ showAlready: false });
+  }
+
+  handleAddUserAlreadyShow() {
+    this.setState({ showAlready: true });
   }
 
   render() {
@@ -202,8 +238,12 @@ export default class PactAddUserForm extends React.Component {
             success={this.state.show}
             handleadduserclose={this.handleAddUserClose}
           />
+          <ModalUserAdded
+            success={this.state.show}
+            handleadduserclose={this.handleAddUserAlreadyClose}
+          />
         </form>
-        <AddedUsers users={this.state.users} handleDelete={this.deleteUser} />
+        <AddedUsers users={this.state.users} handleDelete={this.deleteUser()} />
       </div>
     );
   }
