@@ -3,14 +3,14 @@ import Login from "./Login.js";
 import "./HomeStates.css";
 import NewUserForm from "./NewUserForm";
 import ProfileMenu from "./ProfileMenu";
-import Snowflakes from "./Snowflakes";
+import SnowFlakes from "./SnowFlakes";
 
 export default class HomeDefault extends Component {
   // Default display
   render() {
     return (
       <div>
-        <Snowflakes />
+        <SnowFlakes />
         <div className="HomeDefault">
           <div className="lander">
             <h1>"Noflakes"</h1>
