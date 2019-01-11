@@ -12,8 +12,7 @@ import {
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
 import "./CreatePact.css";
-
-// import DateTimeField from "@1stquad/react-bootstrap-datetimepicker";
+import { Redirect } from "react-router-dom";
 
 export default class CreatePactForm extends React.Component {
   constructor(props) {
@@ -93,7 +92,10 @@ export default class CreatePactForm extends React.Component {
         endDate: this.state.endDate + "T" + this.state.endTimeString,
         users: this.state.users
       })
-    }).then(res => console.log(res));
+    }).then(res => {
+      console.log(res);
+      <Redirect to="/" exact component={Home} />;
+    });
   }
 
   render() {
