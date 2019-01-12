@@ -2,12 +2,10 @@ import React, { Component } from "react";
 import Login from "./Login.js";
 if (process.env.BROWSER) require("./HomeStates.css");
 import NewUserForm from "./NewUserForm";
-import ProfileMenu from "./ProfileMenu";
-import SnowFlakes from "./SnowFlakes";
-import StickyHeader from "react-sticky-header";
-if (process.env.BROWSER) require("./StickyHeader.css");
 if (process.env.BROWSER) require("./CreatePact.css");
 import PactViewer from "./PactViewer";
+
+import Header from "./Header.js";
 
 export default class HomeDefault extends Component {
   // Default display
@@ -81,42 +79,15 @@ export class HomeProfile extends Component {
     });
     return (
       <div>
-        <StickyHeader
-          // This is the sticky part of the header.
-          header={
-            <div className="StickyHeader">
-              <div className="hd3 marginSpace5rem" />
-              <div className="Header_root">
-                <h1 className="Header_title hd2">
-                  Hi {this.state.userFirstName}!
-                </h1>
-              </div>
-              <div className="hd3">
-                Pending pacts: {this.state.user.pacts["pending"].length}
-              </div>
-            </div>
-          }
-          backgroundColor="#fff"
-        >
-          <section>
-            <p>
-              This section will be what the sticky header scrolls over before
-              entering into sticky state. See the gif above or run the test
-              story book to see examples.
-            </p>
-            {/* <div class="list-group">{pacts}</div> */}
-          </section>
-        </StickyHeader>
-
-        {/* <ViewPacts mode="accepted" /> */}
-        {/* <div className="HomeDefault">
-          <div className="lander">
-            <h1>Hi {this.state.userFirstName}!</h1>
-            <div>-------------</div>
-            <ProfileMenu user={this.props.user} />
-          </div>
-        </div> */}
-        <div class="list-group">{pacts}</div>
+        <Header
+          defaultText={`Hi ${this.state.userFirstName}!`}
+          secondaryText={`You have: ${
+            this.state.user.pacts["pending"].length
+          } pending pacts.`}
+        />
+        <div className="belowHeaderContent">
+          <div class="list-group">{pacts}</div>
+        </div>
       </div>
     );
   }
