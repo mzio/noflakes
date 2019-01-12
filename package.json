@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:prod": "./node_modules/.bin/webpack --mode production",
-    "build:dev": "./node_modules/.bin/webpack --mode development",
+    "build:prod": "./node_modules/.bin/webpack -p --mode production",
+    "build:dev": "./node_modules/.bin/webpack -p --mode development",
     "prestart": "npm run build:dev",
     "start": "node index.js"
   },
