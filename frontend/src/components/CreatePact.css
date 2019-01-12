@@ -59,3 +59,7 @@
   border-width: thin;
   border-color: black;
 }
+
+.marginSpace5rem {
+  margin-bottom: 5rem;
+}
