@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 if (process.env.BROWSER) require("./ViewPacts.css");
 
 class PactViewer extends React.Component {

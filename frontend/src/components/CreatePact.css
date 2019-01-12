@@ -18,10 +18,27 @@
   font-size: 1.75rem;
 }
 
+.hd4 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
 .addUserButton {
   margin-right: 1rem;
 }
 
 .userSubCard {
   margin-right: 1rem;
+}
+
+.formSubmit {
+  margin-bottom: 1.5rem;
+}
+
+.formHelper {
+  margin-bottom: 1rem;
+}
+
+.newUser {
+  margin-bottom: 1rem;
 }

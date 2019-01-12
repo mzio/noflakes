@@ -125,6 +125,7 @@ export default class CreatePactForm extends React.Component {
             value={this.state.name}
             placeholder="How do you want to remember this?"
             onChange={this.handleNameChange}
+            className="hd3"
           />
         </FormGroup>
         <FormGroup controlId="formControlsTextarea">
