@@ -55,7 +55,8 @@ export default class Header extends React.Component {
             <div className={this.state.headerClass}>
               {this.state.displayText}
             </div>
-            <div className="hd4">{this.props.secondaryText}</div>
+            {/* <div className="hd4">{this.props.secondaryText}</div> */}
+            <div className="hd4">{this.props.tertiaryText}</div>
           </div>
         </div>
       );
@@ -65,6 +66,9 @@ export default class Header extends React.Component {
           <div className="cbp-af-inner">
             <div className={this.state.headerClass}>
               {this.state.displayText}
+            </div>
+            <div className={this.state.headerClass}>
+              {this.props.tertiaryText}
             </div>
           </div>
         </div>

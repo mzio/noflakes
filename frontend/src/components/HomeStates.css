@@ -17,3 +17,9 @@
   font-size: 1.5rem;
   text-decoration: none;
 }
+
+.pactType {
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin: 1rem 0rem 1rem 0rem;
+}

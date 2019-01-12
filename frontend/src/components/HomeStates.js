@@ -111,12 +111,11 @@ export class HomeProfile extends Component {
         <Header
           defaultText={`Hi ${this.state.userFirstName}!`}
           secondaryText={`username: ${this.state.user.username}`}
-          // secondaryTextArray={[
-          //   `You have ${
-          //     this.state.user.pacts["accepted"].length
-          //   } active pacts.`,
-          //   `You have ${this.state.user.pacts["pending"].length} pending pacts.`
-          // ]}
+          tertiaryText={`You have ${
+            this.state.user.pacts["accepted"].length
+          } active pacts and ${
+            this.state.user.pacts["pending"].length
+          } pending pacts.`}
         />
         <div className="belowHeaderContent">
           {/* <PactTypeSwitcher
@@ -129,7 +128,7 @@ export class HomeProfile extends Component {
             pactsAccepted={pactsAccepted}
             pactsPending={pactsPending}
           /> */}
-          <PactTypeSwitcher
+          {/* <PactTypeSwitcher
             acceptedMessage={`You have ${
               this.state.user.pacts["accepted"].length
             } active pacts.`}
@@ -140,10 +139,10 @@ export class HomeProfile extends Component {
             pactsPending={pactsPending}
             numAccepted={this.state.user.pacts["accepted"].length}
             numPending={this.state.user.pacts["pending"].length}
-          />
-
+          /> */}
+          <div className="pactType">Active Pacts</div>
           <div class="list-group">{pactsAccepted}</div>
-
+          <div className="pactType">Pending Pacts</div>
           <div class="list-group">{pactsPending}</div>
         </div>
       </div>
