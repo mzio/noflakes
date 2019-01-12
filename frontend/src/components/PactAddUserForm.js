@@ -266,12 +266,16 @@ export default class PactAddUserForm extends React.Component {
                 <div className="formHelper">
                   When you're done, hit continue.
                 </div>
-                <FormControl
-                  type="text"
-                  value={this.state.username}
-                  placeholder="Enter username"
-                  onChange={this.handleUsernameChange}
-                />
+                <Row className="show-grid">
+                  <Col xs={12} md={6}>
+                    <FormControl
+                      type="text"
+                      value={this.state.username}
+                      placeholder="Enter username"
+                      onChange={this.handleUsernameChange}
+                    />
+                  </Col>
+                </Row>
               </Col>
             </Row>
           </FormGroup>
