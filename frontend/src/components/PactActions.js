@@ -17,6 +17,8 @@ class PactActions extends React.Component {
     this.timer = null;
     this.refreshVerify = this.refreshVerify.bind(this);
     this.handleSubmitResults = this.handleSubmitResults.bind(this);
+    this.handleAcceptPending = this.handleAcceptPending.bind(this);
+    this.handleIgnorePending = this.handleIgnorePending.bind(this);
   }
 
   timeUntil(date) {
@@ -88,7 +90,7 @@ class PactActions extends React.Component {
     }
   }
 
-  handleAccept(event) {
+  handleAcceptPending(event) {
     fetch(
       "/api/pacts/" + this.props.pact._id + "/users/" + this.props.username,
       {
@@ -97,6 +99,21 @@ class PactActions extends React.Component {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({ status: "accepted" })
+      }
+    )
+      .then(res => res.json())
+      .then(json => {
+        if (json.status === "success") {
+          this.setState({ pending: false });
+        }
+      });
+  }
+
+  handleIgnorePending(event) {
+    fetch(
+      "/api/pacts/" + this.props.pact._id + "/users/" + this.props.username,
+      {
+        method: "DELETE"
       }
     )
       .then(res => res.json())
