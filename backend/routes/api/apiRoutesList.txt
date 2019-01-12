@@ -18,6 +18,9 @@
                                         GET View friend request status
                                         POST Accept a friend request
                                         DELETE Remove a friend or reject a request
+                    /score
+                          GET View a user's score
+                          POST Submit a result and update the user's score
     /pacts
           GET Index pacts
           POST Create a pact

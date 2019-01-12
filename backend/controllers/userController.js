@@ -417,5 +417,69 @@ module.exports = {
         }
       });
     }
+  },
+
+  viewScore: (req, res) => {
+    User.findOne(
+      {
+        username: req.params.username
+      },
+      (err, user) => {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send({
+            status: "success",
+            data: {
+              score: user.score,
+              friend: user.friend,
+              flake: user.flake
+            }
+          });
+        }
+      }
+    );
+  },
+
+  updateScore: (req, res) => {
+    User.findOne(
+      {
+        username: req.params.username
+      },
+      (err, user) => {
+        if (err) {
+          res.send(err);
+        } else {
+          var size = parseInt(req.body.size);
+          var result = req.body.result;
+          if (isNaN(size) || size <= 0) {
+            res.send({
+              status: "failure",
+              message: "Error: 'size' must be a positive integer."
+            });
+          } else if (req.body.result === "friend") {
+            user.friend += 1 / size;
+            user.score = user.friend / (user.friend + user.flake);
+            res.send({
+              status: "success",
+              data: user.score
+            });
+          } else if (req.body.result === "flake") {
+            user.flake += 1 / size;
+            user.score = user.friend / (user.friend + user.flake);
+            res.send({
+              status: "success",
+              data: user.score
+            });
+          } else {
+            res.send({
+              status: "failure",
+              message:
+                "Error: 'result' must be a string, either 'friend' or 'flake'."
+            });
+          }
+        }
+      }
+    );
   }
 };
