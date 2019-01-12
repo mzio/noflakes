@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 if (process.env.BROWSER) require("./ViewPacts.css");
+if (process.env.BROWSER) require("./CreatePact.css");
 
 class PactViewer extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class PactViewer extends React.Component {
   }
   handleAccept(event) {
     fetch(
-      "/api/pacts/" + this.state.pact._id + "/users/" + this.state.username,
+      "/api/pacts/" + this.props.pact._id + "/users/" + this.state.username,
       {
         method: "PATCH",
         headers: {
@@ -62,7 +63,7 @@ class PactViewer extends React.Component {
     if (this.props.mode === "pending" && this.state.show) {
       button = (
         <Button
-          data-pactid={pact._id}
+          data-pactid={this.props.pact._id}
           onClick={this.handleAccept}
           className="position-absolute down-right"
         >
@@ -74,16 +75,21 @@ class PactViewer extends React.Component {
       <a
         href="#"
         class="list-group-item list-group-item-action flex-column align-items-start"
+        className="pactStyle list-group-item list-group-item-action flex-column align-items-start"
       >
         {" "}
         <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">{this.props.pact.name}</h5>
+          <h5 class="mb-1" className="hd4">
+            {this.props.pact.name}
+          </h5>
           <small class="text-muted">
             {this.timeSince(new Date(this.props.pact.startTime))} ago
           </small>
         </div>
         <p class="mb-1">{this.props.pact.description}</p>
-        <small>{this.props.pact.users.join(", ")}</small>
+        <small>
+          <i>Users</i>: {this.props.pact.users.join(", ")}
+        </small>
         {button}
       </a>
     );
