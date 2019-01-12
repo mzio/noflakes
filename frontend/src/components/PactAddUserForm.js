@@ -97,7 +97,7 @@ class AddedUsers extends React.Component {
     } else {
       return (
         <div>
-          <div>
+          <div className="">
             <h3 className="hd3">Added users</h3>
             <p>(including you)</p>
           </div>
@@ -245,13 +245,15 @@ export default class PactAddUserForm extends React.Component {
     let users = this.state.users;
     return (
       <div>
-        <form>
+        <form className="formSubmit">
           <FormGroup controlId="formBasicText">
             <Row className="show-grid">
               <Col xs={2} md={0} />
               <Col xs={12} md={12}>
                 <h3 className="hd3">Enter usernames of pactholders</h3>
-                <div>When you're done, hit continue.</div>
+                <div className="formHelper">
+                  When you're done, hit continue.
+                </div>
                 <FormControl
                   type="text"
                   value={this.state.username}
