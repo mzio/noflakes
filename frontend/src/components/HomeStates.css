@@ -11,3 +11,9 @@
 .HomeDefault .lander p {
   color: #999;
 }
+
+.hd4-option {
+  font-weight: 600;
+  font-size: 1.5rem;
+  text-decoration: none;
+}

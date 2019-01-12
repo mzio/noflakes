@@ -1,0 +1,19 @@
+.Active {
+  color: black;
+}
+
+.Inactive {
+  color: gray;
+}
+
+.hd4-option {
+  font-weight: 600;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.hd4-option:hover {
+  text-decoration: none;
+  color: rgb(0, 123, 255);
+  text-decoration: none;
+}

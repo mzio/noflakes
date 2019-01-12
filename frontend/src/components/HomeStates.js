@@ -4,6 +4,7 @@ if (process.env.BROWSER) require("./HomeStates.css");
 import NewUserForm from "./NewUserForm";
 if (process.env.BROWSER) require("./CreatePact.css");
 import PactViewer from "./PactViewer";
+import PactTypeSwitcher from "./PactTypeSwitcher";
 
 import Header from "./Header.js";
 
@@ -50,7 +51,8 @@ export class HomeProfile extends Component {
     this.state = {
       userFirstName: props.userFirstName,
       user: props.user,
-      pacts: []
+      pactsAccepted: [],
+      pactsPending: []
     };
   }
   componentWillMount() {
@@ -61,14 +63,30 @@ export class HomeProfile extends Component {
         .then(json => {
           if (json.status === "success") {
             this.setState({
-              pacts: this.state.pacts.concat([json.data])
+              pactsAccepted: this.state.pactsAccepted.concat([json.data])
+            });
+          }
+        });
+    }
+    for (var i = 0; i < this.state.user.pacts["pending"].length; ++i) {
+      let pactId = this.state.user.pacts["pending"][i];
+      fetch("/api/pacts/" + pactId)
+        .then(res => res.json())
+        .then(json => {
+          if (json.status === "success") {
+            this.setState({
+              pactsPending: this.state.pactsPending.concat([json.data])
             });
           }
         });
     }
   }
+  componentDidMount() {
+    console.log("Mounted Call");
+    console.log(this.state);
+  }
   render() {
-    var pacts = this.state.pacts.map(pact => {
+    var pactsAccepted = this.state.pactsAccepted.map(pact => {
       return (
         <PactViewer
           pact={pact}
@@ -77,16 +95,56 @@ export class HomeProfile extends Component {
         />
       );
     });
+    var pactsPending = this.state.pactsPending.map(pact => {
+      return (
+        <PactViewer
+          pact={pact}
+          username={this.state.user.username}
+          mode="pending"
+        />
+      );
+    });
+    console.log("Render Call");
+    console.log(pactsAccepted);
     return (
       <div>
         <Header
           defaultText={`Hi ${this.state.userFirstName}!`}
-          secondaryText={`You have: ${
-            this.state.user.pacts["pending"].length
-          } pending pacts.`}
+          secondaryText={`username: ${this.state.user.username}`}
+          // secondaryTextArray={[
+          //   `You have ${
+          //     this.state.user.pacts["accepted"].length
+          //   } active pacts.`,
+          //   `You have ${this.state.user.pacts["pending"].length} pending pacts.`
+          // ]}
         />
         <div className="belowHeaderContent">
-          <div class="list-group">{pacts}</div>
+          {/* <PactTypeSwitcher
+            acceptedMessage={`You have ${
+              this.state.user.pacts["accepted"].length
+            } active pacts.`}
+            pendingMessage={`You have ${
+              this.state.user.pacts["pending"].length
+            } pending pacts.`}
+            pactsAccepted={pactsAccepted}
+            pactsPending={pactsPending}
+          /> */}
+          <PactTypeSwitcher
+            acceptedMessage={`You have ${
+              this.state.user.pacts["accepted"].length
+            } active pacts.`}
+            pendingMessage={`You have ${
+              this.state.user.pacts["pending"].length
+            } pending pacts.`}
+            pactsAccepted={pactsAccepted}
+            pactsPending={pactsPending}
+            numAccepted={this.state.user.pacts["accepted"].length}
+            numPending={this.state.user.pacts["pending"].length}
+          />
+
+          <div class="list-group">{pactsAccepted}</div>
+
+          <div class="list-group">{pactsPending}</div>
         </div>
       </div>
     );

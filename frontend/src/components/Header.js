@@ -55,7 +55,7 @@ export default class Header extends React.Component {
             <div className={this.state.headerClass}>
               {this.state.displayText}
             </div>
-            <div className="hd3">{this.props.secondaryText}</div>
+            <div className="hd4">{this.props.secondaryText}</div>
           </div>
         </div>
       );
@@ -72,28 +72,3 @@ export default class Header extends React.Component {
     }
   }
 }
-
-// var cbpAnimatedHeader = (function() {
-
-//     var docElem = document.documentElement,
-//         header = document.querySelector( '.cbp-af-header' ),
-//         didScroll = false,
-//         changeHeaderOn = 300;
-
-//     function init() {
-//         scrollPage();
-//         window.addEventListener( 'scroll', function( event ) {
-//             if( !didScroll ) {
-//                 didScroll = true;
-//                 setTimeout( scrollPage, 250 );
-//             }
-//         }, false );
-//     }
-
-//     function scrollY() {
-//         return window.pageYOffset || docElem.scrollTop;
-//     }
-
-//     init();
-
-// })();
