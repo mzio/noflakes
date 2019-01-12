@@ -150,7 +150,7 @@ export default class CreatePactForm extends React.Component {
               {/* UTC Time */}
               <Datetime
                 utc={false}
-                defaultValue="Click to select."
+                defaultValue="Click to select date and time."
                 onChange={this.handleEndDateTimeChange}
               />
             </Col>
