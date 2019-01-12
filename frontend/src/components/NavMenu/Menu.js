@@ -41,6 +41,26 @@ export default class Menu extends React.Component {
               </Link>
             </li>
             <li>
+              <Link id="navLink" onClick={close} to="/createPact">
+                Create Pact
+              </Link>
+            </li>
+            <li>
+              <Link id="navLink" onClick={close} to="/profile">
+                View Profile
+              </Link>
+            </li>
+            <li>
+              <Link id="navLink" onClick={close} to="/viewPacts/accepted">
+                View Active Pacts
+              </Link>
+            </li>
+            <li>
+              <Link id="navLink" onClick={close} to="/viewPacts/pending">
+                View Pending Pacts
+              </Link>
+            </li>
+            <li>
               <Link id="navLink" onClick={close} to="/about">
                 About
               </Link>

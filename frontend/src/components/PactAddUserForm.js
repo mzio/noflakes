@@ -82,6 +82,23 @@ function UserCard(props) {
   );
 }
 
+class Delete extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    if (this.props.index < 1) {
+      return <span />;
+    } else {
+      return (
+        <a href="#" id="delete-item" onClick={this.props.onClick}>
+          Delete
+        </a>
+      );
+    }
+  }
+}
+
 // <AddedUsers users={this.state.users} handleDelete={this.deleteUser}/>
 class AddedUsers extends React.Component {
   constructor(props) {
@@ -99,19 +116,15 @@ class AddedUsers extends React.Component {
         <div>
           <div className="">
             <h3 className="hd3">Added users</h3>
-            <p>Make sure this includes you.</p>
           </div>
           <div>
             {users.map((user, index) => (
               <div key={index} className="newUser">
                 <UserCard name={user} score={user} />
-                <a
-                  href="#"
-                  id="delete-item"
+                <Delete
+                  index={index}
                   onClick={() => this.props.handleDelete(user)}
-                >
-                  Delete
-                </a>
+                />
               </div>
             ))}
           </div>
@@ -253,12 +266,16 @@ export default class PactAddUserForm extends React.Component {
                 <div className="formHelper">
                   When you're done, hit continue.
                 </div>
-                <FormControl
-                  type="text"
-                  value={this.state.username}
-                  placeholder="Enter username"
-                  onChange={this.handleUsernameChange}
-                />
+                <Row className="show-grid">
+                  <Col xs={12} md={6}>
+                    <FormControl
+                      type="text"
+                      value={this.state.username}
+                      placeholder="Enter username"
+                      onChange={this.handleUsernameChange}
+                    />
+                  </Col>
+                </Row>
               </Col>
             </Row>
           </FormGroup>

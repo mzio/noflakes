@@ -119,31 +119,42 @@ export default class CreatePactForm extends React.Component {
     return (
       <form>
         <FormGroup controlId="formBasicText">
-          <FormLabel>Pact Name</FormLabel>
-          <FormControl
-            type="text"
-            value={this.state.name}
-            placeholder="How do you want to remember this?"
-            onChange={this.handleNameChange}
-            className="hd3"
-          />
+          <FormLabel className="hd4">Pact Name</FormLabel>
+          <Row className="show-grid">
+            <Col xs={12} md={6}>
+              <FormControl
+                type="text"
+                value={this.state.name}
+                placeholder="How do you want to remember this?"
+                onChange={this.handleNameChange}
+              />
+            </Col>
+          </Row>
         </FormGroup>
         <FormGroup controlId="formControlsTextarea">
-          <FormLabel>Pact Description</FormLabel>
-          <FormControl
-            as="textarea"
-            placeholder="Describe the pact some more."
-            onChange={this.handleDescriptionChange}
-          />
+          <FormLabel className="hd4">Pact Description</FormLabel>
+          <Row className="show-grid">
+            <Col xs={12} md={8}>
+              <FormControl
+                as="textarea"
+                placeholder="Describe the pact some more."
+                onChange={this.handleDescriptionChange}
+              />
+            </Col>
+          </Row>
         </FormGroup>
         <FormGroup>
-          <FormLabel>Pact End Date and Time</FormLabel>
-          {/* UTC Time */}
-          <Datetime
-            utc={true}
-            defaultValue={lowestDateValue}
-            onChange={this.handleEndDateTimeChange}
-          />
+          <FormLabel className="hd4">Pact End Date and Time</FormLabel>
+          <Row className="show-grid">
+            <Col xs={12} md={4}>
+              {/* UTC Time */}
+              <Datetime
+                utc={false}
+                defaultValue="Click to select."
+                onChange={this.handleEndDateTimeChange}
+              />
+            </Col>
+          </Row>
         </FormGroup>
 
         <Button
