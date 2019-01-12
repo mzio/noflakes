@@ -7,3 +7,21 @@
 .SubmitButton {
   padding-top: 1rem;
 }
+
+.h2 {
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.h3 {
+  font-weight: 600;
+  font-size: 1.75rem;
+}
+
+.addUserButton {
+  margin-right: 1rem;
+}
+
+.userSubCard {
+  margin-right: 1rem;
+}

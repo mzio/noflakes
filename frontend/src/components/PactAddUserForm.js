@@ -7,6 +7,7 @@ import {
   OverlayTrigger,
   Button,
   Modal,
+  Container,
   Row,
   Col
 } from "react-bootstrap";
@@ -64,6 +65,23 @@ function ModalUserAdded(props) {
   );
 }
 
+function UserCard(props) {
+  return (
+    <Container>
+      <Row className="show-grid">
+        <Col xs={5} md={3} className="userSubCard">
+          <div>Name:</div>
+          <h3>props.name</h3>
+        </Col>
+        <Col xs={5} md={3} className="userSubCard">
+          <div>Score:</div>
+          <h3>props.score</h3>
+        </Col>
+      </Row>
+    </Container>
+  );
+}
+
 // <AddedUsers users={this.state.users} handleDelete={this.deleteUser}/>
 class AddedUsers extends React.Component {
   constructor(props) {
@@ -79,18 +97,24 @@ class AddedUsers extends React.Component {
     } else {
       return (
         <div>
-          {users.map((user, index) => (
-            <div key={index}>
-              <h3>{user}</h3>
-              <a
-                href="#"
-                id="delete-item"
-                onClick={() => this.props.handleDelete(user)}
-              >
-                Delete
-              </a>
-            </div>
-          ))}
+          <div>
+            <h3>Added users</h3>
+            <p>(including you)</p>
+          </div>
+          <div>
+            {users.map((user, index) => (
+              <div key={index}>
+                <UserCard name={user} score="undefined" />
+                <a
+                  href="#"
+                  id="delete-item"
+                  onClick={() => this.props.handleDelete(user)}
+                >
+                  Delete
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
       );
     }
@@ -224,9 +248,10 @@ export default class PactAddUserForm extends React.Component {
         <form>
           <FormGroup controlId="formBasicText">
             <Row className="show-grid">
-              <Col xs={2} md={4} />
-              <Col xs={8} md={4}>
+              <Col xs={2} md={0} />
+              <Col xs={12} md={12}>
                 <h3>Enter usernames of pactholders</h3>
+                <div>When you're done, hit continue.</div>
                 <FormControl
                   type="text"
                   value={this.state.username}
@@ -237,12 +262,17 @@ export default class PactAddUserForm extends React.Component {
               <Col xs={2} md={4} />
             </Row>
           </FormGroup>
-          <Button onClick={this.handleSubmit} className="signInButtons">
+          <Button
+            onClick={this.handleSubmit}
+            className="addUserButton"
+            variant="outline-primary"
+          >
             Enter User
           </Button>
           <Button
             onClick={() => this.props.submitUsers(users)}
-            className="signInButtons"
+            className="addUserButton"
+            variant="outline-primary"
           >
             Continue
           </Button>

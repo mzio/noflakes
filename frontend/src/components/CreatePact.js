@@ -30,7 +30,8 @@ export default class CreatePact extends React.Component {
       // Display pact creation form after users added
       return (
         <div>
-          <h3>Create a Pact</h3>
+          <h2>Create a Pact</h2>
+          <div>––––––––––––</div>
           <CreatePactForm users={this.state.users} />
         </div>
       );
@@ -38,7 +39,8 @@ export default class CreatePact extends React.Component {
       // Display user add form when first initializing
       return (
         <div>
-          <h3>Create a Pact</h3>
+          <h2>Create a Pact</h2>
+          <div>––––––––––––</div>
           <PactAddUserForm submitUsers={this.addUsers} />
         </div>
       );

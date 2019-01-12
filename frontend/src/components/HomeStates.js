@@ -52,6 +52,7 @@ export class HomeProfile extends Component {
       <div className="HomeDefault">
         <div className="lander">
           <h1>Hi {this.state.userFirstName}!</h1>
+          <div>––––––––––––</div>
           <ProfileMenu user={this.props.user} />
         </div>
       </div>
