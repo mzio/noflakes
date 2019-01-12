@@ -24,4 +24,8 @@ router
   .post(userController.acceptFriendRequest)
   .delete(userController.removeFriend);
 
+router
+  .route("/:username/score")
+  .get(userController.viewScore)
+  .post(userController.updateScore);
 module.exports = router;

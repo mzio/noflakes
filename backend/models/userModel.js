@@ -31,6 +31,18 @@ const userSchema = mongoose.Schema({
   },
   friends: {
     type: [String]
+  },
+  score: {
+    type: Number,
+    default: 0.5
+  },
+  friend: {
+    type: Number,
+    default: 0.0
+  },
+  flake: {
+    type: Number,
+    default: 0.0
   }
 });
 
