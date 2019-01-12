@@ -3,6 +3,7 @@ import CreatePact from "./components/CreatePact";
 import Profile from "./components/Profile";
 import NotFound from "./components/NotFound";
 import ViewPacts from "./components/ViewPacts";
+import About from "./components/About";
 import { HomeSignIn, HomeDefault, HomeProfile } from "./components/HomeStates";
 
 const routes = [
@@ -32,6 +33,11 @@ const routes = [
     exact: true,
     component: ViewPacts,
     mode: "pending"
+  },
+  {
+    path: "/about",
+    exact: true,
+    component: About
   },
   {
     path: "*",

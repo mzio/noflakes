@@ -11,7 +11,7 @@ const styles = {
   marginTop: "40px"
 };
 const contentStyle = {
-  background: "rgba(255,255,255,0",
+  background: "rgba(255,255,255,0)",
   width: "80%",
   border: "none"
 };
@@ -39,7 +39,7 @@ export default class NavMenu extends React.Component {
       <div style={styles}>
         <Popup
           modal
-          overlayStyle={{ background: "rgba(255,255,255,0.9" }}
+          overlayStyle={{ background: "rgba(255,255,255,0.95" }}
           contentStyle={contentStyle}
           closeOnDocumentClick={false}
           trigger={open => <BurgerIcon open={open} />}
