@@ -11,8 +11,9 @@ import {
   Row,
   Col
 } from "react-bootstrap";
+import fetch from "isomorphic-fetch";
 
-import "./Login.css";
+if (process.env.BROWSER) require("./Login.css");
 
 // Import this from external shared file?
 function ModalFailUser(props) {
@@ -177,7 +178,7 @@ export default class PactAddUserForm extends React.Component {
   handleUsernameChange(event) {
     try {
       this.setState({ username: event.target.value });
-    } catch {
+    } catch (err) {
       this.setState({ username: "" });
     }
   }

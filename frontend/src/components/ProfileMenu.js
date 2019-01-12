@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import CreatePact from "./CreatePact";
 import Profile from "./Profile";
 import ViewPacts from "./ViewPacts";
-import "./ProfileMenu.css";
+if (process.env.BROWSER) require("./ProfileMenu.css");
 
 function MenuOption(props) {
   // <MenuOption routerLink='/createPact' routerComponent={CreatePact} menuLabel='Create Pact'>

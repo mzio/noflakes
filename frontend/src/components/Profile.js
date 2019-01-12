@@ -1,4 +1,5 @@
 import React from "react";
+import fetch from "isomorphic-fetch";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class Profile extends React.Component {
       return <div />;
     } else {
       return (
-        <div class="Profile">
+        <div className="Profile">
           <h1>{this.state.user.firstName}'s Profile</h1>
           <div>
             Name: {this.state.user.firstName} {this.state.user.lastName}

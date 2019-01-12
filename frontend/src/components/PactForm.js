@@ -1,5 +1,6 @@
 import React from "react";
 import { Flex, Box } from "@rebass/grid";
+import fetch from "isomorphic-fetch";
 
 class PactForm extends React.Component {
   constructor(props) {

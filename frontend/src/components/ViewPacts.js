@@ -1,7 +1,8 @@
 import React from "react";
 import PactViewer from "./PactViewer";
 import { Button } from "react-bootstrap";
-import "./ViewPacts.css";
+import fetch from "isomorphic-fetch";
+if (process.env.BROWSER) import "./ViewPacts.css";
 
 class ViewPacts extends React.Component {
   constructor(props) {
@@ -9,10 +10,8 @@ class ViewPacts extends React.Component {
     this.state = {
       userReady: false,
       user: null,
-      pacts: [],
-      show: {}
+      pacts: []
     };
-    this.handleAccept = this.handleAccept.bind(this);
   }
 
   componentWillMount() {
@@ -25,21 +24,16 @@ class ViewPacts extends React.Component {
           this.setState({ user: json.data.user, userReady: true });
           for (
             var i = 0;
-            i < json.data.user.pacts[this.props.mode].length;
+            i < json.data.user.pacts[this.props.route.mode].length;
             ++i
           ) {
-            let pactId = json.data.user.pacts[this.props.mode][i];
+            let pactId = json.data.user.pacts[this.props.route.mode][i];
             fetch("/api/pacts/" + pactId)
               .then(res => res.json())
               .then(json => {
                 if (json.status === "success") {
                   this.setState({
                     pacts: this.state.pacts.concat([json.data])
-                  });
-                  var newShow = this.state.show;
-                  newShow[json.data._id] = true;
-                  this.setState({
-                    show: newShow
                   });
                 }
               });
@@ -50,65 +44,25 @@ class ViewPacts extends React.Component {
       });
   }
 
-  handleAccept(event) {
-    let id = event.target.getAttribute("data-pactid");
-    console.log(id);
-    fetch("/api/pacts/" + id + "/users/" + this.state.user.username, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ status: "accepted" })
-    })
-      .then(res => res.json())
-      .then(json => {
-        if (json.status === "success") {
-          var newShow = this.state.show;
-          newShow[id] = false;
-          this.setState({ show: newShow });
-        }
-      });
-  }
-
   render() {
     if (!this.state.userReady) {
       return <div />;
     } else {
-      var pacts = this.state.pacts.map((pact, index) => {
-        let button;
-        if (this.props.mode === "pending") {
-          button = (
-            <Button
-              data-pactid={pact._id}
-              onClick={this.handleAccept}
-              className="position-absolute down-right"
-            >
-              Accept
-            </Button>
-          );
-        }
-        if (this.state.show[pact._id]) {
-          return (
-            <div key={index}>
-              <a
-                href="#"
-                className="list-group-item list-group-item-action flex-column align-items-start"
-              >
-                <PactViewer pact={pact} />
-                {button}
-              </a>
-            </div>
-          );
-        } else {
-          return;
-        }
+      var pacts = this.state.pacts.map(pact => {
+        return (
+          <PactViewer
+            pact={pact}
+            username={this.state.user.username}
+            mode={this.props.route.mode}
+          />
+        );
       });
 
       return (
         <div class="Pacts">
           <h1>
-            {this.props.mode.charAt(0).toUpperCase() +
-              this.props.mode.toLowerCase().slice(1)}{" "}
+            {this.props.route.mode.charAt(0).toUpperCase() +
+              this.props.route.mode.toLowerCase().slice(1)}{" "}
             Pacts
           </h1>
           <div class="list-group">{pacts}</div>

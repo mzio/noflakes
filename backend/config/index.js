@@ -2,7 +2,6 @@ const configPassport = require("./passport.js");
 const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-const express = require("express");
 const path = require("path");
 
 module.exports = (server, passport, mongoose) => {
@@ -25,7 +24,7 @@ module.exports = (server, passport, mongoose) => {
       extended: true
     })
   );
-  server.use(bodyParser.json((strict = false)));
+  server.use(bodyParser.json({ strict: false }));
 
   mongoose.connect(
     process.env.MONGODB_URI,
@@ -41,9 +40,5 @@ module.exports = (server, passport, mongoose) => {
     console.error.bind(console, "MongoDB connection error:")
   );
 
-  if (process.env.MODE !== "dev") {
-    server.use(
-      express.static(path.resolve(__dirname, "../../frontend/public"))
-    );
-  }
+  server.set("view engine", "ejs");
 };

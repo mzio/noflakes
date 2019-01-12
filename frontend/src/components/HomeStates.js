@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Login from "./Login.js";
-import "./HomeStates.css";
+if (process.env.BROWSER) require("./HomeStates.css");
 import NewUserForm from "./NewUserForm";
 import ProfileMenu from "./ProfileMenu";
 import SnowFlakes from "./SnowFlakes";
