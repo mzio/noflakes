@@ -9,7 +9,6 @@ class PactViewer extends React.Component {
     this.state = {
       show: true
     };
-    this.timeSince = this.timeSince.bind(this);
     this.handleAccept = this.handleAccept.bind(this);
   }
   handleAccept(event) {
@@ -63,7 +62,6 @@ class PactViewer extends React.Component {
     if (this.props.mode === "pending" && this.state.show) {
       button = (
         <Button
-          data-pactid={this.props.pact._id}
           onClick={this.handleAccept}
           className="position-absolute down-right"
         >
@@ -74,19 +72,16 @@ class PactViewer extends React.Component {
     return (
       <a
         href="#"
-        class="list-group-item list-group-item-action flex-column align-items-start"
         className="pactStyle list-group-item list-group-item-action flex-column align-items-start"
       >
         {" "}
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1" className="hd4">
-            {this.props.pact.name}
-          </h5>
-          <small class="text-muted">
+        <div className="d-flex w-100 justify-content-between">
+          <h5 className="hd4 mb-1">{this.props.pact.name}</h5>
+          <small className="text-muted">
             {this.timeSince(new Date(this.props.pact.startTime))} ago
           </small>
         </div>
-        <p class="mb-1">{this.props.pact.description}</p>
+        <p className="mb-1">{this.props.pact.description}</p>
         <small>
           <i>Users</i>: {this.props.pact.users.join(", ")}
         </small>
