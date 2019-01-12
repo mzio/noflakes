@@ -12,7 +12,7 @@ import {
 import Datetime from "react-datetime";
 if (process.env.BROWSER) require("react-datetime/css/react-datetime.css");
 if (process.env.BROWSER) require("./CreatePact.css");
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import Home from "./Home";
 import fetch from "isomorphic-fetch";
 
@@ -108,7 +108,7 @@ export default class CreatePactForm extends React.Component {
       })
     }).then(res => {
       console.log(res);
-      <Redirect to="/" exact component={Home} />;
+      //   return <Redirect to="/" exact component={Home} />;
     });
   }
 
@@ -145,9 +145,10 @@ export default class CreatePactForm extends React.Component {
 
         <Button
           variant="outline-primary"
-          bsSize="large"
+          size="large"
           className="SubmitButton"
           onClick={this.handleSubmit}
+          href="/"
         >
           Submit
         </Button>

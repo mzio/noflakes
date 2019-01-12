@@ -32,7 +32,7 @@ export default class CreatePact extends React.Component {
       return (
         <div>
           <h3>Create a Pact</h3>
-          <CreatePactForm users={this.users} />
+          <CreatePactForm users={this.state.users} />
         </div>
       );
     } else {

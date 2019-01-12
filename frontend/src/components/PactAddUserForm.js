@@ -19,7 +19,7 @@ function ModalFailUser(props) {
   return (
     <Modal
       {...props}
-      bsSize="small"
+      size="small"
       dialogClassName="LoginModal"
       show={props.success}
       onHide={props.handleadduserclose}
@@ -44,7 +44,7 @@ function ModalUserAdded(props) {
   return (
     <Modal
       {...props}
-      bsSize="small"
+      size="small"
       dialogClassName="UserAddedModal"
       show={props.success}
       onHide={props.handleadduserclose}

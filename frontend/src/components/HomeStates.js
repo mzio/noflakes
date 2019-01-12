@@ -3,16 +3,20 @@ import Login from "./Login.js";
 if (process.env.BROWSER) require("./HomeStates.css");
 import NewUserForm from "./NewUserForm";
 import ProfileMenu from "./ProfileMenu";
+import SnowFlakes from "./SnowFlakes";
 
 export default class HomeDefault extends Component {
   // Default display
   render() {
     return (
-      <div className="HomeDefault">
-        <div className="lander">
-          <h1>"Noflakes"</h1>
-          <p>There's only snow much time in the world.</p>
-          <Login />
+      <div>
+        {/* <SnowFlakes /> */}
+        <div className="HomeDefault">
+          <div className="lander">
+            <h1>"Noflakes"</h1>
+            <p>There's only snow much time in the world.</p>
+            <Login />
+          </div>
         </div>
       </div>
     );
