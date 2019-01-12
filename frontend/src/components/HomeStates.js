@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import Login from "./Login.js";
 if (process.env.BROWSER) require("./HomeStates.css");
 import NewUserForm from "./NewUserForm";
-import ProfileMenu from "./ProfileMenu";
-import SnowFlakes from "./SnowFlakes";
-import StickyHeader from "react-sticky-header";
-if (process.env.BROWSER) require("./StickyHeader.css");
 if (process.env.BROWSER) require("./CreatePact.css");
 import PactViewer from "./PactViewer";
+import PactTypeSwitcher from "./PactTypeSwitcher";
+
+import Header from "./Header.js";
 
 export default class HomeDefault extends Component {
   // Default display
@@ -52,7 +51,8 @@ export class HomeProfile extends Component {
     this.state = {
       userFirstName: props.userFirstName,
       user: props.user,
-      pacts: []
+      pactsAccepted: [],
+      pactsPending: []
     };
   }
   componentWillMount() {
@@ -63,14 +63,30 @@ export class HomeProfile extends Component {
         .then(json => {
           if (json.status === "success") {
             this.setState({
-              pacts: this.state.pacts.concat([json.data])
+              pactsAccepted: this.state.pactsAccepted.concat([json.data])
+            });
+          }
+        });
+    }
+    for (var i = 0; i < this.state.user.pacts["pending"].length; ++i) {
+      let pactId = this.state.user.pacts["pending"][i];
+      fetch("/api/pacts/" + pactId)
+        .then(res => res.json())
+        .then(json => {
+          if (json.status === "success") {
+            this.setState({
+              pactsPending: this.state.pactsPending.concat([json.data])
             });
           }
         });
     }
   }
+  componentDidMount() {
+    console.log("Mounted Call");
+    console.log(this.state);
+  }
   render() {
-    var pacts = this.state.pacts.map(pact => {
+    var pactsAccepted = this.state.pactsAccepted.map(pact => {
       return (
         <PactViewer
           pact={pact}
@@ -79,44 +95,56 @@ export class HomeProfile extends Component {
         />
       );
     });
+    var pactsPending = this.state.pactsPending.map(pact => {
+      return (
+        <PactViewer
+          pact={pact}
+          username={this.state.user.username}
+          mode="pending"
+        />
+      );
+    });
+    console.log("Render Call");
+    console.log(pactsAccepted);
     return (
       <div>
-        <StickyHeader
-          // This is the sticky part of the header.
-          header={
-            <div className="StickyHeader">
-              <div className="hd3 marginSpace5rem" />
-              <div className="Header_root">
-                <h1 className="Header_title hd2">
-                  Hi {this.state.userFirstName}!
-                </h1>
-              </div>
-              <div className="hd3">
-                Pending pacts: {this.state.user.pacts["pending"].length}
-              </div>
-            </div>
-          }
-          backgroundColor="#fff"
-        >
-          <section>
-            <p>
-              This section will be what the sticky header scrolls over before
-              entering into sticky state. See the gif above or run the test
-              story book to see examples.
-            </p>
-            {/* <div class="list-group">{pacts}</div> */}
-          </section>
-        </StickyHeader>
-
-        {/* <ViewPacts mode="accepted" /> */}
-        {/* <div className="HomeDefault">
-          <div className="lander">
-            <h1>Hi {this.state.userFirstName}!</h1>
-            <div>-------------</div>
-            <ProfileMenu user={this.props.user} />
-          </div>
-        </div> */}
-        <div class="list-group">{pacts}</div>
+        <Header
+          defaultText={`Hi ${this.state.userFirstName}!`}
+          secondaryText={`username: ${this.state.user.username}`}
+          tertiaryText={`You have ${
+            this.state.user.pacts["accepted"].length
+          } active pacts and ${
+            this.state.user.pacts["pending"].length
+          } pending pacts.`}
+        />
+        <div className="belowHeaderContent">
+          {/* <PactTypeSwitcher
+            acceptedMessage={`You have ${
+              this.state.user.pacts["accepted"].length
+            } active pacts.`}
+            pendingMessage={`You have ${
+              this.state.user.pacts["pending"].length
+            } pending pacts.`}
+            pactsAccepted={pactsAccepted}
+            pactsPending={pactsPending}
+          /> */}
+          {/* <PactTypeSwitcher
+            acceptedMessage={`You have ${
+              this.state.user.pacts["accepted"].length
+            } active pacts.`}
+            pendingMessage={`You have ${
+              this.state.user.pacts["pending"].length
+            } pending pacts.`}
+            pactsAccepted={pactsAccepted}
+            pactsPending={pactsPending}
+            numAccepted={this.state.user.pacts["accepted"].length}
+            numPending={this.state.user.pacts["pending"].length}
+          /> */}
+          <div className="pactType">Active Pacts</div>
+          <div class="list-group">{pactsAccepted}</div>
+          <div className="pactType">Pending Pacts</div>
+          <div class="list-group">{pactsPending}</div>
+        </div>
       </div>
     );
   }
