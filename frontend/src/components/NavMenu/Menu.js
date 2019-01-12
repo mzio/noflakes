@@ -36,12 +36,12 @@ export default class Menu extends React.Component {
         <div className="menu">
           <ul>
             <li>
-              <Link id="navLink" id="home" onClick={close} to="/">
+              <Link id="navLink" onClick={close} to="/">
                 Home
               </Link>
             </li>
             <li>
-              <Link id="navLink" id="about" onClick={close} to="/about">
+              <Link id="navLink" onClick={close} to="/about">
                 About
               </Link>
             </li>

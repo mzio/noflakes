@@ -71,4 +71,5 @@
 
 #navLink:hover {
   color: rgb(0, 123, 255);
+  text-decoration: none;
 }

@@ -12,7 +12,7 @@
   margin: 0;
 }
 
-.MenuOption > a:hover {
+.MenuOption a:hover {
   text-decoration: none;
   color: rgb(0, 123, 255);
 }
