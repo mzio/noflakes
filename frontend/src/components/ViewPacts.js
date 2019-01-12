@@ -3,6 +3,7 @@ import PactViewer from "./PactViewer";
 import { Button } from "react-bootstrap";
 import fetch from "isomorphic-fetch";
 if (process.env.BROWSER) require("./ViewPacts.css");
+if (process.env.BROWSER) require("./CreatePact.css");
 
 class ViewPacts extends React.Component {
   constructor(props) {
@@ -60,7 +61,7 @@ class ViewPacts extends React.Component {
 
       return (
         <div class="Pacts">
-          <h1>
+          <h1 className="hd1">
             {this.props.route.mode.charAt(0).toUpperCase() +
               this.props.route.mode.toLowerCase().slice(1)}{" "}
             Pacts

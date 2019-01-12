@@ -53,6 +53,7 @@
     "react-redux": "^6.0.0",
     "react-router-config": "^4.4.0-beta.6",
     "react-router-dom": "^4.3.1",
+    "react-sticky-header": "^0.2.0",
     "reactjs-popup": "^1.3.2",
     "rebass": "^3.0.0",
     "rodal": "^1.6.3",

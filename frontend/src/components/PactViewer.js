@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 if (process.env.BROWSER) require("./ViewPacts.css");
+if (process.env.BROWSER) require("./CreatePact.css");
 
 class PactViewer extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class PactViewer extends React.Component {
   }
   handleAccept(event) {
     fetch(
-      "/api/pacts/" + this.state.pact._id + "/users/" + this.state.username,
+      "/api/pacts/" + this.props.pact._id + "/users/" + this.state.username,
       {
         method: "PATCH",
         headers: {
@@ -71,17 +72,19 @@ class PactViewer extends React.Component {
     return (
       <a
         href="#"
-        className="list-group-item list-group-item-action flex-column align-items-start"
+        className="pactStyle list-group-item list-group-item-action flex-column align-items-start"
       >
         {" "}
         <div className="d-flex w-100 justify-content-between">
-          <h5 className="mb-1">{this.props.pact.name}</h5>
+          <h5 className="hd4 mb-1">{this.props.pact.name}</h5>
           <small className="text-muted">
             {this.timeSince(new Date(this.props.pact.startTime))} ago
           </small>
         </div>
         <p className="mb-1">{this.props.pact.description}</p>
-        <small>{this.props.pact.users.join(", ")}</small>
+        <small>
+          <i>Users</i>: {this.props.pact.users.join(", ")}
+        </small>
         {button}
       </a>
     );
