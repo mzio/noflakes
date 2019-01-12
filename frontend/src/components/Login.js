@@ -12,7 +12,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Model } from "mongoose";
 import { Link } from "react-router-dom";
-import "./Login.css";
+if (process.env.BROWSER) require("./Login.css");
 
 function SocialButton(props) {
   return (

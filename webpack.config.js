@@ -26,6 +26,13 @@ module.exports = {
       }
     ]
   },
-  resolve: { extensions: ["*", ".js", ".jsx"] },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  resolve: { extensions: ["*", ".js", ".jsx", ".css"] },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      "process.env": {
+        BROWSER: JSON.stringify(true)
+      }
+    })
+  ]
 };

@@ -2,7 +2,8 @@ import React from "react";
 import { PageHeader } from "react-bootstrap";
 import CreatePactForm from "./CreatePactForm";
 import PactAddUserForm from "./PactAddUserForm";
-import "./CreatePact.css";
+if (process.env.BROWSER) require("./CreatePact.css");
+import fetch from "isomorphic-fetch";
 
 export default class CreatePact extends React.Component {
   constructor(props) {

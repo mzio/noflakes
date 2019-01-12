@@ -25,7 +25,7 @@ const HTML = props => (
               JSON.stringify(${props.serverState})`
         }}
       />
-      <script type="application/javascript" src="/main.bundle.js" />
+      <script type="application/javascript" src="/bundle.js" />
     </body>
   </html>
 );

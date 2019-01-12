@@ -23,13 +23,15 @@ const routes = [
   {
     path: "/viewPacts/accepted",
     exact: true,
-    component: ViewPacts
+    component: ViewPacts,
+    mode: "accepted"
     // render:{props => <ViewPacts {...props} mode={"accepted"} />}
   },
   {
     path: "/viewPacts/pending",
     exact: true,
-    component: ViewPacts
+    component: ViewPacts,
+    mode: "pending"
     // render:{props => <ViewPacts {...props} mode={"pending"} />}
   },
   {

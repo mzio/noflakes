@@ -12,8 +12,9 @@ import {
 } from "react-bootstrap";
 
 import { Link, Redirect } from "react-router-dom";
+import fetch from "isomorphic-fetch";
 
-import "./Login.css";
+if (process.env.BROWSER) require("./Login.css");
 
 const popoverTop = (
   <Popover id="popover-positioned-top" title="Username Taken!">

@@ -10,8 +10,9 @@ import {
   Row,
   Col
 } from "react-bootstrap";
+import fetch from "isomorphic-fetch";
 
-import "./Login.css";
+if (process.env.BROWSER) require("./Login.css");
 
 // Import this from external shared file?
 function ModalFailUser(props) {

@@ -5,10 +5,8 @@ const renderRoute = require("../../iso-middleware/renderRouterMiddleware")
 const express = require("express");
 const path = require("path");
 
-console.log(renderRoute);
-
 module.exports = (server, passport) => {
-  const buildPath = path.join(__dirname, "../../", "frontend", "public");
+  const buildPath = path.join(__dirname, "../../", "build");
   server.use("/", express.static(buildPath));
   // server.use(express.static(__dirname));
   server.use("/api", apiRoutes);

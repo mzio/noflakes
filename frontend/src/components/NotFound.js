@@ -1,5 +1,5 @@
 import React from "react";
-import "./NotFound.css";
+if (process.env.BROWSER) require("./NotFound.css");
 
 export default () => (
   <div className="NotFound">

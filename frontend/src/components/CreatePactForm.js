@@ -10,10 +10,11 @@ import {
   Button
 } from "react-bootstrap";
 import Datetime from "react-datetime";
-import "react-datetime/css/react-datetime.css";
-import "./CreatePact.css";
+if (process.env.BROWSER) require("react-datetime/css/react-datetime.css");
+if (process.env.BROWSER) require("./CreatePact.css");
 import { Redirect } from "react-router-dom";
 import Home from "./Home";
+import fetch from "isomorphic-fetch";
 
 var moment = require("moment");
 
