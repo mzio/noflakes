@@ -32,7 +32,11 @@ module.exports = {
     pact.description = req.body.description;
     pact.endTime = req.body.endTime;
     pact.users = req.body.users;
-    pact.owner = req.user.username || pact.users[0];
+    pact.owner = {
+      username: req.user.username || pact.users[0],
+      firstName: req.user.firstName || pact.users[0],
+      lastName: req.user.lastName || ""
+    };
     for (var i = 0; i < pact.users.length; ++i) {
       pact.usersStatus.set(i, "pending");
       User.findOne(
