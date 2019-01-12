@@ -3,6 +3,7 @@ import CreatePact from "./components/CreatePact";
 import Profile from "./components/Profile";
 import NotFound from "./components/NotFound";
 import ViewPacts from "./components/ViewPacts";
+import PactDetails from "./components/PactDetails";
 import About from "./components/About";
 import { HomeSignIn, HomeDefault, HomeProfile } from "./components/HomeStates";
 
@@ -17,6 +18,10 @@ const routes = [
     exact: true,
     component: CreatePact
   },
+  {
+    path: "/pact/:pactId",
+    component: PactDetails
+  }
   {
     path: "/profile/:userId",
     component: Profile

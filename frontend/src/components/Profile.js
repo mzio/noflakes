@@ -13,7 +13,6 @@ class Profile extends React.Component {
   }
 
   componentWillMount() {
-    console.log(this.props.match.params.userId);
     if (this.props.match.params.userId) {
       fetch("/api/users/" + this.props.match.params.userId)
         .then(res => res.json())
