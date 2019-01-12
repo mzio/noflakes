@@ -14,5 +14,5 @@
 
 .MenuOption > a:hover {
   text-decoration: none;
-  colo: rgb(0, 123, 255);
+  color: rgb(0, 123, 255);
 }
