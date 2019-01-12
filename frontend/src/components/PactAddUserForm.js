@@ -72,11 +72,11 @@ function UserCard(props) {
     <Row className="show-grid">
       <Col xs={5} md={3} className="userSubCard">
         <div>Name:</div>
-        <h3 className="hd3">{props.name}</h3>
+        <h3 className="hd4">{props.name}</h3>
       </Col>
       <Col xs={5} md={3} className="userSubCard">
         <div>Score:</div>
-        <h3 className="hd3">{props.score}</h3>
+        <h3 className="hd4">{props.score}</h3>
       </Col>
     </Row>
   );
@@ -99,12 +99,12 @@ class AddedUsers extends React.Component {
         <div>
           <div className="">
             <h3 className="hd3">Added users</h3>
-            <p>(including you)</p>
+            <p>Make sure this includes you.</p>
           </div>
           <div>
             {users.map((user, index) => (
-              <div key={index}>
-                <UserCard name={user} score="undefined" />
+              <div key={index} className="newUser">
+                <UserCard name={user} score={user} />
                 <a
                   href="#"
                   id="delete-item"
@@ -248,7 +248,6 @@ export default class PactAddUserForm extends React.Component {
         <form className="formSubmit">
           <FormGroup controlId="formBasicText">
             <Row className="show-grid">
-              <Col xs={2} md={0} />
               <Col xs={12} md={12}>
                 <h3 className="hd3">Enter usernames of pactholders</h3>
                 <div className="formHelper">
@@ -261,7 +260,6 @@ export default class PactAddUserForm extends React.Component {
                   onChange={this.handleUsernameChange}
                 />
               </Col>
-              <Col xs={2} md={4} />
             </Row>
           </FormGroup>
           <Button

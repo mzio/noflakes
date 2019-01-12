@@ -3,6 +3,7 @@ import CreatePact from "./components/CreatePact";
 import Profile from "./components/Profile";
 import NotFound from "./components/NotFound";
 import ViewPacts from "./components/ViewPacts";
+import { HomeSignIn, HomeDefault, HomeProfile } from "./components/HomeStates";
 
 const routes = [
   {
