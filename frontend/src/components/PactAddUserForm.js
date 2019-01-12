@@ -68,18 +68,16 @@ function ModalUserAdded(props) {
 
 function UserCard(props) {
   return (
-    <Container>
-      <Row className="show-grid">
-        <Col xs={5} md={3} className="userSubCard">
-          <div>Name:</div>
-          <h3>props.name</h3>
-        </Col>
-        <Col xs={5} md={3} className="userSubCard">
-          <div>Score:</div>
-          <h3>props.score</h3>
-        </Col>
-      </Row>
-    </Container>
+    <Row className="show-grid">
+      <Col xs={5} md={3} className="userSubCard">
+        <div>Name:</div>
+        <h3>{props.name}</h3>
+      </Col>
+      <Col xs={5} md={3} className="userSubCard">
+        <div>Score:</div>
+        <h3>{props.score}</h3>
+      </Col>
+    </Row>
   );
 }
 

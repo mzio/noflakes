@@ -1,4 +1,5 @@
 import React from "react";
+if (process.env.BROWSER) require("./Snowflakes.css");
 
 const HTML = props => (
   <html>
@@ -18,6 +19,20 @@ const HTML = props => (
     </head>
 
     <body>
+      {/* <div className="snowflakes" aria-hidden="true">
+        <div className="snowflake">❅</div>
+        <div className="snowflake">❆</div>
+        <div className="snowflake">❅</div>
+        <div className="snowflake">❆</div>
+        <div className="snowflake">❅</div>
+        <div className="snowflake">❆</div>
+        <div className="snowflake">❅</div>
+        <div className="snowflake">❆</div>
+        <div className="snowflake">❅</div>
+        <div className="snowflake">❆</div>
+        <div className="snowflake">❅</div>
+        <div className="snowflake">❆</div>
+      </div> */}
       <div id="root" dangerouslySetInnerHTML={{ __html: props.html }} />
       <script
         dangerouslySetInnerHTML={{

@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import Popup from "reactjs-popup";
 import BurgerIcon from "./BurgerIcon";
 import Menu from "./Menu";
-import "./index.css";
+if (process.env.BROWSER) require("./index.css");
 
 const styles = {
   fontFamily: "sans-serif",

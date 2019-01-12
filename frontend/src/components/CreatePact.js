@@ -32,7 +32,7 @@ export default class CreatePact extends React.Component {
       return (
         <div>
           <h2>Create a Pact</h2>
-          <div>––––––––––––</div>
+          <div>-------------</div>
           <CreatePactForm users={this.state.users} />
         </div>
       );
@@ -41,7 +41,7 @@ export default class CreatePact extends React.Component {
       return (
         <div>
           <h2>Create a Pact</h2>
-          <div>––––––––––––</div>
+          <div>-------------</div>
           <PactAddUserForm submitUsers={this.addUsers} />
         </div>
       );
