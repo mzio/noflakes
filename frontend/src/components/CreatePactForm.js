@@ -12,6 +12,8 @@ import {
 import Datetime from "react-datetime";
 if (process.env.BROWSER) require("react-datetime/css/react-datetime.css");
 if (process.env.BROWSER) require("./CreatePact.css");
+if (process.env.BROWSER) require("../App.css");
+
 // import { Redirect } from "react-router-dom";
 import Home from "./Home";
 import fetch from "isomorphic-fetch";

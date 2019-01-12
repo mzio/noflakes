@@ -3,6 +3,7 @@ import { PageHeader } from "react-bootstrap";
 import CreatePactForm from "./CreatePactForm";
 import PactAddUserForm from "./PactAddUserForm";
 if (process.env.BROWSER) require("./CreatePact.css");
+if (process.env.BROWSER) require("../App.css");
 import fetch from "isomorphic-fetch";
 
 export default class CreatePact extends React.Component {
@@ -31,8 +32,8 @@ export default class CreatePact extends React.Component {
       // Display pact creation form after users added
       return (
         <div>
-          <h2>Create a Pact</h2>
-          <div>-------------</div>
+          <h2 className="hd2">Create a Pact</h2>
+          <div className="hd2">-------------</div>
           <CreatePactForm users={this.state.users} />
         </div>
       );
@@ -40,8 +41,8 @@ export default class CreatePact extends React.Component {
       // Display user add form when first initializing
       return (
         <div>
-          <h2>Create a Pact</h2>
-          <div>-------------</div>
+          <h2 className="hd2">Create a Pact</h2>
+          <div className="hd2">-------------</div>
           <PactAddUserForm submitUsers={this.addUsers} />
         </div>
       );

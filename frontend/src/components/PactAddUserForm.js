@@ -12,6 +12,7 @@ import {
   Col
 } from "react-bootstrap";
 import fetch from "isomorphic-fetch";
+if (process.env.BROWSER) require("./CreatePact.css");
 
 if (process.env.BROWSER) require("./Login.css");
 
@@ -71,11 +72,11 @@ function UserCard(props) {
     <Row className="show-grid">
       <Col xs={5} md={3} className="userSubCard">
         <div>Name:</div>
-        <h3>{props.name}</h3>
+        <h3 className="hd3">{props.name}</h3>
       </Col>
       <Col xs={5} md={3} className="userSubCard">
         <div>Score:</div>
-        <h3>{props.score}</h3>
+        <h3 className="hd3">{props.score}</h3>
       </Col>
     </Row>
   );
@@ -97,7 +98,7 @@ class AddedUsers extends React.Component {
       return (
         <div>
           <div>
-            <h3>Added users</h3>
+            <h3 className="hd3">Added users</h3>
             <p>(including you)</p>
           </div>
           <div>
@@ -249,7 +250,7 @@ export default class PactAddUserForm extends React.Component {
             <Row className="show-grid">
               <Col xs={2} md={0} />
               <Col xs={12} md={12}>
-                <h3>Enter usernames of pactholders</h3>
+                <h3 className="hd3">Enter usernames of pactholders</h3>
                 <div>When you're done, hit continue.</div>
                 <FormControl
                   type="text"
