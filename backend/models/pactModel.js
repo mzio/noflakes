@@ -4,6 +4,9 @@ const pactSchema = mongoose.Schema({
   name: {
     type: String
   },
+  owner: {
+    type: String
+  },
   users: {
     type: [String],
     required: true
