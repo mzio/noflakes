@@ -13,7 +13,6 @@ import {
 } from "react-bootstrap";
 import fetch from "isomorphic-fetch";
 if (process.env.BROWSER) require("./CreatePact.css");
-
 if (process.env.BROWSER) require("./Login.css");
 
 // Import this from external shared file?

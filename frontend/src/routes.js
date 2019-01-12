@@ -18,8 +18,11 @@ const routes = [
     component: CreatePact
   },
   {
+    path: "/profile/:userId",
+    component: Profile
+  },
+  {
     path: "/profile",
-    exact: true,
     component: Profile
   },
   {
@@ -33,6 +36,9 @@ const routes = [
     exact: true,
     component: ViewPacts,
     mode: "pending"
+  },
+  {
+    path: "/pacts/:pactId"
   },
   {
     path: "/about",
