@@ -118,19 +118,15 @@ class PactViewer extends React.Component {
     }
     if (this.props.mode === "pending" && this.state.show) {
       button = (
-        <Button
-          onClick={this.handleAccept}
-          className="position-absolute down-right userSubCard"
-          href="/"
-        >
+        <Button onClick={this.handleAccept} className="userSubCard">
           Accept
         </Button>
       );
       buttonIgnore = (
         <Button
           onClick={this.handleIgnorePending}
-          className="position-absolute down-right userSubCard"
-          href="/"
+          className="userSubCard"
+          // href="/"
         >
           Ignore
         </Button>
@@ -152,10 +148,10 @@ class PactViewer extends React.Component {
         <small>
           <i>Users</i>: {this.props.pact.users.join(", ")}
         </small>
-        {/* <ButtonGroup> */}
-        {button}
-        {/* {buttonIgnore} */}
-        {/* </ButtonGroup> */}
+        <ButtonGroup className="position-absolute down-right">
+          {button}
+          {buttonIgnore}
+        </ButtonGroup>
         <ModalPactAction
           action={this.state.action}
           success={this.state.showModal}
