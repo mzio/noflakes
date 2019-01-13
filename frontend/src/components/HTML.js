@@ -41,6 +41,8 @@ const HTML = props => (
         }}
       />
       <script type="application/javascript" src="/bundle.js" />
+      <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js" />
+      <script>var sf = new Snowflakes();</script>
     </body>
   </html>
 );

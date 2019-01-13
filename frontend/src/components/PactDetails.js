@@ -2,6 +2,7 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 import NotFound from "./NotFound";
 import PactActions from "./PactActions";
+if (process.env.BROWSER) require("./CreatePact.css");
 
 class PactDetails extends React.Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class PactDetails extends React.Component {
       console.log(this.state.pact);
       return (
         <div className="PactDetails">
-          <h1>{this.state.pact.name}</h1>
+          <h1 className="hd2">{this.state.pact.name}</h1>
           <PactActions username={this.state.username} pact={this.state.pact} />
         </div>
       );

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 if (process.env.BROWSER) require("./ViewPacts.css");
 if (process.env.BROWSER) require("./CreatePact.css");
