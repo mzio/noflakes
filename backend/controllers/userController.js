@@ -460,17 +460,9 @@ module.exports = {
           } else if (req.body.result === "friend") {
             user.friend += 1 / size;
             user.score = user.friend / (user.friend + user.flake);
-            res.send({
-              status: "success",
-              data: user.score
-            });
           } else if (req.body.result === "flake") {
             user.flake += 1 / size;
             user.score = user.friend / (user.friend + user.flake);
-            res.send({
-              status: "success",
-              data: user.score
-            });
           } else {
             res.send({
               status: "failure",
@@ -478,6 +470,16 @@ module.exports = {
                 "Error: 'result' must be a string, either 'friend' or 'flake'."
             });
           }
+          user.save(err => {
+            if (err) {
+              res.send(err);
+            } else {
+              res.send({
+                status: "success",
+                data: user.score
+              });
+            }
+          });
         }
       }
     );
