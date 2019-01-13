@@ -14,7 +14,7 @@ function ModalPactAction(props) {
       onHide={props.handleclose}
     >
       <Modal.Header closeButton className="ModalStyle">
-        <Modal.Title>👍Pact {this.props.action}! 👍</Modal.Title>
+        <Modal.Title>👍Pact {props.action}! 👍</Modal.Title>
       </Modal.Header>
       <Modal.Body className="ModalBodyUsername">
         <Row className="show-grid">
