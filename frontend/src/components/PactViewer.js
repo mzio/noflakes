@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Modal, ButtonGroup } from "react-bootstrap";
+import { Button, Modal, ButtonGroup, Row, Col } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 if (process.env.BROWSER) require("./ViewPacts.css");
 if (process.env.BROWSER) require("./CreatePact.css");
@@ -121,6 +121,7 @@ class PactViewer extends React.Component {
         <Button
           onClick={this.handleAccept}
           className="position-absolute down-right userSubCard"
+          href="/"
         >
           Accept
         </Button>
@@ -129,6 +130,7 @@ class PactViewer extends React.Component {
         <Button
           onClick={this.handleIgnorePending}
           className="position-absolute down-right userSubCard"
+          href="/"
         >
           Ignore
         </Button>
@@ -150,9 +152,10 @@ class PactViewer extends React.Component {
         <small>
           <i>Users</i>: {this.props.pact.users.join(", ")}
         </small>
-        <ButtonGroup>
-          {button} {buttonIgnore}
-        </ButtonGroup>
+        {/* <ButtonGroup> */}
+        {button}
+        {/* {buttonIgnore} */}
+        {/* </ButtonGroup> */}
         <ModalPactAction
           action={this.state.action}
           success={this.state.showModal}
