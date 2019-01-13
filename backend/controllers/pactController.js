@@ -219,13 +219,10 @@ module.exports = {
                   user.pacts[key].pull(pact._id);
                 });
                 user.pacts[req.body.status].push(pact._id);
-                user
-                  .save(err => {
-                    if (err) {
-                      res.send(err);
-                    }
-                  })
-                  .then(() => {
+                user.save(err => {
+                  if (err) {
+                    res.send(err);
+                  } else {
                     if (req.body.status === "accepted") {
                       let activatePact = true;
                       for (let i = 0; i < pact.usersStatus.length; ++i) {
@@ -259,7 +256,8 @@ module.exports = {
                         }
                       }
                     }
-                  });
+                  }
+                });
               }
             }
           );
