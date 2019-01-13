@@ -236,7 +236,7 @@ class PactActions extends React.Component {
           <Button
             onClick={this.handleSubmitResults}
             variant="outline-primary"
-            className={buttonClick}
+            className="buttonClick"
           >
             Submit
           </Button>
