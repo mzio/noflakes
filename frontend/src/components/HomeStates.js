@@ -51,19 +51,19 @@ export class HomeProfile extends Component {
     this.state = {
       userFirstName: props.userFirstName,
       user: props.user,
-      pactsAccepted: [],
+      pactsActive: [],
       pactsPending: []
     };
   }
   componentWillMount() {
-    for (var i = 0; i < this.state.user.pacts["accepted"].length; ++i) {
-      let pactId = this.state.user.pacts["accepted"][i];
+    for (var i = 0; i < this.state.user.pacts["active"].length; ++i) {
+      let pactId = this.state.user.pacts["active"][i];
       fetch("/api/pacts/" + pactId)
         .then(res => res.json())
         .then(json => {
           if (json.status === "success") {
             this.setState({
-              pactsAccepted: this.state.pactsAccepted.concat([json.data])
+              pactsActive: this.state.pactsActive.concat([json.data])
             });
           }
         });
@@ -86,12 +86,12 @@ export class HomeProfile extends Component {
     console.log(this.state);
   }
   render() {
-    var pactsAccepted = this.state.pactsAccepted.map(pact => {
+    var pactsActive = this.state.pactsActive.map(pact => {
       return (
         <PactViewer
           pact={pact}
           username={this.state.user.username}
-          mode="accepted"
+          mode="active"
         />
       );
     });
@@ -105,43 +105,43 @@ export class HomeProfile extends Component {
       );
     });
     console.log("Render Call");
-    console.log(pactsAccepted);
+    console.log(pactsActive);
     return (
       <div>
         <Header
           defaultText={`Hi ${this.state.userFirstName}!`}
           secondaryText={`username: ${this.state.user.username}`}
           tertiaryText={`You have ${
-            this.state.user.pacts["accepted"].length
+            this.state.user.pacts["active"].length
           } active pacts and ${
             this.state.user.pacts["pending"].length
           } pending pacts.`}
         />
         <div className="belowHeaderContent">
           {/* <PactTypeSwitcher
-            acceptedMessage={`You have ${
-              this.state.user.pacts["accepted"].length
+            activeMessage={`You have ${
+              this.state.user.pacts["active"].length
             } active pacts.`}
             pendingMessage={`You have ${
               this.state.user.pacts["pending"].length
             } pending pacts.`}
-            pactsAccepted={pactsAccepted}
+            pactsActive={pactsActive}
             pactsPending={pactsPending}
           /> */}
           {/* <PactTypeSwitcher
-            acceptedMessage={`You have ${
-              this.state.user.pacts["accepted"].length
+            activeMessage={`You have ${
+              this.state.user.pacts["active"].length
             } active pacts.`}
             pendingMessage={`You have ${
               this.state.user.pacts["pending"].length
             } pending pacts.`}
-            pactsAccepted={pactsAccepted}
+            pactsActive={pactsActive}
             pactsPending={pactsPending}
-            numAccepted={this.state.user.pacts["accepted"].length}
+            numActive={this.state.user.pacts["active"].length}
             numPending={this.state.user.pacts["pending"].length}
           /> */}
           <div className="pactType">Active Pacts</div>
-          <div class="list-group">{pactsAccepted}</div>
+          <div class="list-group">{pactsActive}</div>
           <div className="pactType">Pending Pacts</div>
           <div class="list-group">{pactsPending}</div>
         </div>
