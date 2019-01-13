@@ -1,13 +1,16 @@
 import React from "react";
 import fetch from "isomorphic-fetch";
 import NotFound from "./NotFound";
+import PactActions from "./PactActions";
 
 class PactDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ready: false,
-      pact: null
+      pactReady: false,
+      usernameReady: false,
+      pact: null,
+      username: null
     };
   }
 
@@ -16,31 +19,30 @@ class PactDetails extends React.Component {
       fetch("/api/pacts/" + this.props.match.params.pactId)
         .then(res => res.json())
         .then(json => {
-          this.setState({ pact: json.data, ready: true });
+          this.setState({ pact: json.data, pactReady: true });
         });
     } else {
-      this.setState({ ready: true });
+      this.setState({ pactReady: true });
     }
+    fetch("/api/auth/user")
+      .then(res => res.json())
+      .then(json => {
+        this.setState({
+          username: json.data.user.username,
+          usernameReady: true
+        });
+      });
   }
 
   render() {
-    if (!this.state.ready) {
+    if (!this.state.pactReady || !this.state.usernameReady) {
       return <div />;
-    } else if (!this.state.pact) {
-      return <NotFound />;
     } else {
+      console.log(this.state.pact);
       return (
-        <div className="Profile">
-          <h1>{this.state.user.firstName}'s Profile</h1>
-          <h3>Details</h3>
-          <div>
-            <div>
-              Name: {this.state.user.firstName} {this.state.user.lastName}
-            </div>
-            <div>Username: {this.state.user.username}</div>
-          </div>
-          <h3>Flake Forecast&trade;</h3>
-          {this.evaluateScore(this.state.user.score)}
+        <div className="PactDetails">
+          <h1>{this.state.pact.name}</h1>
+          <PactActions username={this.state.username} pact={this.state.pact} />
         </div>
       );
     }

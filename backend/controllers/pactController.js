@@ -30,7 +30,7 @@ module.exports = {
     var pact = new Pact();
     pact.name = req.body.name;
     pact.description = req.body.description;
-    pact.endTime = req.body.endTime;
+    pact.endTime = new Date(req.body.endTime);
     pact.users = req.body.users;
     pact.owner = {
       username: req.user.username || pact.users[0],

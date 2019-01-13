@@ -105,7 +105,7 @@ export default class CreatePactForm extends React.Component {
       body: JSON.stringify({
         name: this.state.name,
         description: this.state.description,
-        endDate: this.state.endDate + "T" + this.state.endTimeString,
+        endTime: this.state.endDate + "T" + this.state.endTimeString,
         users: this.state.users
       })
     }).then(res => {

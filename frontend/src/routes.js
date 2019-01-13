@@ -21,7 +21,7 @@ const routes = [
   {
     path: "/pact/:pactId",
     component: PactDetails
-  }
+  },
   {
     path: "/profile/:userId",
     component: Profile
