@@ -232,7 +232,11 @@ class PactActions extends React.Component {
           <h3 className="hd3">Did they show up?</h3>
           <div className="text-muted">{this.state.verify} to respond</div>
           <div>{responses}</div>
-          <Button onClick={this.handleSubmitResults} variant="outline-primary">
+          <Button
+            onClick={this.handleSubmitResults}
+            variant="outline-primary"
+            className="buttonClick"
+          >
             Submit
           </Button>
         </div>
