@@ -84,20 +84,21 @@ export default class CreatePactForm extends React.Component {
   handleEndDateTimeChange(event) {
     // Storing Dates as UTC
     let dateString = event.format();
-    let endDateString = dateString.slice(0, 10);
-    let endTimeString = dateString.slice(10, -1);
-    this.setState({ endDate: endDateString, endTime: endTimeString });
+    // let endDateString = dateString.slice(0, 10);
+    let endTimeString = dateString;
+    // .slice(10, 0);
+    this.setState({ endTime: endTimeString });
   }
 
   handleSubmit(event) {
     console.log({
       name: this.state.name,
       description: this.state.description,
-      endDate: this.state.endDate + this.state.endTime,
+      endDate: this.state.endTime,
       users: this.state.users
     });
     // Send post request to the backend
-    fetch("/api/pacts/", {
+    fetch("/api/pacts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -105,13 +106,13 @@ export default class CreatePactForm extends React.Component {
       body: JSON.stringify({
         name: this.state.name,
         description: this.state.description,
-        endTime: this.state.endDate + "T" + this.state.endTimeString,
+        endTime: this.state.endTime,
         users: this.state.users
       })
     }).then(res => {
-      console.log("After fetch response");
-      console.log(res);
-      //   return <Redirect to="/" exact component={Home} />;
+      // console.log("After fetch response");
+      // console.log(res);
+      return <Redirect to="/" exact component={Home} />;
     });
   }
 

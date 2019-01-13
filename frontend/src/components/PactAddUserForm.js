@@ -160,7 +160,7 @@ export default class PactAddUserForm extends React.Component {
       .then(res => res.json())
       .then(json => {
         let resData = json.data;
-        this.addUser(resData.user);
+        this.addUser(resData.user.username);
       });
   }
 
