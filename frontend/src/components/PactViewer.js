@@ -71,7 +71,7 @@ class PactViewer extends React.Component {
     }
     return (
       <a
-        href="#"
+        href={"/pact/" + this.props.pact._id}
         className="pactStyle list-group-item list-group-item-action flex-column align-items-start"
       >
         {" "}

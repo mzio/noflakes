@@ -2,6 +2,7 @@ import React from "react";
 import fetch from "isomorphic-fetch";
 import NotFound from "./NotFound";
 if (process.env.BROWSER) require("./Profile.css");
+if (process.env.BROWSER) require("./CreatePact.css");
 
 class Profile extends React.Component {
   constructor(props) {
@@ -49,7 +50,8 @@ class Profile extends React.Component {
 
     if (!isNaN(score)) {
       var category = parseInt(9 * score);
-      var size = "" + (450 + 900 * Math.abs(score - 0.5)) + "%";
+      // var size = "" + (450 + 900 * Math.abs(score - 0.5)) + "%";
+      var size = "" + ((4.5 + 9.0 * Math.abs(score - 0.5)) * 3) / 2 + "rem";
       var emoji = "?";
       if (category < 4) {
         emoji = "❄️";
@@ -77,16 +79,22 @@ class Profile extends React.Component {
     } else {
       return (
         <div className="Profile">
-          <h1>{this.state.user.firstName}'s Profile</h1>
-          <h3>Details</h3>
+          <h1 className="hd2">{this.state.user.firstName}'s Profile</h1>
+
           <div>
-            <div>
-              Name: {this.state.user.firstName} {this.state.user.lastName}
-            </div>
-            <div>Username: {this.state.user.username}</div>
+            <h3 className="hd3">Flake Forecast&trade;</h3>
+            {this.evaluateScore(this.state.user.score)}
           </div>
-          <h3>Flake Forecast&trade;</h3>
-          {this.evaluateScore(this.state.user.score)}
+
+          <div className="Details">
+            <h3 className="hd4">Details</h3>
+            <div>
+              <div>
+                Name: {this.state.user.firstName} {this.state.user.lastName}
+              </div>
+              <div>Username: {this.state.user.username}</div>
+            </div>
+          </div>
         </div>
       );
     }

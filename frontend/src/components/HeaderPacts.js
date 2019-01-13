@@ -26,7 +26,7 @@ export default class Header extends React.Component {
     if (sY >= this.state.changeHeaderOn) {
       this.setState({
         scrollClassName: "cbp-af-header-shrink",
-        displayText: "Noflakes ❄️🚫👌 ",
+        displayText: this.props.defaultText,
         headerClass: "hd4-shrink"
       });
     } else {

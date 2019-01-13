@@ -119,7 +119,7 @@ class AddedUsers extends React.Component {
           <div>
             {users.map((user, index) => (
               <div key={index} className="newUser">
-                <UserCard name={user} score={user} />
+                <UserCard name={user.firstName} score={user.score} />
                 <Delete
                   index={index}
                   onClick={() => this.props.handleDelete(user)}
@@ -160,7 +160,7 @@ export default class PactAddUserForm extends React.Component {
       .then(res => res.json())
       .then(json => {
         let resData = json.data;
-        this.addUser(resData.user.username);
+        this.addUser(resData.user);
       });
   }
 

@@ -2,8 +2,10 @@ import React from "react";
 import PactViewer from "./PactViewer";
 import { Button } from "react-bootstrap";
 import fetch from "isomorphic-fetch";
+import HeaderPacts from "./HeaderPacts";
 if (process.env.BROWSER) require("./ViewPacts.css");
 if (process.env.BROWSER) require("./CreatePact.css");
+if (process.env.BROWSER) require("./Header.css");
 
 class ViewPacts extends React.Component {
   constructor(props) {
@@ -61,12 +63,21 @@ class ViewPacts extends React.Component {
 
       return (
         <div class="Pacts">
-          <h1 className="hd1">
+          <HeaderPacts
+            defaultText={`${this.props.route.mode.charAt(0).toUpperCase() +
+              this.props.route.mode.toLowerCase().slice(1)}
+            Pacts`}
+            secondaryText=""
+            tertiaryText=""
+          />
+          {/* <h1 className="hd1">
             {this.props.route.mode.charAt(0).toUpperCase() +
               this.props.route.mode.toLowerCase().slice(1)}{" "}
             Pacts
-          </h1>
-          <div class="list-group">{pacts}</div>
+          </h1> */}
+          <div className="belowHeaderContent-pacts">
+            <div class="list-group">{pacts}</div>
+          </div>
         </div>
       );
     }
