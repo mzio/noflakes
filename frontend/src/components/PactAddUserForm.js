@@ -73,10 +73,10 @@ function UserCard(props) {
         <div>Name:</div>
         <h3 className="hd4">{props.name}</h3>
       </Col>
-      <Col xs={5} md={3} className="userSubCard">
+      {/* <Col xs={5} md={3} className="userSubCard">
         <div>Score:</div>
         <h3 className="hd4">{props.score}</h3>
-      </Col>
+      </Col> */}
     </Row>
   );
 }
@@ -119,7 +119,7 @@ class AddedUsers extends React.Component {
           <div>
             {users.map((user, index) => (
               <div key={index} className="newUser">
-                <UserCard name={user.firstName} score={user.score} />
+                <UserCard name={user} />
                 <Delete
                   index={index}
                   onClick={() => this.props.handleDelete(user)}
@@ -214,7 +214,7 @@ export default class PactAddUserForm extends React.Component {
   }
 
   handleSubmit(event) {
-    if (this.state.prevAddedUsers.includes(this.state.user)) {
+    if (this.state.prevAddedUsers.includes(this.state.username)) {
       this.addUser(this.state.username);
       this.setState({ username: "" });
     } else if (this.state.users.includes(this.state.username)) {

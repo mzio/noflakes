@@ -109,10 +109,6 @@ export default class CreatePactForm extends React.Component {
         endTime: this.state.endTime,
         users: this.state.users
       })
-    }).then(res => {
-      // console.log("After fetch response");
-      // console.log(res);
-      return <Redirect to="/" exact component={Home} />;
     });
   }
 
@@ -164,7 +160,7 @@ export default class CreatePactForm extends React.Component {
           size="large"
           className="SubmitButton"
           onClick={this.handleSubmit}
-          // href="/"
+          href="/"
         >
           Submit
         </Button>
