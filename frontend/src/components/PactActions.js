@@ -84,12 +84,11 @@ class PactActions extends React.Component {
   }
 
   refreshVerify() {
-    console.log(this.state.expiry, this.state.verify);
     this.setState({
       verify: this.timeUntil(this.state.expiry)
     });
     if (!this.state.verify && this.timer) {
-      clearInterval(timer);
+      clearInterval(this.timer);
     }
   }
 
