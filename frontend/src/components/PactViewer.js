@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, ButtonGroup } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 if (process.env.BROWSER) require("./ViewPacts.css");
 if (process.env.BROWSER) require("./CreatePact.css");
@@ -150,7 +150,9 @@ class PactViewer extends React.Component {
         <small>
           <i>Users</i>: {this.props.pact.users.join(", ")}
         </small>
-        {button} {buttonIgnore}
+        <ButtonGroup>
+          {button} {buttonIgnore}
+        </ButtonGroup>
         <ModalPactAction
           action={this.state.action}
           success={this.state.showModal}
