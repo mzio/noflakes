@@ -1,6 +1,6 @@
 // Rendering of the About Page
 import React from "react";
-import SnowStorm from "react-snowstorm";
+// import SnowStorm from "react-snowstorm";
 if (process.env.BROWSER) require("./CreatePact.css");
 
 export default function About(props) {
