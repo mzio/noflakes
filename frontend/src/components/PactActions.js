@@ -9,7 +9,7 @@ class PactActions extends React.Component {
     this.state = {
       pending: false,
       expiry: null,
-      verify: "",
+      verify: "start",
       userFirstNames: {},
       responses: {}
     };
@@ -19,6 +19,8 @@ class PactActions extends React.Component {
     this.handleSubmitResults = this.handleSubmitResults.bind(this);
     this.handleAcceptPending = this.handleAcceptPending.bind(this);
     this.handleIgnorePending = this.handleIgnorePending.bind(this);
+    this.handleFriendClick = this.handleFriendClick.bind(this);
+    this.handleFlakeClick = this.handleFlakeClick.bind(this);
   }
 
   timeUntil(date) {
@@ -54,8 +56,10 @@ class PactActions extends React.Component {
     this.setState({
       responses: { [this.props.username]: "user" }
     });
+
     var i = this.props.pact.users.indexOf(this.props.username);
     var expiry = new Date(this.props.pact.endTime);
+    console.log(expiry);
     this.props.pact.users.map(username => {
       fetch("/api/users/" + username)
         .then(res => res.json())
@@ -72,7 +76,7 @@ class PactActions extends React.Component {
     });
 
     this.setState({
-      pending: i >= 0 && this.props.pact.userStatus[i] === "pending",
+      pending: i >= 0 && this.props.pact.usersStatus[i] === "pending",
       expiry: expiry,
       verify: this.timeUntil(expiry)
     });
@@ -81,9 +85,9 @@ class PactActions extends React.Component {
   }
 
   refreshVerify() {
-    let now = new Date();
+    console.log(this.state.expiry, this.state.verify);
     this.setState({
-      verify: this.timeUntil(expiry)
+      verify: this.timeUntil(this.state.expiry)
     });
     if (!this.state.verify) {
       clearInterval(timer);
@@ -157,8 +161,26 @@ class PactActions extends React.Component {
     }
   }
 
+  handleFriendClick(user) {
+    this.setState({
+      responses: {
+        ...this.state.responses,
+        [user]: "friend"
+      }
+    });
+  }
+
+  handleFlakeClick(user) {
+    this.setState({
+      responses: {
+        ...this.state.responses,
+        [user]: "flake"
+      }
+    });
+  }
+
   render() {
-    if (pending) {
+    if (this.state.pending) {
       return (
         <div>
           <h3 className="hd3">
@@ -172,47 +194,33 @@ class PactActions extends React.Component {
           </Button>
         </div>
       );
-    } else if (verify) {
-      responses = this.props.pact.users.map(user => {
+    } else if (this.state.verify) {
+      var responses = this.props.pact.users.map(user => {
         if (user === this.props.username) {
           return;
         } else {
           var name = this.state.userFirstNames[user] || user;
+          var flakeStatus = "";
+          var friendStatus = "";
+          if (this.state.responses[user] === "friend") {
+            friendStatus = "active";
+          }
+          if (this.state.responses[user] === "flake") {
+            flakeStatus = "active";
+          }
           return (
             <div>
               <h4>{name} is a </h4>{" "}
               <Button
-                className={event => {
-                  if (this.state.responses[user] === "friend") {
-                    return "active";
-                  }
-                }}
-                onClick={event => {
-                  this.setState({
-                    responses: {
-                      ...this.state.responses,
-                      [user]: "friend"
-                    }
-                  });
-                }}
+                className={friendStatus}
+                onClick={() => this.handleFriendClick(user)}
                 variant="outline-primary"
               >
                 Friend
               </Button>
               <Button
-                className={event => {
-                  if (this.state.responses[user] === "flake") {
-                    return "active";
-                  }
-                }}
-                onClick={event => {
-                  this.setState({
-                    responses: {
-                      ...this.state.responses,
-                      [user]: "flake"
-                    }
-                  });
-                }}
+                className={flakeStatus}
+                onClick={() => this.handleFlakeClick(user)}
                 variant="outline-primary"
               >
                 Flake
