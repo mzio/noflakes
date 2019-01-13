@@ -24,8 +24,8 @@ class PactActions extends React.Component {
   }
 
   timeUntil(date) {
-    var seconds = Math.floor((date - new Date()) / 1000);
-    if ((seconds < 0) | (seconds >= 86400)) {
+    var seconds = 86400 + Math.floor((date - new Date()) / 1000);
+    if (seconds < 0) {
       return "";
     }
 
