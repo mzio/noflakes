@@ -219,47 +219,51 @@ module.exports = {
                   user.pacts[key].pull(pact._id);
                 });
                 user.pacts[req.body.status].push(pact._id);
-                user.save(err => {
-                  if (err) {
-                    res.send(err);
-                  }
-                });
+                user
+                  .save(err => {
+                    if (err) {
+                      res.send(err);
+                    }
+                  })
+                  .then(() => {
+                    if (req.body.status === "accepted") {
+                      let activatePact = true;
+                      for (let i = 0; i < pact.usersStatus.length; ++i) {
+                        if (pact.usersStatus[i] !== "accepted") {
+                          activatePact = false;
+                        }
+                      }
+                      if (activatePact) {
+                        for (let j = 0; j < pact.users.length; j++) {
+                          pact.usersStatus.set(j, "active");
+                          User.findOne(
+                            {
+                              username: pact.users[j]
+                            },
+                            (err, user) => {
+                              if (err) {
+                                res.send(err);
+                              } else if (user) {
+                                statuses.forEach(key => {
+                                  user.pacts[key].pull(pact._id);
+                                });
+                                user.pacts["active"].push(pact._id);
+                                user.save(err => {
+                                  if (err) {
+                                    res.send(err);
+                                  }
+                                });
+                              }
+                            }
+                          );
+                        }
+                      }
+                    }
+                  });
               }
             }
           );
-          if (req.body.status === "accepted") {
-            let activatePact = true;
-            for (let i = 0; i < pact.usersStatus.length; ++i) {
-              if (pact.usersStatus[i] !== "accepted") {
-                activatePact = false;
-              }
-            }
-            if (activatePact) {
-              for (let j = 0; j < pact.users.length; j++) {
-                pact.usersStatus.set(j, "active");
-                User.findOne(
-                  {
-                    username: pact.users[j]
-                  },
-                  (err, user) => {
-                    if (err) {
-                      res.send(err);
-                    } else if (user) {
-                      statuses.forEach(key => {
-                        user.pacts[key].pull(pact._id);
-                      });
-                      user.pacts["active"].push(pact._id);
-                      user.save(err => {
-                        if (err) {
-                          res.send(err);
-                        }
-                      });
-                    }
-                  }
-                );
-              }
-            }
-          }
+
           pact.save(err => {
             if (err) {
               res.send(err);
