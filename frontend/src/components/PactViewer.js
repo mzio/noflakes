@@ -1,17 +1,50 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
 if (process.env.BROWSER) require("./ViewPacts.css");
 if (process.env.BROWSER) require("./CreatePact.css");
+
+function ModalPactAction(props) {
+  return (
+    <Modal
+      {...props}
+      size="small"
+      dialogClassName="PactActionModal"
+      show={props.success}
+      onHide={props.handleclose}
+    >
+      <Modal.Header closeButton className="ModalStyle">
+        <Modal.Title>👍Pact {this.props.action}! 👍</Modal.Title>
+      </Modal.Header>
+      <Modal.Body className="ModalBodyUsername">
+        <Row className="show-grid">
+          <Col xs={2} md={2} />
+          <Col xs={8} md={8}>
+            Close to return home.
+          </Col>
+          <Col xs={2} md={2} />
+        </Row>
+      </Modal.Body>
+    </Modal>
+  );
+}
 
 class PactViewer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: true
+      show: true,
+      showModal: false,
+      action: "",
+      redirect: false
     };
     this.handleAccept = this.handleAccept.bind(this);
+    this.handleIgnorePending = this.handleIgnorePending.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
+
   handleAccept(event) {
+    this.setState({ action: "accepted", showModal: true });
     fetch(
       "/api/pacts/" + this.props.pact._id + "/users/" + this.state.username,
       {
@@ -20,6 +53,22 @@ class PactViewer extends React.Component {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({ status: "accepted" })
+      }
+    )
+      .then(res => res.json())
+      .then(json => {
+        if (json.status === "success") {
+          this.setState({ show: false });
+        }
+      });
+  }
+
+  handleIgnorePending(event) {
+    this.setState({ action: "ignored", showModal: true });
+    fetch(
+      "/api/pacts/" + this.props.pact._id + "/users/" + this.props.username,
+      {
+        method: "DELETE"
       }
     )
       .then(res => res.json())
@@ -57,15 +106,31 @@ class PactViewer extends React.Component {
     return Math.floor(seconds) + " seconds";
   }
 
+  handleClose() {
+    this.setState({ redirect: true });
+  }
+
   render() {
     var button;
+    var buttonIgnore;
+    if (this.state.redirect) {
+      return <Redirect to="/" />;
+    }
     if (this.props.mode === "pending" && this.state.show) {
       button = (
         <Button
           onClick={this.handleAccept}
-          className="position-absolute down-right"
+          className="position-absolute down-right userSubCard"
         >
           Accept
+        </Button>
+      );
+      buttonIgnore = (
+        <Button
+          onClick={this.handleIgnorePending}
+          className="position-absolute down-right userSubCard"
+        >
+          Ignore
         </Button>
       );
     }
@@ -85,7 +150,12 @@ class PactViewer extends React.Component {
         <small>
           <i>Users</i>: {this.props.pact.users.join(", ")}
         </small>
-        {button}
+        {button} {buttonIgnore}
+        <ModalPactAction
+          action={this.state.action}
+          success={this.state.showModal}
+          handleclose={this.handleClose}
+        />
       </a>
     );
   }
