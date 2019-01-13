@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import HomeDefault, { HomeSignIn, HomeProfile } from "./HomeStates.js";
 import Login from "./Login.js";
 if (process.env.BROWSER) require("./Home.css");
+
 import fetch from "isomorphic-fetch";
 
 import PactAddUserForm from "./PactAddUserForm"; // REACT COMPONENT DEV ZONE
