@@ -1,14 +1,7 @@
 const Pact = require("../models/pactModel");
 const User = require("../models/userModel");
 
-const statuses = [
-  "pending",
-  "accepted",
-  "incomplete",
-  "complete",
-  "successful",
-  "inactive"
-];
+const statuses = ["pending", "accepted", "active", "inactive"];
 
 module.exports = {
   index: (req, res) => {
