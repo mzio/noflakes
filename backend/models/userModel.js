@@ -20,9 +20,7 @@ const userSchema = mongoose.Schema({
   pacts: {
     pending: [String],
     accepted: [String],
-    incomplete: [String],
-    complete: [String],
-    successful: [String],
+    active: [String],
     inactive: [String]
   },
   friend_requests: {

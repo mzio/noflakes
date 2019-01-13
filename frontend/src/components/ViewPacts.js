@@ -25,10 +25,10 @@ class ViewPacts extends React.Component {
           this.setState({ user: json.data.user, userReady: true });
           for (
             var i = 0;
-            i < json.data.user.pacts[this.props.route.mode].length;
+            i < json.data.user.pacts[this.props.match.mode].length;
             ++i
           ) {
-            let pactId = json.data.user.pacts[this.props.route.mode][i];
+            let pactId = json.data.user.pacts[this.props.match.mode][i];
             fetch("/api/pacts/" + pactId)
               .then(res => res.json())
               .then(json => {
@@ -54,7 +54,7 @@ class ViewPacts extends React.Component {
           <PactViewer
             pact={pact}
             username={this.state.user.username}
-            mode={this.props.route.mode}
+            mode={this.props.match.mode}
           />
         );
       });
@@ -62,15 +62,15 @@ class ViewPacts extends React.Component {
       return (
         <div class="Pacts">
           <HeaderPacts
-            defaultText={`${this.props.route.mode.charAt(0).toUpperCase() +
-              this.props.route.mode.toLowerCase().slice(1)}
+            defaultText={`${this.props.match.mode.charAt(0).toUpperCase() +
+              this.props.match.mode.toLowerCase().slice(1)}
             Pacts`}
             secondaryText=""
             tertiaryText=""
           />
           {/* <h1 className="hd1">
-            {this.props.route.mode.charAt(0).toUpperCase() +
-              this.props.route.mode.toLowerCase().slice(1)}{" "}
+            {this.props.match.mode.charAt(0).toUpperCase() +
+              this.props.match.mode.toLowerCase().slice(1)}{" "}
             Pacts
           </h1> */}
           <div className="belowHeaderContent-pacts">

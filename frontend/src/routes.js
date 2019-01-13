@@ -31,16 +31,9 @@ const routes = [
     component: Profile
   },
   {
-    path: "/viewPacts/accepted",
+    path: "/viewPacts/:mode",
     exact: true,
-    component: ViewPacts,
-    mode: "accepted"
-  },
-  {
-    path: "/viewPacts/pending",
-    exact: true,
-    component: ViewPacts,
-    mode: "pending"
+    component: ViewPacts
   },
   {
     path: "/pacts/:pactId"

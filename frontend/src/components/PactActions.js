@@ -59,7 +59,6 @@ class PactActions extends React.Component {
 
     var i = this.props.pact.users.indexOf(this.props.username);
     var expiry = new Date(this.props.pact.endTime);
-    console.log(expiry);
     this.props.pact.users.map(username => {
       fetch("/api/users/" + username)
         .then(res => res.json())
