@@ -24,8 +24,8 @@ class PactActions extends React.Component {
   }
 
   timeUntil(date) {
-    var seconds = Math.floor((date - new Date()) / 1000);
-    if ((seconds < 0) | (seconds >= 86400)) {
+    var seconds = 86400 + Math.floor((date - new Date()) / 1000);
+    if (seconds < 0) {
       return "";
     }
 
@@ -84,12 +84,11 @@ class PactActions extends React.Component {
   }
 
   refreshVerify() {
-    console.log(this.state.expiry, this.state.verify);
     this.setState({
       verify: this.timeUntil(this.state.expiry)
     });
-    if (!this.state.verify) {
-      clearInterval(timer);
+    if (!this.state.verify && this.timer) {
+      clearInterval(this.timer);
     }
   }
 
@@ -128,35 +127,41 @@ class PactActions extends React.Component {
   }
 
   handleSubmitResults(event) {
-    if (Object.values(this.state.responses).length < this.users.length) {
+    if (
+      Object.values(this.state.responses).length < this.props.pact.users.length
+    ) {
       //maybe show modal to describe error
       return;
     } else {
-      this.clearInterval(this.timer);
+      clearInterval(this.timer);
       this.setState({
         verify: ""
       });
-      this.state.responses.map((username, response) => {
-        if (response !== "user") {
+      console.log(this.state.responses);
+      Object.keys(this.state.responses).map(username => {
+        if (this.state.responses[username] !== "user") {
           fetch("/api/users/" + username + "/score", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              result: response,
+              result: this.state.responses[username],
               size: this.props.pact.users.length - 1
             })
           });
         }
       });
-      fetch("/api/pacts/" + this.props.pact._id + "/users/" + username, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ status: "inactive" })
-      });
+      fetch(
+        "/api/pacts/" + this.props.pact._id + "/users/" + this.props.username,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ status: "inactive" })
+        }
+      );
     }
   }
 

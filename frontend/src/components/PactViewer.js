@@ -14,7 +14,7 @@ function ModalPactAction(props) {
       onHide={props.handleclose}
     >
       <Modal.Header closeButton className="ModalStyle">
-        <Modal.Title>👍Pact {props.action}! 👍</Modal.Title>
+        <Modal.Title>👍 Pact {props.action}! 👍</Modal.Title>
       </Modal.Header>
       <Modal.Body className="ModalBodyUsername">
         <Row className="show-grid">
@@ -116,22 +116,22 @@ class PactViewer extends React.Component {
     if (this.state.redirect) {
       return <Redirect to="/" />;
     }
-    if (this.props.mode === "pending" && this.state.show) {
-      button = (
-        <Button onClick={this.handleAccept} className="userSubCard">
-          Accept
-        </Button>
-      );
-      buttonIgnore = (
-        <Button
-          onClick={this.handleIgnorePending}
-          className="userSubCard"
-          // href="/"
-        >
-          Ignore
-        </Button>
-      );
-    }
+    // if (this.props.mode === "pending" && this.state.show) {
+    //   button = (
+    //     <Button onClick={this.handleAccept} className="userSubCard">
+    //       Accept
+    //     </Button>
+    //   );
+    //   buttonIgnore = (
+    //     <Button
+    //       onClick={this.handleIgnorePending}
+    //       className="userSubCard"
+    //       // href="/"
+    //     >
+    //       Ignore
+    //     </Button>
+    //   );
+    // }
     return (
       <a
         href={"/pact/" + this.props.pact._id}

@@ -43,6 +43,7 @@ class PactDetails extends React.Component {
       return (
         <div className="PactDetails">
           <h1 className="hd2">{this.state.pact.name}</h1>
+          <div>{this.state.pact.description}</div>
           <PactActions username={this.state.username} pact={this.state.pact} />
         </div>
       );

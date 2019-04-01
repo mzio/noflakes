@@ -49,8 +49,8 @@ class Profile extends React.Component {
 
     if (!isNaN(score)) {
       var category = parseInt(9 * score);
-      // var size = "" + (450 + 900 * Math.abs(score - 0.5)) + "%";
-      var size = "" + ((4.5 + 9.0 * Math.abs(score - 0.5)) * 3) / 2 + "rem";
+      var size = "" + (450 + 900 * Math.abs(score - 0.5)) + "%";
+      // var size = "" + ((4.5 + 9.0 * Math.abs(score - 0.5)) * 3) / 2 + "rem";
       var emoji = "?";
       if (category < 4) {
         emoji = "❄️";
